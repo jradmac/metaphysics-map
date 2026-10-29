@@ -17,15 +17,15 @@
 /* Layout: one drafting sheet — model space (plot) left, properties palette right, schedule + title block below. Light = vellum, dark = CAD model space. */
 :root{
   --paper:#e9eef1; --sheet:#f6f8f9; --ink:#16303f; --ink2:#4d6676; --line:#98adbb; --grid:#dce5eb; --grid2:#c9d6de;
-  --claim:#0b72a0; --supp:#b85f00; --zone:#6d8797; --sel:#c0262d; --rel:#7b3fa6; --px:#1f6fb2; --py:#a06a00; --pxt:rgba(31,111,178,.11); --pyt:rgba(160,106,0,.12); --z1:#a8457a; --z2:#2f6fb5; --z3:#5b54b0; --z4:#b0752a; --z5:#23898a; --z6:#5b8c32; --z7:#b5483d; --z8:#8a6e52; --z9:#6c7588; --zop:.10; --hl:rgba(11,114,160,.08);
+  --claim:#0b72a0; --supp:#b85f00; --zone:#6d8797; --sel:#c0262d; --rel:#7b3fa6; --px:#1f6fb2; --py:#a06a00; --per:#b2307a; --imp:#13867c; --pxt:rgba(31,111,178,.11); --pyt:rgba(160,106,0,.12); --z1:#a8457a; --z2:#2f6fb5; --z3:#5b54b0; --z4:#b0752a; --z5:#23898a; --z6:#5b8c32; --z7:#b5483d; --z8:#8a6e52; --z9:#6c7588; --zop:.10; --hl:rgba(11,114,160,.08);
   --f-ui:"B612",ui-sans-serif,system-ui,sans-serif; --f-mono:"B612 Mono",ui-monospace,Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --paper:#090f14; --sheet:#0e171e; --ink:#cfe2ec; --ink2:#7f9aaa; --line:#355061; --grid:#13212b; --grid2:#1b2d3a;
-  --claim:#3cc4f2; --supp:#ffad33; --zone:#5f8296; --sel:#ff5d5d; --rel:#c89bff; --px:#5fb0f5; --py:#f0b545; --pxt:rgba(95,176,245,.13); --pyt:rgba(240,181,69,.13); --z1:#f08cc0; --z2:#6fa8f0; --z3:#a39cf5; --z4:#e3ab5c; --z5:#58cbc3; --z6:#9acb6c; --z7:#f2806f; --z8:#c9ab8c; --z9:#a9b3c6; --zop:.13; --hl:rgba(60,196,242,.09); color-scheme:dark}}
+  --claim:#3cc4f2; --supp:#ffad33; --zone:#5f8296; --sel:#ff5d5d; --rel:#c89bff; --px:#5fb0f5; --py:#f0b545; --per:#f07ab5; --imp:#4fcbbd; --pxt:rgba(95,176,245,.13); --pyt:rgba(240,181,69,.13); --z1:#f08cc0; --z2:#6fa8f0; --z3:#a39cf5; --z4:#e3ab5c; --z5:#58cbc3; --z6:#9acb6c; --z7:#f2806f; --z8:#c9ab8c; --z9:#a9b3c6; --zop:.13; --hl:rgba(60,196,242,.09); color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#090f14; --sheet:#0e171e; --ink:#cfe2ec; --ink2:#7f9aaa; --line:#355061; --grid:#13212b; --grid2:#1b2d3a;
-  --claim:#3cc4f2; --supp:#ffad33; --zone:#5f8296; --sel:#ff5d5d; --rel:#c89bff; --px:#5fb0f5; --py:#f0b545; --pxt:rgba(95,176,245,.13); --pyt:rgba(240,181,69,.13); --z1:#f08cc0; --z2:#6fa8f0; --z3:#a39cf5; --z4:#e3ab5c; --z5:#58cbc3; --z6:#9acb6c; --z7:#f2806f; --z8:#c9ab8c; --z9:#a9b3c6; --zop:.13; --hl:rgba(60,196,242,.09); color-scheme:dark}
+  --claim:#3cc4f2; --supp:#ffad33; --zone:#5f8296; --sel:#ff5d5d; --rel:#c89bff; --px:#5fb0f5; --py:#f0b545; --per:#f07ab5; --imp:#4fcbbd; --pxt:rgba(95,176,245,.13); --pyt:rgba(240,181,69,.13); --z1:#f08cc0; --z2:#6fa8f0; --z3:#a39cf5; --z4:#e3ab5c; --z5:#58cbc3; --z6:#9acb6c; --z7:#f2806f; --z8:#c9ab8c; --z9:#a9b3c6; --zop:.13; --hl:rgba(60,196,242,.09); color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--paper);color:var(--ink);font-family:var(--f-ui);font-size:14px;line-height:1.5;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
@@ -147,7 +147,7 @@ button:focus-visible,th:focus-visible,.chip:focus-visible{outline:2px solid var(
 .sched{border:1.5px solid var(--ink);background:var(--sheet);min-width:0}
 .sched .phead{padding:10px 14px;border-bottom:1px solid var(--ink)}
 .tscroll{overflow-x:auto;max-height:520px;overflow-y:auto}
-table{border-collapse:collapse;width:100%;font-size:12.5px;min-width:820px}
+table{border-collapse:collapse;width:100%;font-size:12.5px;min-width:900px}
 th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--grid2);white-space:nowrap}
 th{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;font-weight:400;color:var(--ink2);position:sticky;top:0;background:var(--sheet);cursor:pointer;border-bottom:1px solid var(--line)}
 th[aria-sort]::after{content:" ▾"}
@@ -398,6 +398,55 @@ body.modal-open{overflow:hidden}
 .k-py{width:22px;border-top:2px dashed var(--py)}
 .ptag.dash rect{stroke-dasharray:3 2}
 .pbtn .via{font-size:10.5px;color:var(--ink2);font-style:normal}
+
+.tools button.go{background:var(--ink);color:var(--sheet)}
+.tools button.go:hover{background:var(--claim);color:var(--sheet)}
+.tools button#myRes{color:var(--sel)}
+a.tlink{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;color:var(--ink);text-decoration:none;padding:8px 14px;display:inline-block}
+a.tlink:hover{background:var(--hl)}
+.tpage{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.tp-card{border:1.5px solid var(--ink);background:var(--sheet);padding:18px 20px;display:flex;flex-direction:column;gap:12px;min-height:420px}
+.tp-card h2{margin:0;font-size:24px;line-height:1.25;text-wrap:balance}
+.tp-card h2.tq{font-size:20px;line-height:1.4}
+.tp-card .opt{font-size:15px;padding:11px 13px}
+.tp-card .opt.multi{padding-left:40px}
+.tp-card .opt.multi::before{left:13px;top:13px}
+@media (max-width:560px){.tp-card{padding:14px}.tp-card h2.tq{font-size:18px}}
+.you-layer{pointer-events:none}
+.you-g{pointer-events:all;cursor:pointer}
+.you-spread{fill:none;stroke:var(--sel);stroke-width:1.2;stroke-dasharray:4 4;opacity:.75}
+.k-spread{width:14px;height:10px;border:1.5px dashed var(--sel);border-radius:50%}
+.backres{align-self:flex-start;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;background:transparent;color:var(--sel);border:1px solid color-mix(in srgb,var(--sel) 45%,transparent);padding:5px 9px;cursor:pointer}
+.backres:hover{background:color-mix(in srgb,var(--sel) 8%,transparent)}
+.insp.region .zq{font-size:14px;font-style:italic;border-left:2px solid var(--zc);padding-left:10px;margin:0}
+.rg-head{display:flex;gap:12px;align-items:center}
+.rg-head h2{color:var(--zc)}
+.rg-sw{flex:none;width:34px;height:34px;border:1.5px solid var(--zc);background:color-mix(in srgb,var(--zc) 22%,transparent)}
+.rg-lists{display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--line);padding-top:10px}
+.rg-lists .list{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.edge{margin:0;font-size:12.5px;border:1px dashed var(--line);padding:6px 9px;color:var(--ink2)}
+.edge b{color:var(--ink)}
+.explain{margin-top:0}
+
+.colorby{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:8px 12px;border-top:1px solid var(--line)}
+.colorby button{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;background:transparent;color:var(--ink2);border:1px solid var(--line);padding:5px 9px;cursor:pointer}
+.colorby button[aria-pressed="true"]{color:var(--ink);border-color:var(--ink);background:var(--hl)}
+.pgrad{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--ink2)}
+.pgrad i{font-style:normal}
+.pgrad b{display:inline-block;width:120px;height:10px;background:linear-gradient(90deg,var(--imp),var(--per));border:1px solid var(--line)}
+svg.by-pers .ph .m-claim,svg.by-pers .ph.rel .m-claim{fill:color-mix(in srgb,var(--per) var(--pp,50%),var(--imp))}
+.pchip{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:0;background:color-mix(in srgb,var(--per) var(--pp,50%),var(--imp))}
+.pnote{margin:0;font-size:13px;color:var(--ink2)}
+.pnote b{color:var(--ink);font-weight:700}
+.ex-third{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:8px}
+.ex-third h3{margin:0;font-size:18px}
+.ex-third p{margin:0;font-size:14px;max-width:72ch}
+.ex-pscale{list-style:none;margin:2px 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--line)}
+.ex-pscale li{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-right:1px solid var(--grid2);min-width:0}
+.ex-pscale li:last-child{border-right:0}
+.ex-pscale li i{display:block;height:6px;background:color-mix(in srgb,var(--per) var(--pp),var(--imp));margin-bottom:4px}
+.ex-pscale b{font-size:13.5px}
+@media (max-width:820px){.ex-pscale{grid-template-columns:minmax(0,1fr)}.ex-pscale li{border-right:0;border-bottom:1px solid var(--grid2)}.ex-pscale li:last-child{border-bottom:0}}
 </style>
 </head>
 <body>
@@ -408,36 +457,13 @@ body.modal-open{overflow:hidden}
     <div>
       <div class="lbl">DWG MFS-001 · Sheet 1 of 1 · Model space</div>
       <h1>Metaphysical Field Survey</h1>
-      <p>Each philosopher is plotted twice: a solid point where they placed themselves, and a hollow point where their arguments actually commit them. The dashed vector between the two is the drift, and a dashed hollow point marks a reading scholars still dispute. Religious traditions are plotted in violet by their core doctrine. Take the test to drop your own pin.</p>
+      <p>Each philosopher is plotted twice: a solid point where they placed themselves, and a hollow point where their arguments actually commit them. The dashed vector between the two is the drift, and a dashed hollow point marks a reading scholars still dispute. Religious traditions are plotted in violet by their core doctrine. Select any point or region to read about it, or take the test to drop your own pins.</p>
     </div>
-    <div class="tools" role="group" aria-label="Mode">
-      <button id="mSelect" aria-pressed="true">SELECT</button>
-      <button id="mQuiz" aria-pressed="false">TEST · FIND YOUR PLACE</button>
+    <div class="tools" role="group" aria-label="Test">
+      <button id="myRes" hidden>MY RESULTS</button>
+      <button id="openTest" class="go">TAKE THE TEST ↗</button>
     </div>
   </header>
-
-  <section class="explain" aria-labelledby="exTitle">
-    <div class="ex-head"><span class="lbl">How to read the map</span><h2 id="exTitle">Two questions decide where everyone sits</h2></div>
-    <div class="ex-grid">
-      <div class="ex-col">
-        <div class="lbl">Left ↔ right · X axis</div>
-        <h3>What is fundamental?</h3>
-        <p class="ex-q">If you broke everything down to its most basic ingredient, would you find <b>mind</b> or <b>matter</b>?</p>
-        <p>Think of a Lego castle. The bricks are fundamental, and the castle is built from them. This axis asks what the universe's bricks are. Is awareness built out of atoms, or do atoms exist in, and depend on, a mind?</p>
-        <ol class="ex-scale"><li><span class="ex-v mono">−100</span><b>Only mind</b><span class="ex-d">Physical things are ideas or appearances in a mind.</span><span class="ex-e">Berkeley, Śaṅkara</span></li><li><span class="ex-v mono">−50</span><b>Mind first</b><span class="ex-d">Matter is real, but a mind made it or holds it in being.</span><span class="ex-e">Augustine, Aquinas</span></li><li><span class="ex-v mono">0</span><b>Both</b><span class="ex-d">Mind and matter are both basic, or two sides of one deeper thing.</span><span class="ex-e">Spinoza, Chalmers</span></li><li><span class="ex-v mono">+50</span><b>Matter first</b><span class="ex-d">Mind is real, but it comes from matter, or spirit is a finer kind of matter.</span><span class="ex-e">Joseph Smith, Hobbes</span></li><li><span class="ex-v mono">+100</span><b>Only matter</b><span class="ex-d">Minds are simply what brains do.</span><span class="ex-e">Democritus, Dennett</span></li></ol>
-        <p class="ex-tip"><b>Quick check:</b> could a mind exist with no matter at all? If yes, you lean left. Could matter exist with no mind anywhere? If yes, you lean right.</p>
-      </div>
-      <div class="ex-col">
-        <div class="lbl">Up ↕ down · Y axis</div>
-        <h3>Where is the ultimate?</h3>
-        <p class="ex-q">If you keep asking <b>"but why?"</b> about everything, where does the chain finally stop?</p>
-        <p>The <b>ultimate</b> is that last answer: the thing that explains everything else and needs nothing to explain it. Like a child asking "why?" over and over, this axis asks where the questions run out.</p>
-        <ol class="ex-scale"><li><span class="ex-v mono">+100</span><b>Wholly beyond</b><span class="ex-d">The final answer is outside the universe, the way a painter is outside a painting.</span><span class="ex-e">Plotinus, Islam</span></li><li><span class="ex-v mono">+50</span><b>Beyond and present</b><span class="ex-d">The source is beyond the universe and also runs through all of it.</span><span class="ex-e">Sikhism, Laozi</span></li><li><span class="ex-v mono">0</span><b>The world itself</b><span class="ex-d">The universe is the final answer, sacred or rational in its own right.</span><span class="ex-e">Spinoza, the Stoics</span></li><li><span class="ex-v mono">−50</span><b>Only this world</b><span class="ex-d">There is no final answer. The universe just exists.</span><span class="ex-e">Hume, Marx</span></li><li><span class="ex-v mono">−100</span><b>Constructed</b><span class="ex-d">The question is a mistake. "Why" only works inside human language and culture.</span><span class="ex-e">Foucault, Derrida</span></li></ol>
-        <p class="ex-tip"><b>Quick check:</b> is there something more real than the universe that the universe depends on? If yes, you sit near the top.</p>
-      </div>
-    </div>
-    <p class="ex-why"><b>Why two questions?</b> They're independent. Catholics and Latter-day Saints both put the ultimate at the top, but split left and right over whether God's nature is pure spirit or a glorified body. The Stoics and Dennett both sit on the matter side, but split top and bottom over whether the universe is sacred or simply there.</p>
-  </section>
 
   <section class="sheet">
     <div class="model">
@@ -449,10 +475,11 @@ body.modal-open{overflow:hidden}
           <button id="zFit" aria-label="Zoom to fit">FIT</button>
         </div>
       </div>
+      <div class="colorby" role="group" aria-label="Color points by"><span class="lbl">Color points by</span><button data-cb="trad" aria-pressed="true">Tradition</button><button data-cb="pers" aria-pressed="false">Personal ↔ impersonal</button><span class="pgrad" id="pgrad" hidden><i>A something</i><b aria-hidden="true"></b><i>A someone</i></span></div>
       <div class="zkey" id="zkey"></div>
-      <div class="howto"><span><i class="k-dot"></i>Solid point: what they claimed</span><span><i class="k-ring"></i>Hollow point: where their arguments land</span><span><i class="k-ring dash"></i>Dashed hollow point: contested reading</span><span><i class="k-drift"></i>Orange arrow: drift between the two</span><span><i class="k-dim"></i>Red ring: the thinker you selected</span><span><i class="k-pin"></i>Red pins: your beliefs (solid) and decisions (hollow)</span><span><i class="k-px"></i>Blue line: same view on what's fundamental</span><span><i class="k-py"></i>Gold line: same view on where the ultimate is</span></div>
+      <div class="howto"><span><i class="k-dot"></i>Solid point: what they claimed</span><span><i class="k-ring"></i>Hollow point: where their arguments land</span><span><i class="k-ring dash"></i>Dashed hollow point: contested reading</span><span><i class="k-drift"></i>Orange arrow: drift between the two</span><span><i class="k-dim"></i>Red ring: the thinker you selected</span><span><i class="k-pin"></i>Red pins: your beliefs (solid) and decisions (hollow)</span><span><i class="k-spread"></i>Dashed red ring: how far your answers ranged</span><span><i class="k-px"></i>Blue line: same view on what's fundamental</span><span><i class="k-py"></i>Gold line: same view on where the ultimate is</span></div>
       <div class="cmd" aria-live="polite">
-        <span class="msg" id="cmdMsg">Command: <b>SELECT</b> a point to inspect. Drag to pan, scroll to zoom.</span><span class="mhint">Swipe the map to look around · tap a point</span>
+        <span class="msg" id="cmdMsg">Command: <b>SELECT</b> a point or a region to inspect. Drag to pan, scroll to zoom.</span><span class="mhint">Swipe the map to look around · tap a point</span>
         <span>X <b id="cx">—</b></span><span>Y <b id="cy">—</b></span><span>ZONE <b id="cz">—</b></span>
       </div>
     </div>
@@ -490,7 +517,7 @@ body.modal-open{overflow:hidden}
         <table>
           <thead><tr>
             <th data-k="tag" tabindex="0">TAG</th><th data-k="n" tabindex="0">PHILOSOPHER</th><th data-k="y0" tabindex="0">DATES</th>
-            <th data-k="t" tabindex="0">TYPE</th><th data-k="conf" tabindex="0">READING</th><th data-k="cz" tabindex="0">CLAIMED ZONE</th><th data-k="sz" tabindex="0">SUPPORTED ZONE</th><th data-k="drift" tabindex="0" aria-sort="descending">DRIFT</th>
+            <th data-k="t" tabindex="0">TYPE</th><th data-k="conf" tabindex="0">READING</th><th data-k="pv" tabindex="0">PERSONAL</th><th data-k="cz" tabindex="0">CLAIMED ZONE</th><th data-k="sz" tabindex="0">SUPPORTED ZONE</th><th data-k="drift" tabindex="0" aria-sort="descending">DRIFT</th>
           </tr></thead>
           <tbody id="tb"></tbody>
         </table>
@@ -506,13 +533,55 @@ body.modal-open{overflow:hidden}
     </div>
   </section>
 
-  <section class="zsec" id="zsec">
-    <div class="phead"><span class="lbl">Metaphysical regions · click a region, a key swatch or a zone tag to read it</span></div>
-    <div class="zgrid"><div class="ztabs" id="ztabs" role="tablist" aria-label="Metaphysical regions"></div><div class="zdetail" id="zdetail" role="tabpanel"></div></div>
+  <section class="explain" aria-labelledby="exTitle">
+    <div class="ex-head"><span class="lbl">How to read the map</span><h2 id="exTitle">Three questions decide where everyone sits</h2></div>
+    <div class="ex-grid">
+      <div class="ex-col">
+        <div class="lbl">Left ↔ right · X axis</div>
+        <h3>What is fundamental?</h3>
+        <p class="ex-q">If you broke everything down to its most basic ingredient, would you find <b>mind</b> or <b>matter</b>?</p>
+        <p>Think of a Lego castle. The bricks are fundamental, and the castle is built from them. This axis asks what the universe's bricks are. Is awareness built out of atoms, or do atoms exist in, and depend on, a mind?</p>
+        <ol class="ex-scale"><li><span class="ex-v mono">−100</span><b>Only mind</b><span class="ex-d">Physical things are ideas or appearances in a mind.</span><span class="ex-e">Berkeley, Śaṅkara</span></li><li><span class="ex-v mono">−50</span><b>Mind first</b><span class="ex-d">Matter is real, but a mind made it or holds it in being.</span><span class="ex-e">Augustine, Aquinas</span></li><li><span class="ex-v mono">0</span><b>Both</b><span class="ex-d">Mind and matter are both basic, or two sides of one deeper thing.</span><span class="ex-e">Spinoza, Chalmers</span></li><li><span class="ex-v mono">+50</span><b>Matter first</b><span class="ex-d">Mind is real, but it comes from matter, or spirit is a finer kind of matter.</span><span class="ex-e">Joseph Smith, Hobbes</span></li><li><span class="ex-v mono">+100</span><b>Only matter</b><span class="ex-d">Minds are simply what brains do.</span><span class="ex-e">Democritus, Dennett</span></li></ol>
+        <p class="ex-tip"><b>Quick check:</b> could a mind exist with no matter at all? If yes, you lean left. Could matter exist with no mind anywhere? If yes, you lean right.</p>
+      </div>
+      <div class="ex-col">
+        <div class="lbl">Up ↕ down · Y axis</div>
+        <h3>Where is the ultimate?</h3>
+        <p class="ex-q">If you keep asking <b>"but why?"</b> about everything, where does the chain finally stop?</p>
+        <p>The <b>ultimate</b> is that last answer: the thing that explains everything else and needs nothing to explain it. Like a child asking "why?" over and over, this axis asks where the questions run out.</p>
+        <ol class="ex-scale"><li><span class="ex-v mono">+100</span><b>Wholly beyond</b><span class="ex-d">The final answer is outside the universe, the way a painter is outside a painting.</span><span class="ex-e">Plotinus, Islam</span></li><li><span class="ex-v mono">+50</span><b>Beyond and present</b><span class="ex-d">The source is beyond the universe and also runs through all of it.</span><span class="ex-e">Sikhism, Laozi</span></li><li><span class="ex-v mono">0</span><b>The world itself</b><span class="ex-d">The universe is the final answer, sacred or rational in its own right.</span><span class="ex-e">Spinoza, the Stoics</span></li><li><span class="ex-v mono">−50</span><b>Only this world</b><span class="ex-d">There is no final answer. The universe just exists.</span><span class="ex-e">Hume, Marx</span></li><li><span class="ex-v mono">−100</span><b>Constructed</b><span class="ex-d">The question is a mistake. "Why" only works inside human language and culture.</span><span class="ex-e">Foucault, Derrida</span></li></ol>
+        <p class="ex-tip"><b>Quick check:</b> is there something more real than the universe that the universe depends on? If yes, you sit near the top.</p>
+      </div>
+    </div>
+<div class="ex-third">
+      <div class="lbl">Third question · shown by color</div>
+      <h3>Is the ultimate a someone or a something?</h3>
+      <p class="ex-q">Does the deepest reality <b>know you</b>? When you pray, is anyone <b>listening</b>?</p>
+      <p>Two views can share a spot on the map and still feel nothing alike. Plato and Judaism both place an immaterial ultimate beyond the world. But Plato's Good is a something you reason your way toward, while the God of the Hebrew Bible is a someone who speaks, commands and makes covenants.</p>
+      <ol class="ex-pscale">
+        <li style="--pp:0%"><i></i><span class="ex-v mono">−100</span><b>A something</b><span class="ex-d">Impersonal, or nothing ultimate at all.</span><span class="ex-e">Spinoza, the Dao, Dennett</span></li>
+        <li style="--pp:25%"><i></i><span class="ex-v mono">−50</span><b>Mostly impersonal</b><span class="ex-d">Ordered or mind-like, but it doesn't know you.</span><span class="ex-e">Plato's Good, Aristotle's mover</span></li>
+        <li style="--pp:50%"><i></i><span class="ex-v mono">0</span><b>Mixed</b><span class="ex-d">Self-aware or providential, but not a person beside us.</span><span class="ex-e">Hegel, the Stoics</span></li>
+        <li style="--pp:75%"><i></i><span class="ex-v mono">+50</span><b>Partly personal</b><span class="ex-d">Spirits, or a companion God who responds.</span><span class="ex-e">Shinto, Whitehead</span></li>
+        <li style="--pp:100%"><i></i><span class="ex-v mono">+100</span><b>A someone</b><span class="ex-d">Knows you, speaks and loves.</span><span class="ex-e">Judaism, Latter-day Saints</span></li>
+      </ol>
+      <p class="ex-tip"><b>See it on the map:</b> choose "Personal ↔ impersonal" under "Color points by". Your test matches count this question too.</p>
+    </div>
+    <p class="ex-why"><b>Why separate questions?</b> They're independent. Catholics and Latter-day Saints both put the ultimate at the top, but split left and right over whether God is pure spirit or has a glorified body. The Stoics and Dennett both sit on the matter side, but split top and bottom over whether the universe is sacred or simply there. Plato and Judaism sit side by side on the map, yet at opposite ends of the third question.</p>
   </section>
 </div>
 
-
+<div class="tpage" id="testPage" hidden>
+  <header class="top">
+    <div>
+      <div class="lbl">DWG MFS-001 · Test sheet</div>
+      <h1>Find Your Place</h1>
+      <p>Twenty-eight questions about how you decide and what you believe. Your answers become two pins on the Metaphysical Field Survey map.</p>
+    </div>
+    <div class="tools"><a class="tlink" id="tpBack" href="#">← BACK TO THE MAP</a></div>
+  </header>
+  <section class="tp-card test" id="testCard" aria-live="polite"></section>
+</div>
 
 <script>
 (function(){
@@ -651,8 +720,9 @@ const ZONES=[{"id": "Z1", "c": "--z1", "n": "Idealism", "sub": "Only mind · bey
  {"id": "Z8", "c": "--z8", "n": "Empiricism", "sub": "This world only · experience", "x": [-100, 25], "y": [-75, -25]},
  {"id": "Z9", "c": "--z9", "n": "Anti-Realism", "sub": "Question rejected · constructed", "x": [-100, 25], "y": [-100, -75]}
 ];
+const PERS={"Parmenides": [-85, "Being is one, changeless and complete. It thinks and wills nothing."], "Heraclitus": [-50, "The Logos is wise and orders all things, but it is a cosmic fire, not someone you address."], "Laozi": [-85, "The Dao is nameless and acts without intention. It does not know or favor anyone."], "Democritus": [-100, "Only atoms and void. Nothing at the root of things knows anything."], "Plato": [-50, "The highest reality, the Good, is impersonal. The craftsman god of the Timaeus is told as a 'likely story', though Plato's gods do care for humans."], "Aristotle": [-60, "The Unmoved Mover is pure thought thinking itself. It does not know or love the world."], "Epicurus": [-85, "Atoms and void are ultimate. The gods are persons, but they take no interest in us."], "Nāgārjuna": [-90, "Emptiness is not a ground or a being, and certainly not a someone."], "Plotinus": [-75, "The One is beyond thought and will. Mind (Nous) comes after it."], "Augustine": [95, "A personal God who creates, speaks, loves and is found by turning inward."], "Śaṅkara": [-60, "Brahman without qualities is ultimate. A personal Lord (Īśvara) is real only at the conventional level."], "al-Ghazālī": [90, "God wills and causes every event directly."], "Aquinas": [85, "God has intellect, will and love, though spoken of by analogy, not as a person like us."], "Ockham": [90, "God's free will is absolute. Things are as they are because God chose them."], "Hobbes": [60, "He professed a sovereign, commanding God who is a corporeal spirit."], "Descartes": [70, "A perfect, non-deceiving God guarantees our knowledge and conserves the world."], "Spinoza": [-90, "God or Nature has no purposes, and 'God loves no one, nor hates anyone' (Ethics V)."], "Locke": [75, "A wise, eternal, thinking Being who gives the law of nature."], "Leibniz": [80, "God chooses the best of all possible worlds, out of wisdom and goodness."], "Berkeley": [85, "God perceives everything and speaks to us through the order of our ideas."], "Hume": [-70, "Whatever orders nature bears only a 'remote analogy' to a mind (Dialogues)."], "Kant": [30, "God is a postulate of moral faith, the author of a moral world we cannot know directly."], "Hegel": [10, "Absolute Spirit is self-knowing, but it is not a person standing over against us."], "Schopenhauer": [-95, "The ultimate is a blind, striving Will with no mind or purpose."], "Joseph Smith": [100, "God is an exalted man with a body, a literal Father."], "Kierkegaard": [100, "The self stands before God, a personal Thou met in faith."], "Marx": [-100, "Nothing beyond matter and history. Religion is a human projection."], "William James": [40, "He took seriously a finite, personal God and a 'more' that answers prayer."], "Nietzsche": [-100, "God is dead. There is no someone at the root of things."], "Bergson": [40, "In The Two Sources, God is love and creative energy, known through the mystics."], "Husserl": [-10, "He treated God mainly as an idea at the limit of reason."], "Whitehead": [35, "God is 'the great companion, the fellow-sufferer who understands'."], "Russell": [-100, "No God. The universe is 'just there, and that's all'."], "Heidegger": [-60, "Being is not a being, and not a God, though he later spoke of 'a god'."], "Wittgenstein (early)": [-30, "'God does not reveal himself in the world.' The mystical shows itself but cannot be said."], "Wittgenstein (late)": [-40, "Religious language belongs to a form of life rather than describing a being."], "Carnap": [-100, "Talk of God is cognitively meaningless."], "Sartre": [-100, "There is no God, and so no given human nature."], "Quine": [-100, "Only what our best science needs: physical objects and sets."], "Foucault": [-100, "No transcendent someone, only historical regimes of power and knowledge."], "Derrida": [-60, "No transcendental signified, though he wrote of prayer and a 'wholly other'."], "Plantinga": [100, "A personal God who can be known directly, like another mind."], "David Lewis": [-100, "A physicalist plurality of worlds with no God."], "Dennett": [-100, "No God. Mind is a product of evolution and brains."], "Chalmers": [-80, "Consciousness is fundamental, but no personal God is posited."], "The Stoics": [10, "Zeus, the Logos, is providential and addressed in prayer, yet he is the cosmos itself."], "Christianity (classical)": [95, "One God in three persons who creates, speaks, becomes incarnate and loves."], "Judaism (rabbinic)": [95, "A God who speaks, commands, chooses a people and enters into covenant."], "Islam (Sunni kalām)": [85, "God hears, sees and wills, while remaining utterly unlike any creature."], "Dvaita Vedānta": [95, "Viṣṇu is a personal Lord whom souls love and serve forever."], "Theravāda Buddhism": [-90, "No creator. Nibbāna is not a someone. Gods exist but are not ultimate."], "Yogācāra Buddhism": [-90, "Consciousness-only, with no creator and no permanent self."], "Confucianism": [-15, "Confucius said 'it is Heaven that knows me', but later thought made Heaven an impersonal pattern."], "Jainism": [-50, "No creator. The liberated are perfected persons, but they do not act in the world."], "Sikhism": [75, "Waheguru is formless, yet a gracious Lord who is loved and remembered."], "Zoroastrianism": [90, "Ahura Mazda, the Wise Lord, creates and calls each person to choose the good."], "Gnosticism": [70, "An unknown but personal Father, reached through the divine spark within."], "Shinto": [40, "Many kami, personal spirits of places, forces and ancestors, rather than one God."], "Animism (indigenous)": [50, "Persons are everywhere: animals, rivers and ancestors can be addressed."], "Catholicism": [95, "A personal, triune God, approached through sacraments, prayer and the saints."], "Latter-day Saints": [100, "God the Father is a glorified person with a body, and literally our Father."]};
 const P=RAW.map((r,i)=>{const o={i,tag:(r[3]==="rel"?"R-":"P-")+String(i+1).padStart(2,"0"),n:r[0],d:r[1],y0:r[2],era:r[3],t:r[4],c:r[5],s:r[6],claim:r[7],supp:r[8],bias:r[9],conf:r[10]||"s"};
- o.drift=Math.hypot(o.s[0]-o.c[0],o.s[1]-o.c[1]);o.cz=zoneAt(o.c[0],o.c[1]);o.sz=zoneAt(o.s[0],o.s[1]);return o;});
+ o.drift=Math.hypot(o.s[0]-o.c[0],o.s[1]-o.c[1]);o.cz=zoneAt(o.c[0],o.c[1]);o.sz=zoneAt(o.s[0],o.s[1]);o.pv=(PERS[o.n]||[0])[0];o.pn=(PERS[o.n]||[0,""])[1];return o;});
 
 function zoneAt(x,y){for(const z of ZONES){if(x>=z.x[0]&&x<=z.x[1]&&y>=z.y[0]&&y<=z.y[1])return z;}return {id:"—",c:"--line",n:"UNZONED FIELD"};}
 const X=x=>90+(x+100)*5.3, Y=y=>60+(100-y)*4.3;
@@ -660,7 +730,7 @@ const iX=px=>(px-90)/5.3-100, iY=py=>100-(py-60)/4.3;
 const NS="http://www.w3.org/2000/svg";
 const el=(t,a={},p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
 const svg=document.getElementById("plot");
-const S={sel:P.findIndex(p=>p.n==="Spinoza"),pin:null,mode:"select",eras:new Set(Object.keys(ERAS)),sort:{k:"drift",dir:-1},vb:{x:0,y:0,w:1320,h:1000}};
+const S={sel:P.findIndex(p=>p.n==="Spinoza"),pin:null,view:"thinker",zone:null,eras:new Set(Object.keys(ERAS)),sort:{k:"drift",dir:-1},vb:{x:0,y:0,w:1320,h:1000}};
 
 /* ---------- draw static ---------- */
 const defs=el("defs",{},svg);
@@ -704,7 +774,7 @@ t=el("text",{x:29,y:4,class:"ucs-t"},u);t.textContent="X";t=el("text",{x:-4,y:-3
 const gProj=el("g",{class:"layer-proj"},svg); const gP=el("g",{},svg); const gO=el("g",{},svg);
 const xhV=el("line",{class:"xh ns",y1:Y(100),y2:Y(-100),visibility:"hidden"},gO);
 const xhH=el("line",{class:"xh ns",x1:X(-100),x2:X(100),visibility:"hidden"},gO);
-const gDim=el("g",{},gO); const gQ=el("g",{},gO); const gYou=el("g",{style:"pointer-events:none"},gO);
+const gDim=el("g",{},gO); const gQ=el("g",{},gO); const gYou=el("g",{class:"you-layer"},gO);
 
 function shape(type,cx,cy,r,cls,parent){
  if(type==="mon")return el("circle",{cx,cy,r,class:cls},parent);
@@ -713,7 +783,7 @@ function shape(type,cx,cy,r,cls,parent){
  return el("path",{d:`M${cx} ${cy-r*1.2} L${cx+r*1.2} ${cy} L${cx} ${cy+r*1.2} L${cx-r*1.2} ${cy}Z`,class:cls},parent);}
 
 const G={};
-P.forEach(p=>{const g=el("g",{class:"ph"+(p.era==="rel"?" rel":"")+(p.conf==="c"?" contested":""),"data-id":p.i,tabindex:0,role:"button","aria-label":p.n},gP);G[p.i]=g;
+P.forEach(p=>{const g=el("g",{class:"ph"+(p.era==="rel"?" rel":"")+(p.conf==="c"?" contested":""),style:`--pp:${(p.pv+100)/2}%`,"data-id":p.i,tabindex:0,role:"button","aria-label":p.n},gP);G[p.i]=g;
  const cx=X(p.c[0]),cy=Y(p.c[1]),sx=X(p.s[0]),sy=Y(p.s[1]);
  if(p.drift>2){
   const ang=Math.atan2(sy-cy,sx-cx),back=8;
@@ -756,24 +826,32 @@ LAY.forEach(([cls,n],k)=>{const l=document.createElement("label");l.innerHTML=`<
 const ew=document.getElementById("eras");
 Object.entries(ERAS).forEach(([k,n])=>{const b=document.createElement("button");b.className="chip";b.textContent=n;b.setAttribute("aria-pressed","true");
  b.onclick=()=>{S.eras.has(k)?S.eras.delete(k):S.eras.add(k);b.setAttribute("aria-pressed",S.eras.has(k));applyFilter();};ew.appendChild(b);});
-function applyFilter(){P.forEach(p=>G[p.i].classList.toggle("is-off",!S.eras.has(p.era)));renderTable();placeLabels();drawProj();if(S.mode==="select")renderPanel();}
+function applyFilter(){P.forEach(p=>G[p.i].classList.toggle("is-off",!S.eras.has(p.era)));renderTable();placeLabels();drawProj();renderPanel();}
 
 /* ---------- inspector ---------- */
 const fmt=v=>(v>0?"+":"")+v.toFixed(0);
+const pFmt=v=>(v>0?"+":"")+Math.round(v);
+const pWord=v=>v>=60?"a someone who knows and relates":v>=20?"partly personal":v>-20?"mixed or unclear":v>-60?"mostly impersonal":"a something, or nothing ultimate at all";
+const pChip=v=>`<span class="pchip" style="--pp:${(v+100)/2}%"></span>`;
 const dirText=(a,b)=>{const dx=b[0]-a[0],dy=b[1]-a[1],o=[];if(dx>4)o.push("toward matter");if(dx<-4)o.push("toward mind");if(dy>4)o.push("toward transcendence");if(dy<-4)o.push("toward immanence");return o.join(", ")||"none";};
 const panel=document.getElementById("panel"),cmp=document.getElementById("cmp");
 function renderPanel(){
- if(S.mode==="test")return renderTest();
+ panel.style.removeProperty("--zc");
+ if(S.view==="results"&&T.res)return resultsPanel();
+ if(S.view==="region"&&S.zone)return regionPanel();
+ S.view="thinker";
  const p=P[S.sel];
  panel.className="pblock insp";
  const pr=PROF[p.n]||{d:"",w:[]},wq=encodeURIComponent(pr.x||p.n),wl=p.era==="rel"?"Key texts":"Major works";
- panel.innerHTML=`<div class="phead"><span class="lbl">${p.tag} · ${ERAS[p.era]} · ${TYPES[p.t]}</span></div>
+ panel.innerHTML=`${backBar()}<div class="phead"><span class="lbl">${p.tag} · ${ERAS[p.era]} · ${TYPES[p.t]}</span></div>
  <div class="ip-top"><div class="ip-plate">${plateSVG(p,pr)}</div><div class="ip-head"><h2>${p.n}</h2><div class="dates">${p.d}</div></div></div>
  <p class="ip-def">${pr.d}</p>
  <dl class="kv"><dt><span class="sw ${p.era==="rel"?"r":"c"}"></span>CLAIMED</dt><dd>(${fmt(p.c[0])}, ${fmt(p.c[1])}) · ${zlink(p.cz)}</dd>
  <dt><span class="sw s"></span>SUPPORTED</dt><dd>(${fmt(p.s[0])}, ${fmt(p.s[1])}) · ${zlink(p.sz)}</dd>
  <dt>DRIFT</dt><dd>${p.drift.toFixed(1)} u · ${dirText(p.c,p.s)}</dd>
- <dt>READING</dt><dd>${p.conf==="c"?"Contested: scholars dispute the supported point":"Standard"}</dd></dl>
+ <dt>READING</dt><dd>${p.conf==="c"?"Contested: scholars dispute the supported point":"Standard"}</dd>
+ <dt>PERSONAL</dt><dd>${pChip(p.pv)}${pFmt(p.pv)} · ${pWord(p.pv)}</dd></dl>
+ <p class="pnote"><b>Is the ultimate a someone?</b> ${p.pn}</p>
  ${matesHTML(p.s,p.i)}
  <div class="note"><h3>What they claimed</h3><p>${p.claim}</p>
  <h3>What the work supports</h3><p>${p.supp}</p>
@@ -817,8 +895,8 @@ function matesHTML(pt,ex,who){const m=axisMates(pt,ex);
  <div class="mate my"><div class="lbl"><i class="mk"></i>Same view on where the ultimate is · Y ${fmt(pt[1])} ±${BAND}</div><div class="list">${mateList(m.ys)}</div></div></div>`;}
 function projTag(x,y,txt,cls){const g=el("g",{class:"ptag "+cls},gProj),w=txt.length*7+12;el("rect",{x:x-w/2,y:y-9,width:w,height:18,class:"ns"},g);const t=el("text",{x,y:y+4,"text-anchor":"middle"},g);t.textContent=txt;}
 function drawProj(){gProj.innerHTML="";const src=[];
- if(S.mode==="test"){if(T.stage==="done"&&T.res){src.push({pt:T.res,x:1,y:1,ex:-1});if(T.dres)src.push({pt:T.dres,x:0,y:1,ex:-1,dash:1});}}
- else if(S.sel!=null&&P[S.sel]&&S.eras.has(P[S.sel].era))src.push({pt:P[S.sel].s,x:1,y:1,ex:S.sel});
+ if(S.view==="results"){if(T.res){src.push({pt:T.res,x:1,y:1,ex:-1});if(T.dres)src.push({pt:T.dres,x:0,y:1,ex:-1,dash:1});}}
+ else if(S.view==="thinker"&&S.sel!=null&&P[S.sel]&&S.eras.has(P[S.sel].era))src.push({pt:P[S.sel].s,x:1,y:1,ex:S.sel});
  const L=X(-100),R=X(100),Tp=Y(100),B=Y(-100);
  src.forEach(o=>{const [ux,uy]=o.pt,m=axisMates(o.pt,o.ex);
   if(o.x){const a=X(Math.max(-100,ux-BAND)),b=X(Math.min(100,ux+BAND));el("rect",{x:a,y:Tp,width:b-a,height:B-Tp,class:"pband px"},gProj);
@@ -829,31 +907,31 @@ function drawProj(){gProj.innerHTML="";const src=[];
    el("line",{x1:L,x2:R,y1:Y(uy),y2:Y(uy),class:"pline py ns"+(o.dash?" dash":"")},gProj);
    m.ys.forEach(h=>el("circle",{cx:X(h.pt[0]),cy:Y(h.pt[1]),r:o.dash?13:10,class:"phit py ns"+(o.dash?" dash":"")},gProj));
    if(o.dash)projTag(R+34,Y(uy),"Y "+fmt(uy),"py dash");else projTag(L-26,Y(uy),"Y "+fmt(uy),"py");}});}
-function markSel(){P.forEach(p=>{const g=G[p.i];g.classList.toggle("is-sel",p.i===S.sel&&S.mode==="select");g.classList.toggle("is-pin",p.i===S.pin&&S.mode==="select");
+function markSel(){const th=S.view==="thinker";P.forEach(p=>{const g=G[p.i];g.classList.toggle("is-sel",p.i===S.sel&&th);g.classList.toggle("is-pin",p.i===S.pin&&th);
  g.querySelectorAll(".ring").forEach(r=>r.remove());
- if(S.mode==="select"&&(p.i===S.sel||p.i===S.pin)){const r=el("circle",{cx:X(p.c[0]),cy:Y(p.c[1]),r:12,class:"ring ns"},g);if(p.i===S.pin&&p.i!==S.sel)r.setAttribute("stroke-dasharray","3 3");}});drawProj();}
+ if(th&&(p.i===S.sel||p.i===S.pin)){const r=el("circle",{cx:X(p.c[0]),cy:Y(p.c[1]),r:12,class:"ring ns"},g);if(p.i===S.pin&&p.i!==S.sel)r.setAttribute("stroke-dasharray","3 3");}});drawProj();}
 
 /* ---------- table ---------- */
 const tb=document.getElementById("tb");
 function renderTable(){const {k,dir}=S.sort;
  const rows=[...P].sort((a,b)=>{let va=a[k],vb=b[k];if(k==="cz"||k==="sz"){va=va.id;vb=vb.id;}return (va>vb?1:va<vb?-1:0)*dir;});
  tb.innerHTML=rows.map(p=>`<tr data-id="${p.i}" class="${p.i===S.sel?"sel":""} ${S.eras.has(p.era)?"":"off"}">
- <td class="num">${p.tag}</td><td><b>${p.n}</b></td><td class="num">${p.d}</td><td>${TYPES[p.t]}</td><td>${p.conf==="c"?"Contested":"Standard"}</td>
+ <td class="num">${p.tag}</td><td><b>${p.n}</b></td><td class="num">${p.d}</td><td>${TYPES[p.t]}</td><td>${p.conf==="c"?"Contested":"Standard"}</td><td class="num">${pChip(p.pv)}${pFmt(p.pv)}</td>
  <td class="num">${zlink(p.cz,true)} <span style="color:var(--ink2)">${fmt(p.c[0])}, ${fmt(p.c[1])}</span></td><td class="num">${zlink(p.sz,true)} <span style="color:var(--ink2)">${fmt(p.s[0])}, ${fmt(p.s[1])}</span></td>
  <td class="num"><span class="drift-bar" style="width:${Math.max(1,p.drift*.9).toFixed(0)}px"></span>${p.drift.toFixed(1)}</td></tr>`).join("");
  document.getElementById("count").textContent=`${P.filter(p=>S.eras.has(p.era)).length} / ${P.length} SHOWN`;}
 document.querySelectorAll("th").forEach(th=>{const go=()=>{const k=th.dataset.k;S.sort=S.sort.k===k?{k,dir:-S.sort.dir}:{k,dir:k==="drift"?-1:1};
  document.querySelectorAll("th").forEach(h=>h.removeAttribute("aria-sort"));th.setAttribute("aria-sort",S.sort.dir>0?"ascending":"descending");renderTable();};
  th.onclick=go;th.onkeydown=e=>{if(e.key==="Enter")go();};});
-tb.addEventListener("click",e=>{if(e.target.closest("[data-zlink]"))return;const tr=e.target.closest("tr");if(!tr)return;if(S.mode==="test")setMode("select");select(+tr.dataset.id,false);revealPanel();});
+tb.addEventListener("click",e=>{if(e.target.closest("[data-zlink]"))return;const tr=e.target.closest("tr");if(!tr)return;select(+tr.dataset.id,false);revealPanel();});
 
 function scrollMapTo(ux,uy){const sc=document.getElementById("vscroll");if(!sc||sc.scrollWidth<=sc.clientWidth+2)return;
  const k=svg.clientWidth/S.vb.w;sc.scrollTo({left:Math.max(0,(ux-S.vb.x)*k-sc.clientWidth/2),top:Math.max(0,(uy-S.vb.y)*k-sc.clientHeight/2),behavior:"auto"});}
-function select(i,center){S.sel=i;const pal=document.querySelector(".palette");if(pal)pal.scrollTop=0;if(!S.eras.has(P[i].era)){S.eras.add(P[i].era);[...ew.children][Object.keys(ERAS).indexOf(P[i].era)].setAttribute("aria-pressed","true");applyFilter();}
+function select(i,center){S.sel=i;S.view="thinker";const pal=document.querySelector(".palette");if(pal)pal.scrollTop=0;if(!S.eras.has(P[i].era)){S.eras.add(P[i].era);[...ew.children][Object.keys(ERAS).indexOf(P[i].era)].setAttribute("aria-pressed","true");applyFilter();}
  if(center){const p=P[i];const cx=(X(p.c[0])+X(p.s[0]))/2,cy=(Y(p.c[1])+Y(p.s[1]))/2;scrollMapTo(cx,cy);if(S.vb.w<1250){S.vb.x=cx-S.vb.w/2;S.vb.y=cy-S.vb.h/2;applyVB();}
   document.getElementById("vp").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"nearest"});}
  refresh();msg(`Selected <b>${P[i].n}</b> · drift ${P[i].drift.toFixed(1)} u`);}
-function refresh(){markSel();renderPanel();drawDim();renderTable();}
+function refresh(){markSel();markZones();drawPin();drawProj();renderPanel();renderTable();}
 
 /* ---------- viewport: pan / zoom / crosshair ---------- */
 const vp=document.getElementById("vp");
@@ -877,163 +955,200 @@ svg.addEventListener("pointermove",e=>{const p=pt(e),x=iX(p.x),y=iY(p.y),inside=
   if(drag.moved&&!drag.touch){const s=S.vb.w/svg.clientWidth;S.vb.x=drag.vx-dx*s;S.vb.y=drag.vy-dy*s;applyVB();}}});
 svg.addEventListener("pointerleave",()=>{xhV.setAttribute("visibility","hidden");xhH.setAttribute("visibility","hidden");});
 svg.addEventListener("pointerup",e=>{if(!drag)return;const d=drag;drag=null;if(d.moved)return;
- if(S.mode==="test")return;
- const g=d.target.closest&&d.target.closest(".ph");if(g){select(+g.dataset.id,false);revealPanel();return;}const q=pt(e),z=zoneAt(iX(q.x),iY(q.y));if(z.id!=="—")showZone(z.id,true);});
-svg.addEventListener("keydown",e=>{const g=e.target.closest&&e.target.closest(".ph");if(g&&(e.key==="Enter"||e.key===" ")&&S.mode==="select"){e.preventDefault();select(+g.dataset.id,false);revealPanel();}});
+ const yp=d.target.closest&&d.target.closest("[data-you]");if(yp&&T.res){S.view="results";refresh();revealPanel();return;}
+ const g=d.target.closest&&d.target.closest(".ph");if(g){select(+g.dataset.id,false);revealPanel();return;}const q=pt(e),z=zoneAt(iX(q.x),iY(q.y));if(z.id!=="—")showZone(z.id);});
+svg.addEventListener("keydown",e=>{const g=e.target.closest&&e.target.closest(".ph");if(g&&(e.key==="Enter"||e.key===" ")){e.preventDefault();select(+g.dataset.id,false);revealPanel();}});
 const msg=h=>document.getElementById("cmdMsg").innerHTML="Command: "+h;
 
 /* ---------- test: find your place ---------- */
-const TEST=[{"k": "p", "sec": 0, "q": "Is your consciousness something your brain does, or something that uses your brain?", "o": [["Something my brain does, the way digestion is something a stomach does.", {"x": 85}], ["Something that uses my brain, like a driver uses a car.", {"sp": 1, "wx": 0.8}], ["Both at once. Consciousness and the brain are two sides of one thing.", {"x": 0, "wx": 0.6}], ["Neither. My brain exists within consciousness, not the other way around.", {"x": -75}]]}, {"k": "p", "sec": 0, "q": "When you feel love or grief, what is that feeling, really?", "o": [["Chemicals and signals in my brain.", {"x": 85}], ["Brain activity, but the feeling itself is something more.", {"x": 35}], ["Something my spirit feels, which my body reflects.", {"sp": 1, "wx": 0.6}], ["A basic part of reality, as real as matter.", {"x": 0, "wx": 0.6}]]}, {"k": "p", "sec": 0, "q": "If people have a spirit or soul, what is it made of?", "o": [["There's no such thing.", {"x": 85}], ["A finer kind of matter we can't detect yet.", {"x": 60}], ["Nothing physical at all.", {"x": -55}], ["Pure awareness, the most real thing there is.", {"x": -90}], ["It's not a thing. It's more like a pattern.", {"x": 5, "wx": 0.6}]]}, {"k": "p", "sec": 0, "q": "Which is more real: the world you see, or the mind that sees it?", "o": [["The world. Minds are a small part of it.", {"x": 75}], ["Both are equally real.", {"x": 0}], ["The mind. The world is how things appear to minds.", {"x": -80}], ["Neither. Both come from something deeper.", {"x": 0}]]}, {"k": "p", "sec": 0, "q": "Could an advanced AI ever truly feel pain?", "o": [["Yes, if it processes information the right way.", {"x": 80}], ["Only if it were built from living, brain-like material.", {"x": 55}], ["No. Feeling needs a spirit or soul.", {"sp": 1, "wx": 0.8}], ["No. Consciousness can't be assembled from parts at all.", {"x": -60}]]}, {"k": "p", "sec": 0, "q": "In the best possible future, do you have a body?", "o": [["Yes, a real, physical body, forever.", {"x": 25, "wx": 0.4, "y": 40, "wy": 0.4}], ["Yes, a transformed or spiritual body.", {"x": 0, "wx": 0.5, "y": 40, "wy": 0.4}], ["No. I'd be pure spirit or awareness.", {"x": -55, "y": 40, "wy": 0.4}], ["No. There's no 'me' after death.", {"x": 40, "wx": 0.5, "y": -55, "wy": 0.6}]]}, {"k": "p", "sec": 1, "q": "Why is there a universe at all, rather than nothing?", "o": [["Something outside the universe brought it into being.", {"y": 95}], ["A source beyond it that also runs through all of it.", {"y": 55}], ["The universe has always existed and is ultimate in itself.", {"y": 0}], ["It just exists. There's no deeper reason.", {"y": -55}], ["That question doesn't really have a meaning.", {"y": -90}]]}, {"k": "p", "sec": 1, "q": "Is there anything outside the universe?", "o": [["Yes, a spiritual reality that doesn't depend on space and time.", {"y": 90, "x": -30, "wx": 0.4}], ["Yes, other realms or worlds, but they're part of one larger reality with real laws.", {"y": 40, "x": 30, "wx": 0.4}], ["No, but the universe itself is divine or sacred.", {"y": 0}], ["No. The universe is all there is.", {"y": -55}], ["The question assumes too much about what 'universe' means.", {"y": -85}]]}, {"k": "p", "sec": 1, "q": "Was there ever a time when nothing physical existed?", "o": [["Yes. A mind or spirit existed first and made the physical world from nothing.", {"x": -55, "y": 85}], ["No. Matter and spirit are eternal, and the world was organized from them.", {"x": 60, "y": 35}], ["No. The physical universe, or a multiverse, has always existed in some form.", {"x": 65, "y": -45}], ["Physical things are only appearances, so the question doesn't apply.", {"x": -85}]]}, {"k": "p", "sec": 1, "q": "Where do the laws of nature come from?", "o": [["A mind or source beyond the universe set them up.", {"y": 85}], ["They're eternal. Even a divine being would work within them.", {"y": 20}], ["They're the rational order of nature itself.", {"y": 0}], ["Nowhere. They're just how things behave.", {"y": -55}], ["They're our summaries of patterns, not something out there.", {"y": -85}]]}, {"k": "p", "sec": 2, "q": "When something remarkable happens, like a narrow escape or a coincidence with perfect timing, what's going on?", "o": [["Luck. Things just happen.", {"y": -55}], ["Sometimes it's guided by something beyond us.", {"y": 75}], ["The universe has its own way of working things out.", {"y": 5}], ["We notice patterns and give them meaning ourselves.", {"y": -70, "wy": 0.8}]]}, {"k": "p", "sec": 2, "q": "Does your life have a purpose you didn't choose yourself?", "o": [["Yes, given by something beyond the world.", {"y": 85}], ["Yes, built into nature or the way things are.", {"y": 15}], ["No, but we can make real meaning.", {"y": -50}], ["No. 'Purpose' is a story people tell.", {"y": -85}]]}, {"k": "p", "sec": 2, "q": "When people feel awe, under a night sky or in prayer, what are they in contact with?", "o": [["Something truly beyond the world, reaching into it.", {"y": 85}], ["A deeper layer of reality behind ordinary appearances.", {"y": 50}], ["The sacredness of nature itself.", {"y": 5}], ["Their own brains and emotions doing something beautiful.", {"y": -55}], ["Feelings each culture shapes to fit its own stories.", {"y": -85}]]}, {"k": "p", "sec": 2, "q": "What happens to you when you die?", "o": [["I continue in a realm or state beyond this world.", {"y": 80, "x": -25, "wx": 0.4}], ["I continue as a real, embodied person in a higher state.", {"y": 50, "x": 40, "wx": 0.4}], ["I merge back into a greater whole.", {"y": 45, "x": -50, "wx": 0.5}], ["My matter rejoins nature, and that's enough.", {"y": -10, "x": 45, "wx": 0.4}], ["Nothing. It's simply the end of me.", {"y": -55, "x": 35, "wx": 0.4}]]}, {"k": "p", "sec": 3, "q": "Is 'cruelty for fun is wrong' true the way '2 + 2 = 4' is true?", "o": [["Yes. It's true no matter what anyone thinks.", {}], ["It's true because it comes from a source beyond us, built into who we are.", {"y": 60, "wy": 0.6}], ["It's true for humans, given our nature, but not built into the universe.", {"y": -45, "wy": 0.6}], ["It's a strong feeling or agreement, not a fact.", {"y": -85, "wy": 1.2}]]}, {"k": "p", "sec": 3, "q": "Could two cultures with opposite beliefs about reality both be right?", "o": [["No. There's one reality, and at least one of them is wrong.", {}], ["Partly. Each might see a different side of the same reality.", {"y": -15, "wy": 0.3}], ["Yes. Reality is shaped by the concepts a culture uses.", {"y": -90, "wy": 1.4}]]}, {"k": "p", "sec": 3, "q": "If humans had never existed, would there still be truths about the universe?", "o": [["Yes, of course.", {}], ["Yes, because a greater mind would still know them.", {"x": -20, "wx": 0.4, "y": 55, "wy": 0.6}], ["There'd be things, but 'truth' is something only minds make.", {"y": -75, "wy": 1.2}], ["Without minds, it's not clear anything would exist at all.", {"x": -85, "wx": 0.8}]]}, {"k": "p", "sec": 3, "q": "Are things like justice and love invented by people, or real things people discover?", "o": [["Invented. They're useful ideas people came up with.", {"y": -70, "wy": 0.8}], ["Discovered. They're real whether or not anyone recognizes them.", {"x": -25, "wx": 0.4, "y": 45, "wy": 0.6}], ["Built into human nature, so we find them in ourselves.", {"y": -10, "wy": 0.5}], ["They come from a higher source and are part of who we are.", {"y": 65, "wy": 0.6}]]}, {"k": "p", "sec": 3, "q": "If God or something divine exists, it's most like…", "o": [["There isn't anything like that.", {"x": 45, "wx": 0.5, "y": -55}], ["Nature itself, the whole universe.", {"x": 15, "wx": 0.5, "y": 0}], ["A perfect, glorified person with a real body.", {"x": 70, "y": 45}], ["A spirit with no body, beyond space and time.", {"x": -55, "y": 90}], ["A presence in everything, the deepest part of us all.", {"x": -75, "y": 50}]]}, {"k": "m", "sec": 4, "q": "You find a wallet with $500 and an ID, and nobody saw you. What decides what you do?", "o": [["A rule I keep no matter what: you don't take what isn't yours.", {"s": "P"}], ["Whatever does the most good for the owner and anyone else affected.", {"s": "O"}], ["My conscience in the moment. I'd just know.", {"s": "I"}], ["What my faith asks of me.", {"s": "F"}], ["What the kind of person I want to be would do.", {"s": "C"}], ["What my family raised me to do.", {"s": "M"}]]}, {"k": "m", "sec": 4, "q": "When you face a big decision, like a move or a career change, what do you rely on most?", "o": [["Careful reasoning about pros, cons and likely outcomes.", {"s": "O"}], ["Prayer, inspiration or a sense of being guided.", {"s": "F"}], ["My gut.", {"s": "I"}], ["Advice from people I trust, and what my family would expect.", {"s": "M"}], ["What fits the person I'm trying to become.", {"s": "C"}], ["Principles I already hold, applied to this situation.", {"s": "P"}]]}, {"k": "m", "sec": 4, "q": "A close friend asks you to lie to protect them from serious trouble they caused. What matters most?", "o": [["Lying is wrong, even for a friend.", {"s": "P"}], ["Whatever leads to the least harm overall.", {"s": "O"}], ["Loyalty. You stand by your people.", {"s": "M"}], ["What my conscience tells me in the moment.", {"s": "I"}], ["What I feel prompted to do after praying about it.", {"s": "F"}], ["What an honest person and a good friend would both do.", {"s": "C"}]]}, {"k": "m", "sec": 4, "q": "When your feelings and your principles disagree, which usually wins?", "o": [["My principles. Feelings change; what's right doesn't.", {"s": "P"}], ["My feelings. They usually know something my reasons don't.", {"s": "I"}], ["Neither. I look at what will actually happen.", {"s": "O"}], ["I pray about it until I feel sure.", {"s": "F"}], ["I ask what the person I want to become would do.", {"s": "C"}]]}, {"k": "m", "sec": 4, "q": "You're sure something is right, but everyone around you disagrees. What do you do?", "o": [["Stand firm. Right is right, even if I'm alone.", {"s": "P"}], ["Seriously reconsider. Shared wisdom usually knows more than one person.", {"s": "M"}], ["Seek guidance beyond myself, through prayer or scripture.", {"s": "F"}], ["Weigh what's actually at stake before deciding.", {"s": "O"}], ["Go with my gut either way.", {"s": "I"}]]}, {"k": "m", "sec": 4, "q": "Where does your sense of right and wrong come from?", "o": [["Evolution and the brain.", {"s": "O", "c": [60, -45]}], ["Upbringing and culture.", {"s": "M", "c": [5, -75]}], ["Reason itself. Anyone thinking clearly could find it.", {"s": "P", "c": [-25, 35]}], ["Eternal truths that exist on their own, which we come to recognize.", {"s": "P", "c": [-35, 85]}], ["God, or something beyond, written into us.", {"s": "F", "c": [null, 85]}], ["Human nature, and what we're meant to become.", {"s": "C", "c": [10, 15]}]]}];
-const SECT=["Your mind","The universe","Meaning","Truth","How you decide"];
-const STY={P:{n:"Principle",d:"Rules and truths that hold no matter what",c:[-30,75]},F:{n:"Faith",d:"Prayer, promptings and revelation",c:[null,85]},C:{n:"Character",d:"Becoming a certain kind of person",c:[5,30]},I:{n:"Intuition",d:"Gut feeling and conscience in the moment",c:[0,-35]},O:{n:"Outcomes",d:"The effects on everyone involved",c:[45,-45]},M:{n:"Community",d:"Family, tradition and shared expectations",c:[10,-15]}};
+const TEST=[{"id": "wallet", "k": "m", "sec": 0, "q": "You find a wallet with $500 and an ID, and nobody saw you. What decides what you do?", "o": [["A rule I keep no matter what: you don't take what isn't yours.", {"s": "P"}], ["Whatever does the most good for the owner and anyone else affected.", {"s": "O"}], ["My gut. I'd just know what felt right.", {"s": "I"}], ["What my faith asks of me.", {"s": "F"}], ["What the kind of person I want to be would do.", {"s": "C"}], ["What my family raised me to do.", {"s": "M"}]]}, {"id": "bigdecision", "k": "m", "sec": 0, "q": "When you face a big decision, like a move or a career change, what do you rely on most?", "o": [["Careful reasoning about pros, cons and likely outcomes.", {"s": "O"}], ["Prayer, inspiration or a sense of being guided.", {"s": "F"}], ["My gut.", {"s": "I"}], ["Advice from people I trust, and what my family would expect.", {"s": "M"}], ["What fits the person I'm trying to become.", {"s": "C"}], ["Principles I already hold, applied to this situation.", {"s": "P"}]]}, {"id": "lie", "k": "m", "sec": 0, "q": "A close friend asks you to lie to protect them from serious trouble they caused. What matters most?", "o": [["Lying is wrong, even for a friend.", {"s": "P"}], ["Whatever leads to the least harm overall.", {"s": "O"}], ["Loyalty. You stand by your people.", {"s": "M"}], ["What feels right in the moment.", {"s": "I"}], ["What I feel prompted to do after praying about it.", {"s": "F"}], ["What an honest person and a good friend would both do.", {"s": "C"}]]}, {"id": "feelings", "k": "m", "sec": 0, "q": "When your feelings and your principles disagree, which usually wins?", "o": [["My principles. Feelings change; what's right doesn't.", {"s": "P"}], ["My feelings. They usually know something my reasons don't.", {"s": "I"}], ["Neither. I look at what will actually happen.", {"s": "O"}], ["I pray about it until I feel sure.", {"s": "F"}], ["I ask what the person I want to become would do.", {"s": "C"}], ["I go with what the people closest to me would think.", {"s": "M"}]]}, {"id": "alone", "k": "m", "sec": 0, "q": "You're sure something is right, but everyone around you disagrees. What do you do?", "o": [["Stand firm. Right is right, even if I'm alone.", {"s": "P"}], ["Seriously reconsider. Shared wisdom usually knows more than one person.", {"s": "M"}], ["Seek guidance beyond myself, through prayer or scripture.", {"s": "F"}], ["Weigh what's actually at stake before deciding.", {"s": "O"}], ["Go with my gut either way.", {"s": "I"}], ["Ask what a person of real integrity would do.", {"s": "C"}]]}, {"id": "hardest", "k": "m", "sec": 0, "q": "Think of the hardest decision you made in the past year. What actually settled it?", "o": [["A principle I wasn't willing to break.", {"s": "P"}], ["A prayer, a prompting or a sense of being guided.", {"s": "F"}], ["The kind of person I wanted to be.", {"s": "C"}], ["A gut feeling.", {"s": "I"}], ["Working out what would turn out best.", {"s": "O"}], ["What my family or community needed or expected.", {"s": "M"}]]}, {"id": "mind", "k": "p", "sec": 1, "q": "Is your consciousness something your brain does, or something that uses your brain?", "o": [["Something my brain does, the way digestion is something a stomach does.", {"x": 80}], ["Something my brain produces, but it's more than just chemistry.", {"x": 25}], ["Something that uses my brain, like a driver uses a car.", {"sp": 1, "wx": 0.8}], ["Both at once. Consciousness and the brain are two sides of one thing.", {"x": 0, "wx": 0.6}], ["Neither. My brain exists within consciousness, not the other way around.", {"x": -90}]]}, {"id": "hard", "k": "p", "sec": 1, "q": "Science can explain how your brain processes the color red. Could it ever explain why seeing red feels like something?", "o": [["Yes. The feeling just is that brain process, so explaining one explains the other.", {"x": 80}], ["Probably someday, once we understand the brain well enough.", {"x": 55}], ["No. Experience is a basic part of reality that brain science can't fully capture.", {"x": 0, "wx": 0.8}], ["No. Experience belongs to a spirit or soul, not just the brain.", {"sp": 1, "wx": 0.8}], ["No. Experience comes first, and the brain is something that appears within it.", {"x": -85}]]}, {"id": "soul", "k": "p", "sec": 1, "q": "If people have a spirit or soul, what is it made of?", "o": [["There's no such thing.", {"x": 55, "wx": 0.7}], ["A finer kind of matter we can't detect yet.", {"x": 60}], ["Nothing physical at all.", {"x": -35}], ["Pure awareness, the most real thing there is.", {"x": -90}], ["It's not a thing. It's more like a pattern.", {"x": 5, "wx": 0.6}]]}, {"id": "real", "k": "p", "sec": 1, "q": "Which is more real: the world you see, or the mind that sees it?", "o": [["The world. Minds are a small part of it.", {"x": 75}], ["Both are equally real.", {"x": 0, "wx": 0.5}], ["The mind. The world is how things appear to minds.", {"x": -85}], ["Neither. Both come from something deeper.", {"x": 0, "wx": 0.6}]]}, {"id": "ai", "k": "p", "sec": 1, "q": "Could an advanced AI ever truly feel pain?", "o": [["Yes, if it processes information the right way.", {"x": 75, "wx": 0.8}], ["Only if it were built from living, brain-like material.", {"x": 50}], ["No. Feeling needs a spirit or soul.", {"sp": 1, "wx": 0.8}], ["No. Consciousness can't be assembled from parts at all.", {"x": -50}]]}, {"id": "vanish", "k": "p", "sec": 1, "q": "If every atom and every bit of energy that science can measure suddenly vanished, what would be left?", "o": [["Nothing at all.", {"x": 85}], ["God, who doesn't need matter at all.", {"x": -65}], ["Souls or spirits, which don't need matter.", {"x": -35}], ["One consciousness, which everything was always part of.", {"x": -90}], ["Spirit, which is a finer kind of matter that science can't yet measure.", {"x": 55}], ["Truths like math and logic, but no one to know them.", {"x": -25, "wx": 0.5}]]}, {"id": "why", "k": "p", "sec": 2, "q": "Why is there a universe at all, rather than nothing?", "o": [["Something outside the universe brought it into being.", {"y": 95}], ["A source beyond it that also runs through all of it.", {"y": 55}], ["It has always existed, and a divine being shaped it into the world we know.", {"y": 45, "x": 25, "wx": 0.3}], ["The universe has always existed and is ultimate in itself.", {"y": 0}], ["It just exists. There's no deeper reason.", {"y": -55}], ["That question doesn't really have a meaning.", {"y": -90}]]}, {"id": "outside", "k": "p", "sec": 2, "q": "Is there anything outside the universe?", "o": [["Yes, a spiritual reality that doesn't depend on space and time.", {"y": 90, "x": -30, "wx": 0.4}], ["Yes, other realms or worlds, but they're part of one larger reality with real laws.", {"y": 40, "x": 30, "wx": 0.4}], ["No, but the universe itself is divine or sacred.", {"y": 0}], ["No. The universe is all there is.", {"y": -55}], ["The question assumes too much about what 'universe' means.", {"y": -85}]]}, {"id": "first", "k": "p", "sec": 2, "q": "Was there ever a time when nothing physical existed?", "o": [["Yes. A mind or spirit existed first and made the physical world from nothing.", {"x": -65, "y": 85}], ["No. Matter and spirit are eternal, and the world was organized from them.", {"x": 15, "wx": 0.6, "y": 35}], ["No. Nature has always existed, and it is itself divine or rational.", {"x": 5, "wx": 0.6, "y": 0}], ["No. The physical universe, or a multiverse, has always existed in some form.", {"x": 45, "y": -45}], ["Physical things are only appearances, so the question doesn't apply.", {"x": -85}]]}, {"id": "laws", "k": "p", "sec": 2, "q": "Where do the laws of nature come from?", "o": [["A mind or source beyond the universe set them up.", {"y": 85}], ["They're eternal. Even a divine being would work within them.", {"y": 45}], ["They're the rational order of nature itself.", {"y": 0}], ["Nowhere. They're just how things behave.", {"y": -55}], ["They're our summaries of patterns, not something out there.", {"y": -85}]]}, {"id": "cave", "k": "p", "sec": 2, "q": "Is the world you see the most real thing there is?", "o": [["Yes. The physical world is what's real.", {"y": -45, "wy": 0.8, "x": 40, "wx": 0.4}], ["It's real, but it depends on something deeper or higher.", {"y": 55}], ["No. It's more like a shadow or copy of something more real.", {"y": 90, "x": -25, "wx": 0.4}], ["No. It's more like a dream or appearance in consciousness.", {"x": -85, "wx": 0.8}], ["“Real” is just a word we use. There's no deeper fact.", {"y": -85}]]}, {"id": "coinc", "k": "p", "sec": 3, "q": "When something remarkable happens, like a narrow escape or a coincidence with perfect timing, what's going on?", "o": [["Luck. Things just happen.", {"y": -30, "wy": 0.6, "p": -70, "wp": 0.4}], ["Sometimes it's guided by God or a power beyond the world.", {"y": 75, "p": 60, "wp": 0.6}], ["Spirits or forces in nature sometimes take a hand.", {"y": 5, "x": -30, "wx": 0.4, "p": 35, "wp": 0.5}], ["The universe has its own way of working things out.", {"y": 5, "p": -40, "wp": 0.5}], ["We notice patterns and give them meaning ourselves.", {"y": -65, "wy": 0.8, "p": -70, "wp": 0.4}]]}, {"id": "purpose", "k": "p", "sec": 3, "q": "Does your life have a purpose you didn't choose yourself?", "o": [["Yes, given by something beyond the world.", {"y": 85}], ["Yes, built into nature or the way things are.", {"y": 15}], ["No, but we can make real meaning.", {"y": -50}], ["No. 'Purpose' is a story people tell.", {"y": -85}]]}, {"id": "awe", "k": "p", "sec": 3, "q": "When people feel awe, under a night sky or in prayer, what are they in contact with?", "o": [["Something truly beyond the world, reaching into it.", {"y": 85}], ["A deeper layer of reality behind ordinary appearances.", {"y": 50}], ["The sacredness of nature itself.", {"y": 5}], ["Their own brains and emotions doing something beautiful.", {"y": -55}], ["Feelings each culture shapes to fit its own stories.", {"y": -85}]]}, {"id": "death", "k": "p", "sec": 3, "q": "What happens to you when you die?", "o": [["I continue in a realm or state beyond this world.", {"y": 80, "x": -25, "wx": 0.4}], ["I continue as a real, embodied person in a higher state.", {"y": 50, "x": 40, "wx": 0.4}], ["I'm reborn into another life, until I'm finally freed from the cycle.", {"y": 35, "wy": 0.7, "x": -20, "wx": 0.3}], ["I merge back into a greater whole.", {"y": 45, "x": -25, "wx": 0.4}], ["I stay close by, as a spirit among my family and the land.", {"y": 0, "wy": 0.7, "x": -30, "wx": 0.4}], ["My matter rejoins nature, and that's enough.", {"y": -10, "x": 45, "wx": 0.4}], ["Nothing. It's simply the end of me.", {"y": -55, "x": 35, "wx": 0.4}]]}, {"id": "knows", "k": "p", "sec": 3, "q": "Does the deepest reality, whatever is most real, know you?", "o": [["Yes. It knows me personally and cares what happens to me.", {"p": 95}], ["It's aware of everything, but not in a personal, one-to-one way.", {"p": -30}], ["No. It isn't the kind of thing that can know anyone.", {"p": -80}], ["There's nothing like that to know me.", {"p": -100}]]}, {"id": "prayer", "k": "p", "sec": 3, "q": "When people pray, is anyone listening?", "o": [["Yes. God hears, and sometimes answers.", {"p": 95}], ["Yes. Spirits, ancestors or saints can hear.", {"p": 50, "wp": 0.5}], ["Prayer connects you to something real, but nothing hears it the way a person would.", {"p": -50}], ["No. Prayer can help the person praying, but no one is listening.", {"p": -100}]]}, {"id": "cruel", "k": "p", "sec": 4, "q": "Is 'cruelty for fun is wrong' true the way '2 + 2 = 4' is true?", "o": [["Yes. It's true no matter what anyone thinks.", {}], ["It's true because it comes from a source beyond us, built into who we are.", {"y": 60, "wy": 0.6}], ["It's true for humans, given our nature, but not built into the universe.", {"y": -30, "wy": 0.6}], ["It's a strong feeling or agreement, not a fact.", {"y": -85, "wy": 1.2}]]}, {"id": "cultures", "k": "p", "sec": 4, "q": "Could two cultures with opposite beliefs about reality both be right?", "o": [["No. There's one reality, and at least one of them is wrong.", {}], ["Partly. Each might see a different side of the same reality.", {"y": -15, "wy": 0.3}], ["Yes. Reality is shaped by the concepts a culture uses.", {"y": -90, "wy": 1.4}]]}, {"id": "nohumans", "k": "p", "sec": 4, "q": "If humans had never existed, would there still be truths about the universe?", "o": [["Yes, of course.", {}], ["Yes, because a greater mind would still know them.", {"x": -20, "wx": 0.4, "y": 55, "wy": 0.6}], ["There'd be things, but 'truth' is something only minds make.", {"y": -75, "wy": 1.2}], ["Without minds, it's not clear anything would exist at all.", {"x": -85, "wx": 0.8}]]}, {"id": "justice", "k": "p", "sec": 4, "q": "Are things like justice and love invented by people, or real things people discover?", "o": [["Invented. They're useful ideas people came up with.", {"y": -70, "wy": 0.8}], ["Discovered. They're real whether or not anyone recognizes them.", {"x": -25, "wx": 0.4, "y": 45, "wy": 0.6}], ["Built into human nature, so we find them in ourselves.", {"y": -10, "wy": 0.5}], ["They come from a higher source and are part of who we are.", {"y": 65, "wy": 0.6}]]}, {"id": "divine", "k": "p", "sec": 4, "q": "If God or something divine exists, it's most like…", "o": [["There isn't anything like that.", {"x": 20, "wx": 0.4, "y": -50, "p": -100}], ["Nature itself, or the hidden order running through it.", {"x": 5, "wx": 0.5, "y": 5, "p": -80}], ["Many spirits, present in places, nature and ancestors.", {"x": -35, "wx": 0.6, "y": -5, "p": 40}], ["A perfect, glorified person with a real body.", {"x": 70, "y": 45, "p": 100}], ["A spirit with no body, beyond space and time.", {"x": -65, "y": 90, "p": 75}], ["A first cause or ordering intelligence that set things up and stands apart.", {"x": -20, "wx": 0.5, "y": 85, "p": 10}], ["A divine consciousness present in everything, the deepest part of us all.", {"x": -80, "y": 65, "p": 0}]]}];
+const SECT=["How you decide","Your mind","The universe","Meaning","Truth"];
+const STY={P:{n:"Principle",d:"rules and truths that hold no matter what"},F:{n:"Faith",d:"prayer, promptings and revelation"},C:{n:"Character",d:"becoming a certain kind of person"},I:{n:"Gut feeling",d:"what feels right in the moment"},O:{n:"Outcomes",d:"the effects on everyone involved"},M:{n:"Community",d:"family, tradition and shared expectations"}};
 const SORD=["P","F","C","I","O","M"];
-const ETH={"Plato": {"P": 0.7, "C": 0.3}, "Aristotle": {"C": 0.7, "P": 0.15, "M": 0.15}, "Kant": {"P": 0.9, "C": 0.1}, "Epicurus": {"O": 0.7, "I": 0.3}, "Hume": {"I": 0.6, "O": 0.3, "M": 0.1}, "Kierkegaard": {"F": 0.8, "I": 0.2}, "al-Ghazālī": {"F": 0.7, "P": 0.3}, "Aquinas": {"P": 0.45, "F": 0.35, "C": 0.2}, "Augustine": {"F": 0.6, "P": 0.2, "I": 0.2}, "The Stoics": {"P": 0.5, "C": 0.5}, "Confucianism": {"M": 0.5, "C": 0.5}, "Nietzsche": {"I": 0.5, "C": 0.5}, "Sartre": {"I": 0.5, "C": 0.5}, "William James": {"O": 0.5, "I": 0.3, "F": 0.2}, "Marx": {"O": 0.6, "M": 0.4}, "Spinoza": {"P": 0.6, "C": 0.4}, "Dennett": {"O": 0.8, "M": 0.2}, "Joseph Smith": {"F": 0.7, "P": 0.2, "C": 0.1}, "Latter-day Saints": {"F": 0.5, "P": 0.2, "C": 0.2, "M": 0.1}, "Catholicism": {"P": 0.35, "F": 0.35, "M": 0.2, "C": 0.1}, "Islam (Sunni kalām)": {"F": 0.6, "P": 0.3, "M": 0.1}, "Judaism (rabbinic)": {"P": 0.4, "M": 0.4, "F": 0.2}, "Theravāda Buddhism": {"C": 0.6, "I": 0.2, "P": 0.2}, "Christianity (classical)": {"F": 0.5, "P": 0.3, "C": 0.2}, "Shinto": {"M": 0.7, "I": 0.3}, "Animism (indigenous)": {"M": 0.6, "I": 0.4}, "Sikhism": {"F": 0.5, "C": 0.3, "M": 0.2}, "Jainism": {"P": 0.6, "C": 0.4}, "Leibniz": {"P": 0.7, "F": 0.3}, "Locke": {"P": 0.5, "O": 0.3, "F": 0.2}, "Descartes": {"P": 0.7, "F": 0.3}, "Heidegger": {"I": 0.6, "M": 0.4}};
-function ethMatch(t){const tv=SORD.map(k=>t[k]||0),tn=Math.hypot(...tv)||1;
- return Object.entries(ETH).map(([n,v])=>{const pv=SORD.map(k=>v[k]||0),c=tv.reduce((a,x,i)=>a+x*pv[i],0)/(tn*Math.hypot(...pv));return {p:P.find(q=>q.n===n),c,v};}).filter(r=>r.p).sort((a,b)=>b.c-a.c);}
-const SPV={1:40,2:-55,3:-75};
-const SCALE=[];
-const T={stage:"intro",i:0,ans:[],order:[],res:null};
-const SAVE="mfs-test-v7";
-try{const sv=JSON.parse(localStorage.getItem(SAVE)||"null");if(sv&&sv.ans&&sv.ans.length===TEST.length){T.ans=sv.ans;T.res=sv.res;T.dres=sv.dres;T.tally=sv.tally;T.stage="done";}}catch(e){}
+/* Where each way of deciding leans on the vertical axis. Faith and principle lean on whatever ultimate your own beliefs describe;
+   character leans on a purpose for human life; gut feeling, outcomes and community lean on this world. */
+function anchorY(k,by){by=by??0;switch(k){case"P":return Math.max(by,30);case"F":return Math.max(by,55);case"C":return Math.min(Math.max(by,-20),40);case"I":return -35;case"O":return -45;default:return -15;}}
+const ETH={"Plato": {"P": 0.6, "C": 0.4}, "Aristotle": {"C": 0.7, "P": 0.15, "M": 0.15}, "Kant": {"P": 0.9, "C": 0.1}, "Epicurus": {"O": 0.7, "I": 0.3}, "Hume": {"I": 0.6, "O": 0.3, "M": 0.1}, "Kierkegaard": {"F": 0.8, "I": 0.2}, "al-Ghazālī": {"F": 0.7, "P": 0.3}, "Aquinas": {"P": 0.4, "C": 0.3, "F": 0.3}, "Augustine": {"F": 0.6, "P": 0.2, "I": 0.2}, "The Stoics": {"P": 0.5, "C": 0.5}, "Confucianism": {"M": 0.5, "C": 0.5}, "Nietzsche": {"I": 0.5, "C": 0.5}, "William James": {"O": 0.5, "I": 0.3, "F": 0.2}, "Marx": {"O": 0.6, "M": 0.4}, "Spinoza": {"P": 0.6, "C": 0.4}, "Joseph Smith": {"F": 0.7, "P": 0.2, "C": 0.1}, "Latter-day Saints": {"F": 0.5, "P": 0.2, "C": 0.2, "M": 0.1}, "Catholicism": {"P": 0.35, "F": 0.35, "M": 0.2, "C": 0.1}, "Islam (Sunni kalām)": {"F": 0.6, "P": 0.3, "M": 0.1}, "Judaism (rabbinic)": {"P": 0.4, "M": 0.4, "F": 0.2}, "Theravāda Buddhism": {"C": 0.6, "I": 0.2, "P": 0.2}, "Christianity (classical)": {"F": 0.5, "P": 0.3, "C": 0.2}, "Shinto": {"M": 0.7, "I": 0.3}, "Animism (indigenous)": {"M": 0.6, "I": 0.4}, "Sikhism": {"F": 0.5, "C": 0.3, "M": 0.2}, "Jainism": {"P": 0.6, "C": 0.4}, "Leibniz": {"P": 0.7, "F": 0.3}, "Locke": {"P": 0.5, "O": 0.3, "F": 0.2}, "Descartes": {"M": 0.35, "C": 0.35, "P": 0.3}};
+function ethMatch(t,dy){const tv=SORD.map(k=>t[k]||0),tn=Math.hypot(...tv)||1;
+ return Object.entries(ETH).map(([n,v])=>{const p=P.find(q=>q.n===n);if(!p)return null;const pv=SORD.map(k=>v[k]||0),c=tv.reduce((a,x,i)=>a+x*pv[i],0)/(tn*Math.hypot(...pv));
+  const h=dy==null?1:1-Math.min(1,Math.abs(dy-p.c[1])/200);return {p,c,v,score:.75*c+.25*h};}).filter(Boolean).sort((a,b)=>b.score-a.score);}
+const SPV={"1": 55, "2": -35, "3": -85};
+const SOUL=TEST.findIndex(q=>q.id==="soul");
+const T={stage:"intro",i:0,ans:[],order:[],res:null,dres:null,tally:null,sd:null,pp:null};
+const SAVE="mfs-test-v9";
+function validRes(d){const ok=a=>Array.isArray(a)&&a.length===2&&a.every(v=>typeof v==="number"&&isFinite(v));return d&&Array.isArray(d.ans)&&d.ans.length===TEST.length&&ok(d.res)&&(d.dres==null||ok(d.dres))&&(d.pp==null||(typeof d.pp==="number"&&isFinite(d.pp)));}
+function useRes(d){Object.assign(T,{ans:d.ans,res:d.res,dres:d.dres||null,tally:d.tally||null,sd:d.sd||[0,0],pp:d.pp??null});}
+function loadSaved(){try{const d=JSON.parse(localStorage.getItem(SAVE)||"null");if(validRes(d)){useRes(d);return true;}}catch(e){}return false;}
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function startTest(){T.stage="q";T.i=0;T.ans=new Array(TEST.length).fill(null);T.res=null;T.order=TEST.map(q=>shuffle(q.o.map((_,k)=>k)));T.dres=null;T.tally=null;gYou.innerHTML="";renderTest();}
-function scoreTest(){let sx=0,wx=0,sy=0,wy=0;const sp=SPV[T.ans[2]]??-20;
+function startTest(){T.stage="q";T.i=0;T.ans=new Array(TEST.length).fill(null);T.order=TEST.map(q=>shuffle(q.o.map((_,k)=>k)));renderTestPage();}
+function scoreTest(){let sx=0,wx=0,sy=0,wy=0,spp=0,wpp=0;const cx=[],cy=[];const sp=SPV[T.ans[SOUL]]??-20;
  T.ans.forEach((a,i)=>{if(TEST[i].k!=="p"||a==null||a<0)return;const v=TEST[i].o[a][1];
-  const x=v.sp?sp:v.x;if(x!=null){const w=v.wx??1;sx+=x*w;wx+=w;}
-  if(v.y!=null){const w=v.wy??1;sy+=v.y*w;wy+=w;}});
- return [wx?Math.round(sx/wx):0,wy?Math.round(sy/wy):0];}
+  const x=v.sp?sp:v.x;if(x!=null){const w=v.wx??1;sx+=x*w;wx+=w;cx.push([x,w]);}
+  if(v.y!=null){const w=v.wy??1;sy+=v.y*w;wy+=w;cy.push([v.y,w]);}
+  if(v.p!=null){const w=v.wp??1;spp+=v.p*w;wpp+=w;}});
+ const mx=wx?sx/wx:0,my=wy?sy/wy:0,sd=(arr,m)=>{const W=arr.reduce((n,a)=>n+a[1],0);return W?Math.sqrt(arr.reduce((n,a)=>n+a[1]*(a[0]-m)*(a[0]-m),0)/W):0;};
+ return {pin:[Math.round(mx),Math.round(my)],sd:[Math.round(sd(cx,mx)),Math.round(sd(cy,my))],pp:wpp?Math.round(spp/wpp):null};}
 function decWeights(a){if(!a||a===-1||!a.sel||!a.sel.length)return [];const n=a.sel.length,m=a.sel.includes(a.main)?a.main:a.sel[0];return a.sel.map(k=>[k,n===1?1:(k===m?.5:.5/(n-1))]);}
-function scoreDecisions(bx,by){const tally={P:0,F:0,C:0,I:0,O:0,M:0};let sy=0,sw=0;const fy=Math.max(by??55,55);
- TEST.forEach((q,i)=>{if(q.k!=="m")return;decWeights(T.ans[i]).forEach(([k,w])=>{const o=q.o[k][1],c=o.c||STY[o.s].c,y=o.s==="F"?fy:c[1];tally[o.s]+=w;sy+=y*w;sw+=w;});});
+function scoreDecisions(bx,by){const tally={P:0,F:0,C:0,I:0,O:0,M:0};let sy=0,sw=0;
+ TEST.forEach((q,i)=>{if(q.k!=="m")return;decWeights(T.ans[i]).forEach(([k,w])=>{const s=q.o[k][1].s;tally[s]+=w;sy+=anchorY(s,by)*w;sw+=w;});});
  return {pin:sw?[bx,Math.round(sy/sw)]:null,tally};}
-function finishTest(){T.res=scoreTest();const D=scoreDecisions(T.res[0],T.res[1]);T.dres=D.pin;T.tally=D.tally;T.stage="done";
- try{localStorage.setItem(SAVE,JSON.stringify({ans:T.ans,res:T.res,dres:T.dres,tally:T.tally}));}catch(e){}
- drawPin();renderTest();msg(`Belief pin <b>(${fmt(T.res[0])}, ${fmt(T.res[1])})</b> · ${zoneAt(T.res[0],T.res[1]).n}`);}
-function advance(){if(T.i<TEST.length-1){T.i++;renderTest();}else finishTest();}
+function expectedStyles(by){const d=k=>Math.abs(anchorY(k,by)-by),m=Math.min(...SORD.map(d));return SORD.filter(k=>d(k)-m<1);}
 const xWord=x=>x<=-75?"only mind":x<=-25?"mind first":x<25?"balanced":x<75?"matter first":"only matter";
 const yWord=y=>y>=75?"wholly beyond":y>=25?"beyond and present":y>-25?"the world itself":y>-75?"only this world":"constructed";
-function nearList(pt,rel){return P.filter(p=>(p.era==="rel")===rel).map(p=>{const dc=Math.hypot(p.c[0]-pt[0],p.c[1]-pt[1]),ds=Math.hypot(p.s[0]-pt[0],p.s[1]-pt[1]);
- return {p,d:Math.min(dc,ds),which:ds<=dc?"s":"c",ref:ds<=dc?p.s:p.c};}).sort((a,b)=>a.d-b.d);}
+const KP=.5;  /* weight of the personal question when finding your closest matches */
+function nearList(pt,rel,pp){return P.filter(p=>(p.era==="rel")===rel).map(p=>{const dc=Math.hypot(p.c[0]-pt[0],p.c[1]-pt[1]),ds=Math.hypot(p.s[0]-pt[0],p.s[1]-pt[1]);
+ const dp=pp!=null&&p.pv!=null?pp-p.pv:null;return {p,d:Math.hypot(Math.min(dc,ds),dp==null?0:KP*dp),dp,which:ds<=dc?"s":"c",ref:ds<=dc?p.s:p.c};}).sort((a,b)=>a.d-b.d);}
 function gapText(me,r){const dx=me[0]-r.ref[0],dy=me[1]-r.ref[1],o=[];
  if(Math.abs(dx)>=8)o.push(dx<0?`you lean ${Math.abs(dx).toFixed(0)} units further toward mind`:`you lean ${dx.toFixed(0)} units further toward matter`);
  if(Math.abs(dy)>=8)o.push(dy>0?`you place ${dy.toFixed(0)} units more weight on a beyond`:`you place the ultimate ${Math.abs(dy).toFixed(0)} units closer to this world`);
+ if(r.dp!=null&&Math.abs(r.dp)>=25)o.push(r.dp>0?"you see the ultimate as more of a someone":"you see the ultimate as more of a something");
  const t=o.length?o.join(", and ")+".":"you sit almost exactly where they do.";return t[0].toUpperCase()+t.slice(1);}
 const first=s=>s.split(/(?<=\.)\s/)[0];
-function pinShape(parent,px,py,hollow,label){const g=el("g",{transform:`translate(${px.toFixed(1)},${py.toFixed(1)})`},parent),d=el("g",{class:"you-drop"},g);
+function edgeNote(p){const z=zoneAt(p[0],p[1]);if(z.id==="—")return "";let best=null;
+ [[p[0]-z.x[0],[-1,0],z.x[0]>-100],[z.x[1]-p[0],[1,0],z.x[1]<100],[p[1]-z.y[0],[0,-1],z.y[0]>-100],[z.y[1]-p[1],[0,1],z.y[1]<100]].forEach(([d,dir,inner])=>{if(inner&&d<8&&(!best||d<best.d))best={d,dir};});
+ if(!best)return "";const o=zoneAt(p[0]+best.dir[0]*(best.d+1),p[1]+best.dir[1]*(best.d+1));
+ return o.id==="—"||o.id===z.id?"":`<p class="edge">You're on the edge between <b>${z.n}</b> and <b>${o.n}</b>, ${Math.max(1,Math.round(best.d))} ${Math.round(best.d)===1?"unit":"units"} from the border.</p>`;}
+function spreadText(sd){const a=sd?Math.round((sd[0]+sd[1])/2):0;
+ return a<22?`Your answers pointed the same way, so this pin is a confident read (spread ±${a}).`:a<36?`Your answers were somewhat mixed (spread ±${a}). The dashed ring shows how far they ranged.`:`Your answers pulled in different directions (spread ±${a}), so this pin is a rough average. The dashed ring shows the range.`;}
+function pinShape(parent,px,py,hollow,label){const g=el("g",{transform:`translate(${px.toFixed(1)},${py.toFixed(1)})`,"data-you":"1",class:"you-g"},parent),d=el("g",{class:"you-drop"},g);
  el("path",{d:"M0 0 C-3 -8 -10 -12 -10 -20 A10 10 0 1 1 10 -20 C10 -12 3 -8 0 0Z",class:hollow?"you-pin hollow":"you-pin"},d);
  el("circle",{cx:0,cy:-20,r:4,class:hollow?"you-dot hollow":"you-dot"},d);
- const t=el("text",{x:0,y:-36,"text-anchor":"middle",class:"you-txt"},d);t.textContent=label;}
-function drawPin(){gYou.innerHTML="";if(!T.res)return;const [x,y]=T.res,px=X(x),py=Y(y);
+ const t=el("text",{x:0,y:-36,"text-anchor":"middle",class:"you-txt"},d);t.textContent=label;return g;}
+function drawPin(){gYou.innerHTML="";if(!T.res)return;const [x,y]=T.res,px=X(x),py=Y(y),showRes=S.view==="results";
  if(!document.getElementById("arrY")){const mk=el("marker",{id:"arrY",viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:7,markerHeight:7,orient:"auto-start-reverse"},defs);el("path",{d:"M0 1 L10 5 L0 9 Z",class:"you-arrow"},mk);}
- const ph=nearList(T.res,false)[0],rl=nearList(T.res,true)[0];
- [ph,rl].forEach(r=>el("circle",{cx:X(r.ref[0]),cy:Y(r.ref[1]),r:12,class:"near-ring ns"},gYou));
+ if(showRes){const ph=nearList(T.res,false,T.pp)[0],rl=nearList(T.res,true,T.pp)[0];
+  [ph,rl].forEach(r=>el("circle",{cx:X(r.ref[0]),cy:Y(r.ref[1]),r:12,class:"near-ring ns"},gYou));
+  if(T.sd)el("ellipse",{cx:px,cy:py,rx:Math.max(12,T.sd[0]*5.3*.5),ry:Math.max(12,T.sd[1]*4.3*.5),class:"you-spread ns"},gYou);}
  if(T.dres){const qx=X(T.dres[0]),qy=Y(T.dres[1]),L=Math.hypot(qx-px,qy-py);
   if(L>18){const k=(L-12)/L;el("line",{x1:px,y1:py,x2:px+(qx-px)*k,y2:py+(qy-py)*k,class:"you-vec ns","marker-end":"url(#arrY)"},gYou);}
   pinShape(gYou,qx,qy,true,"DECIDE");}
- pinShape(gYou,px,py,false,"BELIEF");drawProj();}
-function answer(k){T.ans[T.i]=k;advance();}
-function keepTestInView(){if(!isPhone())return;const r=panel.getBoundingClientRect();if(r.top<0||r.top>innerHeight*0.35){try{panel.scrollIntoView({behavior:"auto",block:"start"});}catch(e){}}}
-function renderTest(){cmp.hidden=true;requestAnimationFrame(keepTestInView);panel.className="pblock test";
- if(T.stage==="intro"){panel.innerHTML=`<div class="lbl">Metaphysics test</div><h2>Where do you stand?</h2>
-  <p class="tlead">Twenty-five quick questions in five parts. The first four map what you believe about mind, the universe, meaning and truth. The fifth maps how you actually make decisions.</p>
-  <p class="empty">Go with your gut, and answer with what you actually think rather than what you were taught. You get two pins: one for your beliefs and one for your decisions, with an arrow between them, just like the philosophers. If nothing fits, skip it and it will not move your pins. About five minutes.</p>
-  <button class="btn solid" id="tStart">START THE TEST</button>`;document.getElementById("tStart").onclick=startTest;return;}
- if(T.stage==="q"){const q=TEST[T.i],n=TEST.length,done=T.ans.filter(a=>a!=null).length;
-  panel.innerHTML=`<div class="phead"><span class="lbl">Part ${q.sec+1} · ${SECT[q.sec]}</span><span class="lbl">Question ${T.i+1} of ${n}</span></div>
-  <div class="tprog" role="progressbar" aria-valuemin="0" aria-valuemax="${n}" aria-valuenow="${T.i}"><i style="width:${(T.i/n*100).toFixed(0)}%"></i></div>
-  ${q.k==="m"?'<div class="lbl">Pick up to three · tap ★ on the one that matters most</div>':""}
-  <h2 class="tq">${q.k==="s"?"“"+q.q+"”":q.q}</h2>
-  ${q.k==="m"?(()=>{const a=(T.ans[T.i]&&T.ans[T.i]!==-1)?T.ans[T.i]:{sel:[],main:null},mn=a.sel.includes(a.main)?a.main:a.sel[0];
-   return `<div class="opts">${T.order[T.i].map(k=>{const on=a.sel.includes(k);return `<div class="mrow"><button class="opt multi" data-m="${k}" aria-pressed="${on}"${!on&&a.sel.length>=3?" disabled":""}>${q.o[k][0]}</button>${on?`<button class="star" data-star="${k}" aria-pressed="${mn===k}" aria-label="Mark as most important" title="Most important">★</button>`:""}</div>`;}).join("")}</div>
-   <div class="tnav"><button class="btn" id="tBack">BACK</button><button class="btn solid" id="tNext"${a.sel.length?"":" disabled"}>${T.i===TEST.length-1?"SEE RESULTS":"NEXT"}</button><button class="btn" id="tSkip">SKIP</button></div>`;})()
-  :`<div class="opts">${T.order[T.i].map(k=>`<button class="opt" data-opt="${k}" aria-pressed="${T.ans[T.i]===k}">${q.o[k][0]}</button>`).join("")}</div>
-  <div class="tnav"><button class="btn" id="tBack"${T.i===0?" disabled":""}>BACK</button><button class="btn" id="tSkip">NOT SURE / NONE FIT</button></div>`}`;
-  panel.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{const k=+b.dataset.m,a=(T.ans[T.i]&&T.ans[T.i]!==-1)?T.ans[T.i]:{sel:[],main:null};
-   if(a.sel.includes(k)){a.sel=a.sel.filter(v=>v!==k);if(a.main===k)a.main=null;}else if(a.sel.length<3)a.sel.push(k);T.ans[T.i]=a;renderTest();});
-  panel.querySelectorAll("[data-star]").forEach(b=>b.onclick=()=>{T.ans[T.i].main=+b.dataset.star;renderTest();});
-  const nx=document.getElementById("tNext");if(nx)nx.onclick=()=>advance();
-  panel.querySelectorAll("[data-opt]").forEach(b=>b.onclick=()=>answer(+b.dataset.opt));
-  document.getElementById("tBack").onclick=()=>{if(T.i>0){T.i--;renderTest();}};
-  const sk=document.getElementById("tSkip");if(sk)sk.onclick=()=>answer(-1);
-  msg(`<b>TEST</b> · question ${T.i+1} of ${n}`);return;}
- const me=T.res,z=zoneAt(me[0],me[1]),used=T.ans.filter((a,i)=>TEST[i].k==="p"&&a!=null&&a>=0).length,dUsed=T.ans.filter((a,i)=>TEST[i].k==="m"&&a&&a.sel&&a.sel.length).length;
+ pinShape(gYou,px,py,false,"BELIEF");}
+function resultsPanel(){const me=T.res;panel.className="pblock insp results";
+ const z=zoneAt(me[0],me[1]),used=T.ans.filter((a,i)=>TEST[i].k==="p"&&a!=null&&a>=0).length,dUsed=T.ans.filter((a,i)=>TEST[i].k==="m"&&a&&a.sel&&a.sel.length).length;
  const nB=TEST.filter(q=>q.k==="p").length,nD=TEST.length-nB;
- const phs=nearList(me,false),rls=nearList(me,true),all=[...phs,...rls].sort((a,b)=>a.d-b.d);
+ const phs=nearList(me,false,T.pp),rls=nearList(me,true,T.pp),all=[...phs,...rls].sort((a,b)=>a.d-b.d);
  const ph=phs[0],rl=rls[0],also=all.filter(r=>r!==ph&&r!==rl).slice(0,3),opp=all[all.length-1];
  const card=(lab,r)=>`<div class="rcard"><div class="lbl">${lab}</div>
   <button class="rname${r.p.era==="rel"?" rel":""}" data-pid="${r.p.i}">${r.p.n}</button>
-  <div class="rmeta mono">${r.d.toFixed(1)} units away · nearest to ${r.which==="s"?"where their work lands":"their stated view"}</div>
+  <div class="rmeta mono">${r.d.toFixed(0)} units away on all three questions · nearest to ${r.which==="s"?"where their work lands":"their stated view"}</div>
   ${r.d>30?`<p class="rwarn">Nothing sits very close; this is the nearest.</p>`:""}
-  <p>${gapText(r.me||me,r)}</p><p class="rq">${first(r.which==="s"?r.p.supp:r.p.claim)}</p></div>`;
+  <p>${gapText(me,r)}</p><p class="rq">${first(r.which==="s"?r.p.supp:r.p.claim)}</p></div>`;
  const btn=r=>`<button class="pbtn${r.p.era==="rel"?" rel":""}" data-pid="${r.p.i}">${r.p.n}</button>`;
  let dec="";const dp=T.dres;
  if(dp&&T.tally){const tot=SORD.reduce((n,k)=>n+T.tally[k],0)||1,ord=[...SORD].sort((a,b)=>T.tally[b]-T.tally[a]),top=ord[0];
-  const dz=zoneAt(dp[0],dp[1]),gap=dp[1]-me[1],dd=Math.abs(gap);
-  const exp=[...SORD].sort((a,b)=>Math.abs(STY[a].c[1]-me[1])-Math.abs(STY[b].c[1]-me[1]))[0];
-  const em=ethMatch(T.tally),e0=em[0],eTop=v=>Object.entries(v).sort((a,b)=>b[1]-a[1]).slice(0,2).map(([k])=>STY[k].n.toLowerCase()).join(" and ");
+  const dz=zoneAt(dp[0],dp[1]),gap=dp[1]-me[1],dd=Math.abs(gap),exp=expectedStyles(me[1]).map(k=>STY[k].n.toLowerCase()).join(" or ");
+  const em=ethMatch(T.tally,dp[1]),e0=em[0],eTop=v=>Object.entries(v).sort((a,b)=>b[1]-a[1]).slice(0,2).map(([k])=>STY[k].n.toLowerCase()).join(" and ");
   const way=gap>0?"more on something beyond the world":"more on this world";
   const verdict=dd<25?"<b>Aligned.</b> When you decide, you lean on the same kind of ultimate your beliefs describe.":dd<50?`<b>Partly aligned.</b> In practice your choices lean ${way} than your beliefs alone would suggest.`:`<b>Diverging.</b> When something is at stake, you lean ${way} than your beliefs describe. This is where people who share a religion most often differ.`;
   dec=`<div class="rcard"><div class="lbl">How you decide</div>
    <div class="compass">${ord.map(k=>{const pc=Math.round(T.tally[k]/tot*100);return `<div class="cb${k===top?" top":""}" title="${STY[k].d}"><span class="cn">${STY[k].n}</span><span class="ct"><i style="width:${pc}%"></i></span><span class="cp mono">${pc}%</span></div>`;}).join("")}</div>
-   <p class="rq">Strongest: ${STY[top].n.toLowerCase()}, ${STY[top].d.toLowerCase()}.</p></div>
+   <p class="rq">Strongest: ${STY[top].n.toLowerCase()}, ${STY[top].d}.</p></div>
    <div class="rcard"><div class="lbl">Decides most like you</div>
    <button class="rname${e0.p.era==="rel"?" rel":""}" data-pid="${e0.p.i}">${e0.p.n}</button>
-   <div class="rmeta mono">${Math.round(e0.c*100)}% match · decides by ${eTop(e0.v)}</div>
-   <div class="list">${em.slice(1,4).map(r=>`<button class="pbtn${r.p.era==="rel"?" rel":""}" data-pid="${r.p.i}">${r.p.n} · ${Math.round(r.c*100)}%</button>`).join("")}</div></div>
+   <div class="rmeta mono">${Math.round(e0.c*100)}% style match · decides by ${eTop(e0.v)}</div>
+   <div class="list">${em.slice(1,4).map(r=>`<button class="pbtn${r.p.era==="rel"?" rel":""}" data-pid="${r.p.i}">${r.p.n} · ${Math.round(r.c*100)}%</button>`).join("")}</div>
+   <p class="rq">Matches weigh both how you decide and what that way of deciding leans on.</p></div>
    <div class="rcard thesis"><div class="lbl">Do your decisions follow your beliefs?</div>
-   <p>Your beliefs most naturally support deciding by <b>${STY[exp].n.toLowerCase()}</b>. You lean most on <b>${STY[top].n.toLowerCase()}</b>.</p>
+   <p>Your beliefs most naturally support deciding by <b>${exp}</b>. You lean most on <b>${STY[top].n.toLowerCase()}</b>.</p>
    <p>${verdict} <span class="mono rmeta">Pins ${dd.toFixed(0)} units apart vertically · decisions land in ${dz.n}</span></p>
    <div class="mate my dash"><div class="lbl"><i class="mk"></i>Decide from the same height · Y ${fmt(dp[1])} ±${BAND}</div><div class="list">${mateList(axisMates(dp,-1).ys)}</div></div>
    <p class="rq">Your decision pin keeps your belief pin's left–right position. How you decide shows where you look for guidance, not what you think spirit is made of, so it moves only up or down.</p>
    </div>`;}
- panel.innerHTML=`<div class="lbl">Your metaphysical standing</div>
+ panel.style.setProperty("--zc",`var(${z.c})`);
+ panel.innerHTML=`<div class="phead"><span class="lbl">Your metaphysical standing</span><span class="lbl">Test result</span></div>
   <h2 style="color:var(${z.c})">${z.n}</h2><div class="lbl">${z.sub}</div>
-  <dl class="kv"><dt>BELIEF PIN</dt><dd>(${fmt(me[0])}, ${fmt(me[1])}) · ${xWord(me[0])}, ${yWord(me[1])}</dd>${dp?`<dt>DECISION PIN</dt><dd>(${fmt(dp[0])}, ${fmt(dp[1])}) · ${zoneAt(dp[0],dp[1]).n}</dd>`:""}<dt>BASED ON</dt><dd>${used} of ${nB} beliefs · ${dUsed} of ${nD} decisions</dd></dl>
+  ${edgeNote(me)}
+  <dl class="kv"><dt>BELIEF PIN</dt><dd>(${fmt(me[0])}, ${fmt(me[1])}) · ${xWord(me[0])}, ${yWord(me[1])}</dd>${T.pp!=null?`<dt>PERSONAL</dt><dd>${pChip(T.pp)}${pFmt(T.pp)} · ${pWord(T.pp)}</dd>`:""}${dp?`<dt>DECISION PIN</dt><dd>(${fmt(dp[0])}, ${fmt(dp[1])}) · ${zoneAt(dp[0],dp[1]).n}</dd>`:""}<dt>BASED ON</dt><dd>${used} of ${nB} beliefs · ${dUsed} of ${nD} decisions</dd></dl>
+  <p class="rq">${spreadText(T.sd)}</p>
   ${matesHTML(me,-1)}
   ${card("Closest philosopher to your beliefs",ph)}${card("Closest religion to your beliefs",rl)}
   ${dec}
   <div class="rcard"><div class="lbl">Also near your beliefs</div><div class="list">${also.map(btn).join("")}</div></div>
   <div class="rcard"><div class="lbl">Farthest from your beliefs</div><div class="list">${btn(opp)}</div></div>
-  <div class="tnav"><button class="btn solid" id="tMap">SEE MY PINS</button><button class="btn" id="tZone">READ MY REGION</button><button class="btn" id="tRetake">RETAKE</button></div>`;
- document.getElementById("tRetake").onclick=startTest;
- document.getElementById("tZone").onclick=()=>showZone(z.id,true);
+  <div class="tnav"><button class="btn solid" id="tMap">SEE MY PINS</button><button class="btn" data-zlink="${z.id}">READ MY REGION</button><button class="btn" id="tRetake">RETAKE THE TEST ↗</button></div>`;
+ document.getElementById("tRetake").onclick=openTest;
  document.getElementById("tMap").onclick=()=>{S.vb={x:0,y:0,w:1320,h:1000};applyVB();goTo(document.getElementById("vp"));scrollMapTo(X(T.res[0]),Y(T.res[1]));};}
-function setMode(m){S.mode=m;document.getElementById("mSelect").setAttribute("aria-pressed",m==="select");document.getElementById("mQuiz").setAttribute("aria-pressed",m==="test");
- if(m==="test"){if(T.stage==="q"&&!T.order.length)T.stage="intro";renderTest();if(T.stage!=="q")msg("<b>TEST</b> · find your place on the map");}
- else{msg("<b>SELECT</b> a point to inspect. Drag to pan, scroll to zoom.");renderPanel();}
- markSel();}
-document.getElementById("mSelect").onclick=()=>setMode("select");
-document.getElementById("mQuiz").onclick=()=>setMode("test");
+
+/* ---------- the test runs on its own page (a new tab where the browser allows it) ---------- */
+const wrapEl=document.querySelector(".wrap"),testPage=document.getElementById("testPage"),testCard=document.getElementById("testCard");
+function openTest(){const url=location.href.split("#")[0]+"#test";let w=null;try{w=window.open(url,"_blank");}catch(e){}if(!w)location.hash="test";}
+function renderTestPage(){const c=testCard;
+ if(T.stage==="intro"){c.innerHTML=`<div class="lbl">Test sheet · 28 questions · about seven minutes</div><h2>Where do you stand?</h2>
+  <p class="tlead">Five short parts. The first maps how you actually make decisions. The other four map what you believe about your mind, the universe, meaning and truth.</p>
+  <p class="empty">Go with your gut, and answer with what you actually think rather than what you were taught. If nothing fits, choose "Not sure" and it won't move your pins. When you finish, you'll go back to the map, where two pins mark your beliefs and your decisions.</p>
+  <button class="btn solid" id="tStart">START THE TEST</button>`;document.getElementById("tStart").onclick=startTest;return;}
+ if(T.stage==="done"){c.innerHTML=`<div class="lbl">Test complete</div><h2>Placing your pins on the map…</h2>
+  <p class="tlead">Your results are on the main page.</p><button class="btn solid" id="tGo">GO TO THE MAP</button>`;document.getElementById("tGo").onclick=()=>returnToMap(true);return;}
+ const q=TEST[T.i],n=TEST.length;
+ c.innerHTML=`<div class="phead"><span class="lbl">Part ${q.sec+1} of 5 · ${SECT[q.sec]}</span><span class="lbl">Question ${T.i+1} of ${n}</span></div>
+  <div class="tprog" role="progressbar" aria-valuemin="0" aria-valuemax="${n}" aria-valuenow="${T.i}"><i style="width:${(T.i/n*100).toFixed(0)}%"></i></div>
+  ${q.k==="m"?'<div class="lbl">Pick up to three · tap ★ on the one that matters most</div>':""}
+  <h2 class="tq">${q.q}</h2>
+  ${q.k==="m"?(()=>{const a=(T.ans[T.i]&&T.ans[T.i]!==-1)?T.ans[T.i]:{sel:[],main:null},mn=a.sel.includes(a.main)?a.main:a.sel[0];
+   return `<div class="opts">${T.order[T.i].map(k=>{const on=a.sel.includes(k);return `<div class="mrow"><button class="opt multi" data-m="${k}" aria-pressed="${on}"${!on&&a.sel.length>=3?" disabled":""}>${q.o[k][0]}</button>${on?`<button class="star" data-star="${k}" aria-pressed="${mn===k}" aria-label="Mark as most important" title="Most important">★</button>`:""}</div>`;}).join("")}</div>
+   <div class="tnav"><button class="btn" id="tBack"${T.i===0?" disabled":""}>BACK</button><button class="btn solid" id="tNext"${a.sel.length?"":" disabled"}>NEXT</button><button class="btn" id="tSkip">SKIP</button></div>`;})()
+  :`<div class="opts">${T.order[T.i].map(k=>`<button class="opt" data-opt="${k}" aria-pressed="${T.ans[T.i]===k}">${q.o[k][0]}</button>`).join("")}</div>
+  <div class="tnav"><button class="btn" id="tBack">BACK</button><button class="btn" id="tSkip">NOT SURE / NONE FIT</button></div>`}`;
+ c.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{const k=+b.dataset.m,a=(T.ans[T.i]&&T.ans[T.i]!==-1)?T.ans[T.i]:{sel:[],main:null};
+  if(a.sel.includes(k)){a.sel=a.sel.filter(v=>v!==k);if(a.main===k)a.main=null;}else if(a.sel.length<3)a.sel.push(k);T.ans[T.i]=a;renderTestPage();});
+ c.querySelectorAll("[data-star]").forEach(b=>b.onclick=()=>{T.ans[T.i].main=+b.dataset.star;renderTestPage();});
+ const nx=c.querySelector("#tNext");if(nx)nx.onclick=advance;
+ c.querySelectorAll("[data-opt]").forEach(b=>b.onclick=()=>{T.ans[T.i]=+b.dataset.opt;advance();});
+ c.querySelector("#tBack").onclick=()=>{if(T.i>0){T.i--;renderTestPage();}};
+ c.querySelector("#tSkip").onclick=()=>{T.ans[T.i]=-1;advance();};
+ const r=c.getBoundingClientRect();if(r.top<0)window.scrollTo(0,Math.max(0,window.scrollY+r.top-12));}
+function advance(){if(T.i<TEST.length-1){T.i++;renderTestPage();}else finishTest();}
+function finishTest(){const B=scoreTest();T.res=B.pin;T.sd=B.sd;T.pp=B.pp;const D=scoreDecisions(T.res[0],T.res[1]);T.dres=D.pin;T.tally=D.tally;T.stage="done";
+ const data={ans:T.ans,res:T.res,dres:T.dres,tally:T.tally,sd:T.sd,pp:T.pp,t:Date.now()};
+ try{localStorage.setItem(SAVE,JSON.stringify(data));}catch(e){}
+ try{if(window.opener&&!window.opener.closed)window.opener.postMessage({mfs:"results",data},"*");}catch(e){}
+ renderTestPage();setTimeout(()=>returnToMap(false),900);}
+let returned=false;
+function returnToMap(now){if(returned&&!now)return;returned=true;let op=null;try{op=window.opener&&!window.opener.closed?window.opener:null;}catch(e){}
+ if(op){try{op.focus();}catch(e){}try{window.close();}catch(e){}}
+ setTimeout(()=>{if(!window.closed)location.hash="my-pins";},op?400:0);}
+function showResults(){S.view="results";drawPin();refresh();updateHeader();
+ requestAnimationFrame(()=>{goTo(document.getElementById("vp"));scrollMapTo(X(T.res[0]),Y(T.res[1]));
+  msg(`Your pins: belief <b>(${fmt(T.res[0])}, ${fmt(T.res[1])})</b> · ${zoneAt(T.res[0],T.res[1]).n}`);});}
+function updateHeader(){const r=!!T.res;document.getElementById("myRes").hidden=!r;document.getElementById("openTest").textContent=r?"RETAKE THE TEST ↗":"TAKE THE TEST ↗";}
+function route(){const h=location.hash.replace("#","");
+ if(h==="test"){wrapEl.hidden=true;testPage.hidden=false;if(T.stage!=="q"){T.stage="intro";returned=false;}renderTestPage();window.scrollTo(0,0);return;}
+ testPage.hidden=true;wrapEl.hidden=false;
+ if(h==="my-pins"&&loadSaved())showResults();}
+window.addEventListener("hashchange",route);
+window.addEventListener("storage",e=>{if(e.key!==SAVE||!testPage.hidden)return;if(loadSaved())showResults();});
+window.addEventListener("message",e=>{const m=e.data;if(!m||m.mfs!=="results"||!validRes(m.data)||!testPage.hidden)return;useRes(m.data);try{localStorage.setItem(SAVE,JSON.stringify(m.data));}catch(err){}showResults();});
+document.getElementById("openTest").onclick=openTest;
+document.getElementById("myRes").onclick=()=>{if(!T.res)return;S.view="results";refresh();revealPanel();};
+document.getElementById("tpBack").onclick=e=>{e.preventDefault();let op=null;try{op=window.opener&&!window.opener.closed?window.opener:null;}catch(err){}
+ if(op){try{op.focus();}catch(err){}try{window.close();}catch(err){}}setTimeout(()=>{if(!window.closed)location.hash="";},op?300:0);};
+
 
 /* ---------- regions ---------- */
 const ZINFO={"Z1": {"lead": "Reality is ultimately one mind, spirit or source. The physical world is its expression, emanation or appearance, not a second reality.", "q": "How does the many come from the One, and why does the world seem so solid?", "why": "Matter cannot explain consciousness; everything we ever meet is experience; the ultimate must be unconditioned and whole.", "obj": "Struggles to explain why the world seems stubbornly physical and independent of any mind, and risks dissolving individual persons into the whole.", "xm": "X −100 to −75: only mind or spirit is fully real. Matter is idea, appearance, or the last fading of spirit.", "ym": "Y +25 to +100: the ultimate lies beyond the world, wholly or while also being present in it."}, "Z2": {"lead": "A supreme mind or intelligible order beyond the world grounds everything. Matter is real, and often good, but it depends on that ground. Classical theism sits here because its God is an immaterial mind who creates matter.", "q": "Why is there something rather than nothing?", "why": "Cosmological and contingency arguments, design, the moral law, the intelligibility of mathematics, and revelation.", "obj": "The problem of evil, and how an immaterial God or soul acts on matter.", "xm": "X −75 to −25: mind or spirit is primary. Matter is real but derived from it: created, ordered or sustained by it.", "ym": "Y +25 to +100: the ultimate lies beyond the world, wholly or while also being present in it."}, "Z3": {"lead": "Something lies beyond the world of experience, but it does not rule creation as a mind over matter: a God who set the world going and stepped back, Aristotle's mover of an eternal world, Parmenides' Being, the Dao before heaven and earth, Whitehead's God.", "q": "Can the ultimate transcend the world without being a creating mind?", "why": "It explains order and intelligibility without making matter derivative or illusory.", "obj": "Theists say an ultimate that is not a creating mind cannot explain purpose; naturalists say the beyond does no work.", "xm": "X −25 to +25: neither mind nor matter comes first. Both are basic, or the ultimate is neither.", "ym": "Y +25 to +100: the ultimate lies beyond the world, wholly or while also being present in it."}, "Z4": {"lead": "The ultimate is divine or purposeful, but everything real, God and spirit included, is some kind of matter.", "q": "Can the sacred be physical?", "why": "Avoids the mind–matter interaction problem and places God and spirit inside one lawful universe.", "obj": "Classical theists say a material God would be finite and contingent; materialists say God is an unneeded addition.", "xm": "X +25 to +100: matter is primary or all there is. Spirit, where it is real, is a refined kind of matter.", "ym": "Y −25 to +100: something divine is real, either beyond our world or as the cosmos itself. The top corner is nearly empty because a wholly transcendent material God comes close to a contradiction."}, "Z5": {"lead": "Mind comes first, but not from beyond. Reality is structured by consciousness, is the inner Will of the world, or is spirit dwelling in nature. Kant's word 'transcendental' means the conditions of experience, not a realm beyond, which is why critical idealism lands here.", "q": "What must be true of the mind for a world to appear at all?", "why": "We cannot step outside experience to check it; categories like cause, space and time shape everything we know.", "obj": "Risks cutting us off from the world as it is in itself, or turning the world into a projection.", "xm": "X −100 to −25: mind is primary.", "ym": "Y −25 to +25: the ultimate is the world itself, its inner nature or its structure in experience, not a realm beyond it."}, "Z6": {"lead": "Refuses both the mind-or-matter choice and the God-or-world choice. Reality is one nature with mental and physical aspects, a flow of events, or an order inside things.", "q": "Is the split between mind and matter the real mistake?", "why": "Dissolves the interaction problem and fits physics' picture of events, fields and relations.", "obj": "Can look like relabeling, and each side accuses it of being the other side in disguise.", "xm": "X −25 to +25: neither mind nor matter comes first.", "ym": "Y −25 to +25: the ultimate is the world itself, as one nature, a rational order, or a flow of events."}, "Z7": {"lead": "Everything that exists is physical or natural, and science is the best guide to what there is.", "q": "Can consciousness, meaning and value be explained in physical terms?", "why": "The track record of science, the causal closure of the physical, and parsimony.", "obj": "The hard problem of consciousness, the status of numbers and logic, and whether naturalism can justify trust in its own reasoning.", "xm": "X +25 to +100: matter is primary. Mind is produced by it, or is nothing over and above it.", "ym": "Y −100 to −25: there is only the world, with nothing ultimate behind or above it."}, "Z8": {"lead": "Nothing lies beyond, yet reality is not described as matter first. It is impressions, pure experience, neutral events, brute existence, or things empty of essence.", "q": "If there is no beyond, what is this world made of?", "why": "We only ever meet experience and relations; positing substances or a beyond adds nothing we can check.", "obj": "Under pressure it tends to slide into idealism or into physicalism, and it can leave the world without any ground.", "xm": "X −100 to +25: not matter-first. Reality is described as experience, events, existence or dependent arising.", "ym": "Y −75 to −25: only this world, with nothing ultimate, though the world is still treated as real."}, "Z9": {"lead": "Doubts there is a fact about ultimate reality apart from language, practice or history. The big question is dissolved, constructed or declared meaningless.", "q": "Is 'what reality is really like' even a meaningful question?", "why": "There is no view from nowhere; meaning depends on use; claims are shaped by culture and power.", "obj": "Self-refutation: 'there is no ultimate truth' looks like an ultimate truth. It also struggles to explain why science works.", "xm": "X −100 to +25: no real commitment on mind versus matter, which is treated as a confused or framework-relative question.", "ym": "Y −100 to −75: even 'the world' is a construction of language, practice or history, or the question of the ultimate is dismissed."}};
 function zlink(z,sw){if(z.id==="—")return `<span style="color:var(--ink2)">—</span>`;return `<button class="zbtn" data-zlink="${z.id}" style="--zc:var(${z.c})" title="${z.n}">${sw?'<i class="zsw"></i>':''}${z.id}</button>`;}
-let curZone="Z2";
-function buildZones(){const t=document.getElementById("ztabs");
- t.innerHTML=ZONES.map(z=>{const n=P.filter(p=>p.sz.id===z.id).length;return `<button class="ztab" role="tab" id="zt-${z.id}" data-ztab="${z.id}" style="--zc:var(${z.c})"><span class="zid">${z.id}</span><span class="zn">${z.n}<small>${z.sub}</small></span><span class="zc">${n}</span></button>`;}).join("");
- t.addEventListener("click",e=>{const b=e.target.closest("[data-ztab]");if(b)showZone(b.dataset.ztab,false);});
- const k=document.getElementById("zkey");
+function buildZones(){const k=document.getElementById("zkey");
  k.innerHTML=ZONES.map(z=>`<button class="zk" data-zk="${z.id}" style="--zc:var(${z.c})"><i class="zsw"></i><b>${z.id}</b><span>${z.n}<small>${z.sub}</small></span></button>`).join("");
- k.addEventListener("click",e=>{const b=e.target.closest("[data-zk]");if(b)showZone(b.dataset.zk,true);});
- showZone(curZone,false,true);}
-function showZone(id,scroll,silent){curZone=id;const z=ZONES.find(q=>q.id===id),I=ZINFO[id];
- document.querySelectorAll(".ztab").forEach(b=>b.setAttribute("aria-selected",b.dataset.ztab===id));
- document.querySelectorAll(".zk").forEach(b=>b.setAttribute("aria-pressed",b.dataset.zk===id&&!silent));
- Object.entries(ZG).forEach(([k,g])=>g.classList.toggle("is-active",k===id&&!silent));
- const btn=p=>`<button class="pbtn${p.era==="rel"?" rel":""}" data-pid="${p.i}">${p.n}</button>`;
- const sup=P.filter(p=>p.sz.id===id),cl=P.filter(p=>p.cz.id===id&&p.sz.id!==id),out=P.filter(p=>p.cz.id===id&&p.sz.id!==id).length;
- const left=P.filter(p=>p.cz.id!==id&&p.sz.id===id);
- const d=document.getElementById("zdetail");d.style.setProperty("--zc",`var(${z.c})`);
- d.innerHTML=`<div class="lbl">${z.id} · X ${fmt(z.x[0])} to ${fmt(z.x[1])} · Y ${fmt(z.y[0])} to ${fmt(z.y[1])}</div>
- <h2>${z.n}</h2><div class="lbl">${z.sub}</div><p class="lead">${I.lead}</p><p class="zq">${I.q}</p>
- <div class="zcols"><div><h3>Why people hold it</h3><p>${I.why}</p></div><div><h3>Main objection</h3><p>${I.obj}</p></div><div><h3>Where it sits on the axes</h3><p>${I.xm}</p><p>${I.ym}</p></div></div>
- <div class="zres"><div><h3>Work lands here (${sup.length})</h3><div class="list">${sup.map(btn).join("")||'<span class="empty">None</span>'}</div></div>
- <div><h3>Claimed here, drifted out (${cl.length})</h3><div class="list">${cl.map(btn).join("")||'<span class="empty">None</span>'}</div></div>
- <div><h3>Drifted in from elsewhere (${left.length})</h3><div class="list">${left.map(btn).join("")||'<span class="empty">None</span>'}</div></div></div>`;
- if(!silent)msg(`Region <b>${z.id}</b> · ${z.n}`);
- if(scroll)goTo(document.getElementById("zsec"));}
-document.addEventListener("click",e=>{const z=e.target.closest("[data-zlink]");if(z){showZone(z.dataset.zlink,true);return;}
- const pb=e.target.closest("[data-pid]");if(pb)focusProfile(+pb.dataset.pid);});
+ k.addEventListener("click",e=>{const b=e.target.closest("[data-zk]");if(b)showZone(b.dataset.zk);});}
+function markZones(){document.querySelectorAll(".zk").forEach(b=>b.setAttribute("aria-pressed",String(S.view==="region"&&b.dataset.zk===S.zone)));
+ Object.entries(ZG).forEach(([k,g])=>g.classList.toggle("is-active",S.view==="region"&&k===S.zone));}
+function showZone(id){if(!ZONES.some(q=>q.id===id))return;S.view="region";S.zone=id;const pal=document.querySelector(".palette");if(pal)pal.scrollTop=0;
+ refresh();revealPanel();msg(`Region <b>${id}</b> · ${ZONES.find(q=>q.id===id).n}`);}
+function regionPanel(){const id=S.zone,z=ZONES.find(q=>q.id===id),I=ZINFO[id];panel.className="pblock insp region";panel.style.setProperty("--zc",`var(${z.c})`);
+ const btn=p=>`<button class="pbtn${p.era==="rel"?" rel":""}" data-pid="${p.i}">${p.n}</button>`,list=a=>a.map(btn).join("")||'<span class="empty">None</span>';
+ const sup=P.filter(p=>p.sz.id===id),cl=P.filter(p=>p.cz.id===id&&p.sz.id!==id),inn=P.filter(p=>p.cz.id!==id&&p.sz.id===id);
+ panel.innerHTML=`${backBar()}<div class="lbl">${z.id} · Metaphysical region · X ${fmt(z.x[0])} to ${fmt(z.x[1])}, Y ${fmt(z.y[0])} to ${fmt(z.y[1])}</div>
+ <div class="rg-head"><i class="rg-sw"></i><div><h2>${z.n}</h2><div class="lbl">${z.sub}</div></div></div>
+ <p class="ip-def">${I.lead}</p><p class="zq">${I.q}</p>
+ <div class="note"><h3>Why people hold it</h3><p>${I.why}</p><h3>Main objection</h3><p class="bias">${I.obj}</p>
+ <h3>Where it sits on the axes</h3><p>${I.xm}</p><p>${I.ym}</p></div>
+ <div class="rg-lists"><div><div class="lbl">Work lands here · ${sup.length}</div><div class="list">${list(sup)}</div></div>
+ <div><div class="lbl">Claimed here, drifted out · ${cl.length}</div><div class="list">${list(cl)}</div></div>
+ <div><div class="lbl">Drifted in from elsewhere · ${inn.length}</div><div class="list">${list(inn)}</div></div></div>`;}
+function backBar(){return T.res?`<button class="backres" data-results="1">← Back to my test results</button>`:"";}
+document.addEventListener("click",e=>{const z=e.target.closest("[data-zlink]");if(z){showZone(z.dataset.zlink);return;}
+ const pb=e.target.closest("[data-pid]");if(pb){focusProfile(+pb.dataset.pid);return;}
+ const br=e.target.closest("[data-results]");if(br&&T.res){S.view="results";const pal=document.querySelector(".palette");if(pal)pal.scrollTop=0;refresh();revealPanel();}});
 
 /* ---------- profiles: definition, works, emblem ---------- */
 const PROF={
@@ -1134,11 +1249,17 @@ function goTo(el){const r=el.getBoundingClientRect(),sm=matchMedia("(prefers-red
  if(Math.abs(r.top)>24){try{el.scrollIntoView({behavior:sm?"auto":"smooth",block:"start"});}catch(e){el.scrollIntoView(true);}}
  el.classList.remove("flash");void el.offsetWidth;el.classList.add("flash");}
 function revealPanel(){goTo(panel);}
-function focusProfile(i){if(S.mode!=="select")setMode("select");select(i,false);revealPanel();}
+function focusProfile(i){select(i,false);revealPanel();}
 
 buildZones();
+function setColorBy(m){S.colorBy=m;svg.classList.toggle("by-pers",m==="pers");document.querySelectorAll("[data-cb]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.cb===m)));
+ document.getElementById("pgrad").hidden=m!=="pers";try{localStorage.setItem("mfs-colorby",m);}catch(e){}}
+document.querySelectorAll("[data-cb]").forEach(b=>b.onclick=()=>setColorBy(b.dataset.cb));
+try{if(localStorage.getItem("mfs-colorby")==="pers")setColorBy("pers");}catch(e){}
+if(loadSaved())S.view="results";
 refresh();
-drawPin();
+updateHeader();
+route();
 requestAnimationFrame(()=>scrollMapTo(X(0),Y(10)));
 placeLabels();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(placeLabels);

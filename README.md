@@ -2,10 +2,11 @@
 
 A CAD-style map of 46 philosophers and 15 religious traditions, placed by their metaphysical claims, plus a test that puts your own pins on the map.
 
-## The two axes
+## The three questions
 
 - **What is fundamental?** (left ↔ right): if you broke everything down to its most basic ingredient, would you find mind or matter?
 - **Where is the ultimate?** (up ↕ down): if you keep asking "but why?", where does the chain finally stop: beyond the universe, in the universe itself, or nowhere at all?
+- **Is the ultimate a someone or a something?** (shown by color): does the deepest reality know you, and is anyone listening when people pray? This separates views that sit together on the map, like Plato's impersonal Good and the personal God of Judaism.
 
 ## What's on the map
 
@@ -16,12 +17,12 @@ A CAD-style map of 46 philosophers and 15 religious traditions, placed by their 
 
 ## The test
 
-Twenty-six questions in five parts. It opens in its own tab, and when you finish, it closes and places your pins on the map.
+Twenty-eight questions in five parts. It opens in its own tab, and when you finish, it closes and places your pins on the map.
 
 1. **How you decide** comes first, before any beliefs are on your mind. Six real-life scenarios, including the hardest decision you made this past year. Pick up to three answers each and star the one that matters most. This places your **decision pin**.
-2. **Your mind, The universe, Meaning and Truth** place your **belief pin**. They ask about consciousness, the soul, why there is anything at all, what happens at death, and whether moral truths are real.
+2. **Your mind, The universe, Meaning and Truth** place your **belief pin**. They ask about consciousness, the soul, why there is anything at all, what happens at death, whether the ultimate knows you, and whether moral truths are real.
 
-Your results show your region (with a note if you sit near a border), how consistent your answers were, your closest philosopher and religion, your decision mix, whose way of deciding is closest to yours, and whether your decisions follow your beliefs.
+Your results show your region (with a note if you sit near a border), how consistent your answers were, your closest philosopher and religion (counting all three questions), your decision mix, whose way of deciding is closest to yours, and whether your decisions follow your beliefs.
 
 ### How the test was checked
 
