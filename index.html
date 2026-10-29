@@ -450,6 +450,8 @@ svg.by-pers .ph .m-claim,svg.by-pers .ph.rel .m-claim{fill:color-mix(in srgb,var
 
 /* default scale: matches the layout at 75% browser zoom */
 .wrap,.tpage{zoom:.75}
+.empty-state h2{margin:0;font-size:22px}
+.empty-state{gap:10px}
 </style>
 </head>
 <body>
@@ -733,7 +735,7 @@ const iX=px=>(px-90)/5.3-100, iY=py=>100-(py-60)/4.3;
 const NS="http://www.w3.org/2000/svg";
 const el=(t,a={},p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
 const svg=document.getElementById("plot");
-const S={sel:P.findIndex(p=>p.n==="Spinoza"),pin:null,view:"thinker",zone:null,eras:new Set(Object.keys(ERAS)),sort:{k:"drift",dir:-1},vb:{x:0,y:0,w:1320,h:1000}};
+const S={sel:null,pin:null,view:"none",zone:null,eras:new Set(Object.keys(ERAS)),sort:{k:"drift",dir:-1},vb:{x:0,y:0,w:1320,h:1000}};
 
 /* ---------- draw static ---------- */
 const defs=el("defs",{},svg);
@@ -842,6 +844,11 @@ function renderPanel(){
  panel.style.removeProperty("--zc");
  if(S.view==="results"&&T.res)return resultsPanel();
  if(S.view==="region"&&S.zone)return regionPanel();
+ if(S.view==="none"||S.sel==null){S.view="none";panel.className="pblock insp empty-state";
+  panel.innerHTML=`${backBar()}<div class="lbl">Inspector</div><h2>Select to begin</h2>
+  <p class="ip-def">Click any point on the map to read that philosopher or religion: what they claimed, where their work lands, and their major works.</p>
+  <p class="ip-def">Click a colored region, or a swatch in the key under the map, to read what that region of metaphysics holds.</p>
+  <p class="empty">Or take the test to place your own pins.</p>`;return;}
  S.view="thinker";
  const p=P[S.sel];
  panel.className="pblock insp";
@@ -1259,7 +1266,7 @@ function setColorBy(m){S.colorBy=m;svg.classList.toggle("by-pers",m==="pers");do
  document.getElementById("pgrad").hidden=m!=="pers";try{localStorage.setItem("mfs-colorby",m);}catch(e){}}
 document.querySelectorAll("[data-cb]").forEach(b=>b.onclick=()=>setColorBy(b.dataset.cb));
 try{if(localStorage.getItem("mfs-colorby")==="pers")setColorBy("pers");}catch(e){}
-if(loadSaved())S.view="results";
+loadSaved();
 refresh();
 updateHeader();
 route();
