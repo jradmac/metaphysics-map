@@ -16,12 +16,16 @@ A CAD-style map of 46 philosophers and 15 religious traditions, placed by their 
 
 ## The test
 
-Twenty-five questions in five parts. The first four place a **belief pin** (what you think reality is). The fifth, "How you decide," places a **decision pin** (the kind of reality your choices actually lean on). The results show:
+Twenty-six questions in five parts. It opens in its own tab, and when you finish, it closes and places your pins on the map.
 
-- your closest philosopher and religion
-- your decision-making mix
-- whose way of deciding is closest to yours
-- whether your decisions follow your beliefs
+1. **How you decide** comes first, before any beliefs are on your mind. Six real-life scenarios, including the hardest decision you made this past year. Pick up to three answers each and star the one that matters most. This places your **decision pin**.
+2. **Your mind, The universe, Meaning and Truth** place your **belief pin**. They ask about consciousness, the soul, why there is anything at all, what happens at death, and whether moral truths are real.
+
+Your results show your region (with a note if you sit near a border), how consistent your answers were, your closest philosopher and religion, your decision mix, whose way of deciding is closest to yours, and whether your decisions follow your beliefs.
+
+### How the test was checked
+
+Each question was answered as 57 of the mapped thinkers and traditions would answer it, based on their own writings, and the results were compared with their places on the map. The current version puts 45 of 57 in the correct region, with an average error of about 19 units. 27 of 32 thinkers come out with decisions aligned with their own metaphysics.
 
 ## Running it
 
