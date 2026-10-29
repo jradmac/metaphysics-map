@@ -447,6 +447,9 @@ svg.by-pers .ph .m-claim,svg.by-pers .ph.rel .m-claim{fill:color-mix(in srgb,var
 .ex-pscale li i{display:block;height:6px;background:color-mix(in srgb,var(--per) var(--pp),var(--imp));margin-bottom:4px}
 .ex-pscale b{font-size:13.5px}
 @media (max-width:820px){.ex-pscale{grid-template-columns:minmax(0,1fr)}.ex-pscale li{border-right:0;border-bottom:1px solid var(--grid2)}.ex-pscale li:last-child{border-bottom:0}}
+
+/* default scale: matches the layout at 75% browser zoom */
+.wrap,.tpage{zoom:.75}
 </style>
 </head>
 <body>
@@ -940,7 +943,7 @@ function zoomAt(f,cx,cy){const v=S.vb,nw=Math.min(1650,Math.max(180,v.w*f)),k=nw
 document.getElementById("zIn").onclick=()=>zoomAt(1/1.35,S.vb.x+S.vb.w/2,S.vb.y+S.vb.h/2);
 document.getElementById("zOut").onclick=()=>zoomAt(1.35,S.vb.x+S.vb.w/2,S.vb.y+S.vb.h/2);
 document.getElementById("zFit").onclick=()=>{S.vb={x:0,y:0,w:1320,h:1000};applyVB();};
-function pt(e){const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(svg.getScreenCTM().inverse());}
+function pt(e){const r=svg.getBoundingClientRect(),v=S.vb;return {x:v.x+(e.clientX-r.left)/r.width*v.w,y:v.y+(e.clientY-r.top)/r.height*v.h};}
 vp.addEventListener("wheel",e=>{e.preventDefault();const p=pt(e);zoomAt(e.deltaY>0?1.12:1/1.12,p.x,p.y);},{passive:false});
 let drag=null;
 const isPhone=()=>matchMedia("(max-width:920px)").matches;
@@ -952,7 +955,7 @@ svg.addEventListener("pointermove",e=>{const p=pt(e),x=iX(p.x),y=iY(p.y),inside=
  document.getElementById("cx").textContent=inside?x.toFixed(1):"—";document.getElementById("cy").textContent=inside?y.toFixed(1):"—";
  document.getElementById("cz").textContent=inside?zoneAt(x,y).n:"—";
  if(drag){const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.abs(dx)+Math.abs(dy)>5)drag.moved=true;
-  if(drag.moved&&!drag.touch){const s=S.vb.w/svg.clientWidth;S.vb.x=drag.vx-dx*s;S.vb.y=drag.vy-dy*s;applyVB();}}});
+  if(drag.moved&&!drag.touch){const s=S.vb.w/svg.getBoundingClientRect().width;S.vb.x=drag.vx-dx*s;S.vb.y=drag.vy-dy*s;applyVB();}}});
 svg.addEventListener("pointerleave",()=>{xhV.setAttribute("visibility","hidden");xhH.setAttribute("visibility","hidden");});
 svg.addEventListener("pointerup",e=>{if(!drag)return;const d=drag;drag=null;if(d.moved)return;
  const yp=d.target.closest&&d.target.closest("[data-you]");if(yp&&T.res){S.view="results";refresh();revealPanel();return;}
