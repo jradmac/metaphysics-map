@@ -774,6 +774,22 @@ svg.simple.focus .zedge:not(.on){stroke-opacity:.12}
 .insp.crowd .cnote{font-size:13.5px;color:var(--ink2);border-left:2px solid var(--line);padding-left:9px}
 @media (max-width:520px){.shr-demo,.insp.crowd .cfs{grid-template-columns:minmax(0,1fr)}}
 
+
+/* layers + era dropdowns under the kind tabs */
+.kmenus{position:absolute;top:80px;left:10px;display:flex;gap:6px;z-index:6}
+.kmenu{position:relative}
+.kmenu summary{list-style:none;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;height:28px;padding:0 10px;display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);cursor:pointer;user-select:none}
+.kmenu summary::-webkit-details-marker{display:none}
+.kmenu summary::after{content:"▾";font-size:10px}
+.kmenu[open] summary{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.kmenu[open] summary::after{content:"▴"}
+.kmenu:has(.chips [aria-pressed="false"]) summary::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--sel)}
+.kpop{position:absolute;top:calc(100% + 4px);left:0;background:var(--sheet);border:1px solid var(--ink);padding:10px 12px;box-shadow:0 6px 18px rgba(0,0,0,.12);min-width:310px}
+.kpop .layers{white-space:nowrap}
+.kpop .chips{display:flex;flex-wrap:wrap;gap:6px}
+@media (max-width:920px){.kmenus{top:96px}.kmenu summary{height:36px;font-size:12px}}
+@media (max-width:520px){.kmenus{top:82px;transform:scale(.85);transform-origin:top left}.kpop{min-width:230px}}
+
 /* identity title + share */
 .mate .via2{margin-top:8px;opacity:.8}
 .rtl-k{margin-bottom:-2px}
@@ -839,6 +855,10 @@ svg.simple.focus .zedge:not(.on){stroke-opacity:.12}
           <button data-view="iso" aria-pressed="true" title="Three-quarter view of all three axes">3D</button><button data-view="front" title="X–Y: the classic two-axis map">FRONT</button><button data-view="side" title="Z–Y: truth found or made, against where the ultimate is">SIDE</button><button data-view="top" title="X–Z: mind or matter, against truth found or made">TOP</button><i class="sep"></i><button data-rot="l" aria-label="Turn left">⟲</button><button data-rot="r" aria-label="Turn right">⟳</button><button data-rot="u" aria-label="Tilt up">▲</button><button data-rot="d" aria-label="Tilt down">▼</button>
         </div>
         <div class="kinds" role="group" aria-label="Show"><button data-kind="all" aria-pressed="true">ALL</button><button data-kind="phil" aria-pressed="false">THINKERS</button><button data-kind="rel" aria-pressed="false">RELIGIONS</button><button data-kind="crowd" aria-pressed="false" id="crowdTab" hidden>RESPONSES</button></div>
+        <div class="kmenus">
+          <details class="kmenu"><summary>LAYERS</summary><div class="kpop"><div class="layers" id="layers"></div></div></details>
+          <details class="kmenu"><summary>ERA</summary><div class="kpop"><div class="chips" id="eras"></div></div></details>
+        </div>
         <div class="zoom">
           <button id="zIn" aria-label="Zoom in">+</button>
           <button id="zOut" aria-label="Zoom out">−</button>
@@ -857,14 +877,6 @@ svg.simple.focus .zedge:not(.on){stroke-opacity:.12}
     <aside class="palette">
       <div class="pblock insp" id="panel"></div>
       <div class="pblock cmpbox" id="cmp" hidden></div>
-      <div class="pblock">
-        <div class="lbl">Layers</div>
-        <div class="layers" id="layers"></div>
-      </div>
-      <div class="pblock">
-        <div class="lbl">Era · tradition filter</div>
-        <div class="chips" id="eras"></div>
-      </div>
       <div class="pblock">
         <div class="lbl">Legend</div>
         <div class="legend">
@@ -2084,6 +2096,7 @@ function buildFindings(){if(fBuilt)return;fBuilt=true;
 
 {const an=document.getElementById("anote");if(an){const wide=matchMedia("(min-width:761px)");const sync=()=>{if(wide.matches)an.open=true;};sync();wide.addEventListener("change",sync);
  an.querySelector("summary").addEventListener("click",e=>{if(wide.matches)e.preventDefault();});}}
+document.addEventListener("click",e=>{document.querySelectorAll(".kmenu[open]").forEach(d=>{if(!d.contains(e.target))d.open=false;});});
 if(!SHARED_IN)loadSaved();
 refresh();
 updateHeader();
