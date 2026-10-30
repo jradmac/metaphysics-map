@@ -25,14 +25,14 @@ The **Findings** page (button at the top, or `index.html#findings`) shows what t
 
 ## The test
 
-Thirty-six questions in seven parts. It opens in its own tab, and when you finish, a results card pops up with everything in one scrollable place; tap "Show me on the map" to see your pins in the model.
+Forty-one questions in seven parts. It opens in its own tab, and when you finish, a results card pops up with everything in one scrollable place; tap "Show me on the map" to see your pins in the model.
 
 1. **How you decide** comes first. Six real-life scenarios; pick up to three answers and star the one that matters most. This places your **decision pin**, which moves up–down (where you look for guidance) and front–back (whether you act as if right and wrong are found or made).
-2. **Your mind, The universe, Meaning, Truth, Found or made, and The good** place your **belief pin** and your **highest good**. The last part asks directly, mostly without mentioning God, whether truth is found or made: was 2 + 2 = 4 true before anyone counted, could the deepest truths change, are scientists discovering or inventing laws, and Plato's Euthyphro question. The last part asks what a life is for: what would make yours a good one, what stands out in a truly good person, what gets in the way, which one thing you'd keep, and why you try to be good.
+2. **Your mind, The universe, Meaning, Truth, Found or made, and The good** place your **belief pin** and your **highest good**. The last part asks directly, mostly without mentioning God, whether truth is found or made: was 2 + 2 = 4 true before anyone counted, could the deepest truths change, are scientists discovering or inventing laws, and Plato's Euthyphro question. The last part asks what a life is for, in ten questions. Five ask directly (what would make your life a good one, what stands out in a truly good person, what gets in the way, which one thing you'd keep, and why you try to be good). Five come at it sideways, so the answer is less about what sounds admirable: whose life you'd most want to have lived, what you'd regret most at 80, how you'd spend a free year, which compliment would mean the most, and what you'd give up comfort and money to protect. Nine of the ten are ranked: you pick up to three in order, and your first choice counts most (second counts half, third a quarter). "Keep only one" stays a single forced choice.
 
 ### How the test was checked
 
-Each question was answered as all 61 mapped thinkers and traditions would answer it, based on their own writings, and the results were compared with their places in the model. The test puts 43 of 61 in the correct one of 17 blocks, 46 of 61 in the correct column, and 58 of 61 on the correct side of the truth axis (average truth-axis error about 12 units). The five highest-good questions, answered independently for each entry, recover the intended good for 55 of the 56 entries that name one (Machiavelli and Ayn Rand, added later, are checked on these five questions only). Counting the good, 44 of 61 entries find themselves in their own top three matches (up from 38 on the axes alone). The page's scoring was checked against the validation harness on all 61 answer sheets.
+Each question was answered as all 61 mapped thinkers and traditions would answer it, based on their own writings, and the results were compared with their places in the model. The test puts 43 of 61 in the correct one of 17 blocks, 46 of 61 in the correct column, and 58 of 61 on the correct side of the truth axis (average truth-axis error about 12 units). The five highest-good questions, answered independently for each entry, recover the intended good for all 56 entries that name one (Machiavelli and Ayn Rand, added later, are checked on these five questions only). Counting the good, 44 of 61 entries find themselves in their own top three matches (up from 38 on the axes alone). The page's scoring was checked against the validation harness on all 61 answer sheets.
 
 ## Collecting results (no login)
 
@@ -43,6 +43,12 @@ When someone finishes the test on the live site, they're asked whether to add th
 - **Seeing results:** go to `/results` on the live site. The username can be anything; the password is `ADMIN_KEY`. The page shows the goods people aim at, whether the map's main finding holds for real people, how widely members of one faith spread on each axis, belief–decision gaps, retakes, and a CSV download.
 
 The Desktop copy and the claude.ai preview never send anything; the share step only appears when the page is served by `server.js` with a database connected.
+
+### Demographics and the Responses tab
+
+The share step also asks, all optionally, for an age range, gender, where someone grew up and their religious tradition (the option lists live in `demographics.json`). These are stored with the response so groups can be compared on the private `/results` page, which has filters for each one, a "Compare groups" table, and the new columns in the CSV.
+
+The **Responses** tab on the map (only on the live site) shows everyone's pins together, each person once, colored by highest good, with a switch between belief and decision pins and filters for each demographic. Pins carry no details, and any filter that matches fewer than five people shows nothing, so no one can be singled out. Only responses shared after this was added appear there, since earlier ones were shared under a promise of aggregate-only use.
 
 ### Sharing a result
 

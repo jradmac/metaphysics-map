@@ -44,6 +44,10 @@ async function initDb() {
           spread        jsonb,
           answers       jsonb not null
         );
+        alter table responses add column if not exists age_range text;
+        alter table responses add column if not exists gender text;
+        alter table responses add column if not exists grew_up text;
+        alter table responses add column if not exists public_ok boolean not null default false;
         create index if not exists responses_rid on responses (rid);
         create index if not exists responses_created on responses (created_at);`);
       dbReady = true; dbError = null; console.log('database ready'); return;
@@ -57,6 +61,7 @@ async function initDb() {
 /* ---------- validation ---------- */
 const RELIGIONS = ['Latter-day Saint', 'Catholic', 'Protestant or Evangelical', 'Orthodox Christian', 'Other Christian',
   'Jewish', 'Muslim', 'Hindu', 'Buddhist', 'Sikh', 'Spiritual but not religious', 'Not religious', 'Other'];
+const DEMO = JSON.parse(fs.readFileSync(path.join(ROOT, 'demographics.json'), 'utf8'));
 const GOODS = ['G', 'V', 'L', 'H', 'F', 'J', 'W', 'K', 'A'];
 const STYLES = ['P', 'F', 'C', 'I', 'O', 'M'];
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -79,6 +84,10 @@ function validate(b) {
   if (typeof b.rid !== 'string' || !UUID.test(b.rid)) return 'rid';
   if (typeof b.v !== 'string' || b.v.length > 24) return 'version';
   if (b.religion != null && !RELIGIONS.includes(b.religion)) return 'religion';
+  if (b.age != null && !DEMO.ages.includes(b.age)) return 'age';
+  if (b.gender != null && !DEMO.genders.includes(b.gender)) return 'gender';
+  if (b.grew_up != null && !DEMO.places.includes(b.grew_up)) return 'grew_up';
+  if (b.public != null && typeof b.public !== 'boolean') return 'public';
   if (!Array.isArray(b.ans) || b.ans.length < 10 || b.ans.length > 60 || !b.ans.every(answerOk)) return 'answers';
   if (!pt(b.res)) return 'belief';
   if (b.dres != null && !pt(b.dres)) return 'decision';
@@ -137,12 +146,14 @@ function challenge(res) {
 }
 const csvCell = v => {
   if (v === null || v === undefined) return '';
+  if (typeof v === 'number' || typeof v === 'boolean') return String(v);  // numbers are safe as-is
   let s = typeof v === 'object' ? JSON.stringify(v) : String(v);
   if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;          // keep spreadsheet apps from running formulas
   return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
 };
 const ROWS_SQL = `select id, created_at, rid, version, religion, duration_s, belief_x, belief_y, belief_z,
   decide_x, decide_y, decide_z, good_top, good_second, region, decide_region, goods, styles, spread, answers,
+  age_range, gender, grew_up, public_ok,
   row_number() over (partition by rid order by created_at) as attempt
   from responses order by created_at desc limit 20000`;
 
@@ -181,13 +192,38 @@ const server = http.createServer(async (req, res) => {
       const bad = validate(b); if (bad) return send(res, 400, { ok: false, error: 'invalid ' + bad });
       const [g1, g2] = topTwo(b.gt);
       await pool.query(`insert into responses (rid, version, religion, duration_s, belief_x, belief_y, belief_z,
-        decide_x, decide_y, decide_z, good_top, good_second, region, decide_region, goods, styles, spread, answers)
-        values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18)`,
+        decide_x, decide_y, decide_z, good_top, good_second, region, decide_region, goods, styles, spread, answers,
+        age_range, gender, grew_up, public_ok)
+        values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22)`,
         [b.rid, b.v, b.religion || null, b.dur == null ? null : Math.round(b.dur), b.res[0], b.res[1], b.res[2],
          b.dres ? b.dres[0] : null, b.dres ? b.dres[1] : null, b.dres ? b.dres[2] : null, g1, g2,
          b.zone || null, b.dzone || null, b.gt ? JSON.stringify(b.gt) : null, b.tally ? JSON.stringify(b.tally) : null,
-         b.sd ? JSON.stringify(b.sd) : null, JSON.stringify(b.ans)]);
+         b.sd ? JSON.stringify(b.sd) : null, JSON.stringify(b.ans),
+         b.age || null, b.gender || null, b.grew_up || null, b.public === true]);
       return send(res, 201, { ok: true });
+    }
+
+    if (req.method === 'GET' && p === '/api/pins') {
+      if (!dbReady) return send(res, 503, { ok: false, error: 'not collecting yet' });
+      const q = url.searchParams, where = ['public_ok'], args = [];
+      const F = [['religion', 'religion', RELIGIONS], ['age', 'age_range', DEMO.ages], ['gender', 'gender', DEMO.genders], ['grew_up', 'grew_up', DEMO.places]];
+      let filtered = false;
+      for (const [k, col, allowed] of F) {
+        const v = q.get(k); if (!v) continue;
+        if (!allowed.includes(v)) return send(res, 400, { ok: false, error: 'invalid ' + k });
+        args.push(v); where.push(`${col} = $${args.length}`); filtered = true;
+      }
+      const dec = q.get('mode') === 'decision';
+      const c = dec ? 'decide' : 'belief';
+      if (dec) where.push('decide_x is not null');
+      // each person once (their latest shared result); no ids, times or details go out
+      const { rows } = await pool.query(`select ${c}_x as c0, ${c}_y as c1, ${c}_z as c2, good_top from (
+          select distinct on (rid) * from responses where public_ok order by rid, created_at desc) latest
+        where ${where.join(' and ')}`, args);
+      const MIN = 5;
+      if (filtered && rows.length < MIN) return send(res, 200, { ok: true, tooFew: true, min: MIN }, null, { 'Cache-Control': 'public, max-age=60' });
+      const pins = rows.map(r => [Math.round(r.c0), Math.round(r.c1), Math.round(r.c2), r.good_top || null]).sort((a, b) => a[0] - b[0] || a[1] - b[1] || a[2] - b[2]);
+      return send(res, 200, { ok: true, pins }, null, { 'Cache-Control': 'public, max-age=60' });
     }
 
     if (p === '/results' || p === '/api/results' || p === '/api/results.csv') {
@@ -197,7 +233,8 @@ const server = http.createServer(async (req, res) => {
       const { rows } = await pool.query(ROWS_SQL);
       if (p === '/api/results') return send(res, 200, { ok: true, rows });
       const cols = ['id', 'created_at', 'rid', 'attempt', 'version', 'religion', 'duration_s', 'belief_x', 'belief_y', 'belief_z',
-        'decide_x', 'decide_y', 'decide_z', 'good_top', 'good_second', 'region', 'decide_region', 'goods', 'styles', 'spread', 'answers'];
+        'decide_x', 'decide_y', 'decide_z', 'good_top', 'good_second', 'region', 'decide_region', 'age_range', 'gender', 'grew_up', 'public_ok',
+        'goods', 'styles', 'spread', 'answers'];
       const csv = [cols.join(',')].concat(rows.map(r => cols.map(c => csvCell(c === 'created_at' ? new Date(r[c]).toISOString() : r[c])).join(','))).join('\r\n');
       return send(res, 200, '﻿' + csv, 'text/csv; charset=utf-8', { 'Content-Disposition': 'attachment; filename="survey-responses.csv"' });
     }

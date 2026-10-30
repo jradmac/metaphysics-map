@@ -87,8 +87,12 @@ details summary{cursor:pointer;font-family:var(--f-mono);font-size:11px;letter-s
  <div id="app" hidden>
   <div class="filters card" style="padding:10px 14px;flex-direction:row">
    <label>Religious tradition <select id="fRel"></select></label>
+   <label>Age <select id="fAge"></select></label>
+   <label>Gender <select id="fGen"></select></label>
+   <label>Grew up <select id="fGrew"></select></label>
    <label><input type="checkbox" id="fLatest" checked> Count each person once (their latest result)</label>
    <span class="note" id="fCount"></span>
+   <label>Compare by <select id="gDim"><option value="religion">Religious tradition</option><option value="age">Age</option><option value="gender">Gender</option><option value="grew_up">Where they grew up</option></select></label>
   </div>
   <div class="stats" id="stats"></div>
   <div id="sections" style="display:flex;flex-direction:column;gap:16px;margin-top:16px"></div>
@@ -121,9 +125,10 @@ document.addEventListener("focusout",()=>{tip.hidden=true;});
 function table(head,rows){return `<details><summary>Show the numbers as a table</summary><div class="tscroll"><table><thead><tr>${head.map(h=>`<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></details>`;}
 function card(title,lead,body,note){return `<section class="card"><h2>${title}</h2>${lead?`<p class="lead">${lead}</p>`:""}${body}${note?`<p class="note">${note}</p>`:""}</section>`;}
 
-function current(){const rel=$("fRel").value,latest=$("fLatest").checked;let rows=ALL;
+const FIL=[["fRel","religion","All traditions"],["fAge","age_range","All ages"],["fGen","gender","All genders"],["fGrew","grew_up","Anywhere"]];
+function current(){const latest=$("fLatest").checked;let rows=ALL;
  if(latest){const seen=new Set();rows=rows.filter(r=>{if(seen.has(r.rid))return false;seen.add(r.rid);return true;});}   /* rows arrive newest first */
- if(rel==="__none")rows=rows.filter(r=>!r.religion);else if(rel)rows=rows.filter(r=>r.religion===rel);
+ FIL.forEach(([id,col])=>{const v=$(id).value;if(v==="__none")rows=rows.filter(r=>!r[col]);else if(v)rows=rows.filter(r=>r[col]===v);});
  return rows;}
 
 /* ω² of an axis by highest good */
@@ -193,6 +198,13 @@ function render(){const rows=current(),peopleAll=new Set(ALL.map(r=>r.rid)),reto
   S.push(card("Retakes: what moves first?",`With three or more results from the same people, you can start to see whether beliefs about reality or the highest good tends to change first.`,body,"Uses every result, regardless of the filters above."));}
 
  /* 7. recent */
+ {const dim=$("gDim").value,col={religion:"religion",age:"age_range",gender:"gender",grew_up:"grew_up"}[dim],by={};
+  rows.forEach(r=>{const k=r[col]||"Not given";(by[k]=by[k]||[]).push(r);});
+  const avg=(a,k)=>{const v=a.map(r=>+r[k]).filter(x=>!isNaN(x));return v.length?v.reduce((x,y)=>x+y,0)/v.length:null;};
+  const list=Object.entries(by).sort((a,b)=>b[1].length-a[1].length);
+  S.push(card("Compare groups","Average belief pin and the most common highest good in each group. Small groups swing a lot, so treat anything under about 10 people as a hint, not a finding.",
+   `<div class="tscroll"><table><thead><tr><th>Group</th><th>People</th><th>X · mind ↔ matter</th><th>Y · ultimate</th><th>Z · truth</th><th>Most common good</th></tr></thead><tbody>${list.map(([k,a])=>{const cn={};a.forEach(r=>{if(r.good_top)cn[r.good_top]=(cn[r.good_top]||0)+1;});const top=Object.entries(cn).sort((x,y)=>y[1]-x[1])[0];
+    return `<tr><td>${esc(k)}</td><td>${a.length}</td><td>${sg(avg(a,"belief_x"))}</td><td>${sg(avg(a,"belief_y"))}</td><td>${sg(avg(a,"belief_z"))}</td><td>${top?`<i class="sw" style="background:${gc(top[0])}"></i>${esc(GN[top[0]])} (${Math.round(top[1]/a.length*100)}%)`:"—"}</td></tr>`;}).join("")}</tbody></table></div>`,""));}
  {const rec=ALL.slice(0,25);S.push(card("Most recent results","",`<div class="tscroll"><table><thead><tr><th>When</th><th>Tradition</th><th>Belief pin (X, Y, Z)</th><th>Highest good</th><th>Region</th><th>Minutes</th></tr></thead><tbody>${rec.map(r=>`<tr><td>${esc(new Date(r.created_at).toLocaleString())}</td><td>${esc(r.religion||"—")}</td><td>${sg(+r.belief_x)}, ${sg(+r.belief_y)}, ${sg(+r.belief_z)}</td><td>${r.good_top?`<i class="sw" style="background:${gc(r.good_top)}"></i>`+esc(GN[r.good_top]):"—"}</td><td>${esc(r.region||"—")}</td><td>${r.duration_s?(r.duration_s/60).toFixed(1):"—"}</td></tr>`).join("")}</tbody></table></div>`,""));}
 
  $("sections").innerHTML=S.join("");
@@ -202,11 +214,11 @@ async function load(){$("status").textContent="Loading…";$("status").classList
  try{const r=await fetch("/api/results",{cache:"no-store"});const j=await r.json().catch(()=>({}));
   if(!r.ok||!j.ok){$("status").textContent=j.error?"The database isn't connected yet ("+j.error+"). Check the DATABASE_URL variable in Railway.":"Couldn't load results.";$("status").classList.add("err");$("app").hidden=true;return;}
   ALL=j.rows;$("status").textContent=ALL.length?`Updated ${new Date().toLocaleTimeString()}.`:"No responses yet. Results appear here as soon as people finish the test and choose to share.";
-  const rels={};ALL.forEach(r=>{const k=r.religion||"";rels[k]=(rels[k]||0)+1;});const sel=$("fRel"),cur=sel.value;
-  sel.innerHTML=`<option value="">All traditions</option>`+Object.entries(rels).filter(([k])=>k).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<option value="${esc(k)}">${esc(k)} (${v})</option>`).join("")+(rels[""]?`<option value="__none">Not given (${rels[""]})</option>`:"");
-  sel.value=cur;$("app").hidden=!ALL.length;if(ALL.length)render();}
+  FIL.forEach(([id,col,all])=>{const cnt={};ALL.forEach(r=>{const k=r[col]||"";cnt[k]=(cnt[k]||0)+1;});const sel=$(id),cur=sel.value;
+   sel.innerHTML=`<option value="">${all}</option>`+Object.entries(cnt).filter(([k])=>k).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<option value="${esc(k)}">${esc(k)} (${v})</option>`).join("")+(cnt[""]?`<option value="__none">Not given (${cnt[""]})</option>`:"");
+   sel.value=cur;});$("app").hidden=!ALL.length;if(ALL.length)render();}
  catch(e){$("status").textContent="Couldn't reach the server.";$("status").classList.add("err");}}
-$("fRel").onchange=render;$("fLatest").onchange=render;$("reload").onclick=load;
+FIL.forEach(([id])=>$(id).onchange=render);$("gDim").onchange=render;$("fLatest").onchange=render;$("reload").onclick=load;
 load();
 })();
 </script>

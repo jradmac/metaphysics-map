@@ -758,6 +758,22 @@ svg.simple.focus .zedge:not(.on){stroke-opacity:.12}
 .opt.ranked:disabled{opacity:.5;cursor:default}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
+
+/* responses tab */
+.crowd-pin{fill:var(--gc);stroke:var(--sheet);stroke-width:1.5;opacity:.85}
+.shr-demo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px;border:1px solid var(--line);padding:12px}
+.shr-demo>.lbl{grid-column:1/-1}
+.shr-demo select{max-width:none;width:100%}
+.insp.crowd .cfs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 10px;margin:10px 0}
+.insp.crowd .cf{display:flex;flex-direction:column;gap:4px}
+.insp.crowd select{font:inherit;font-size:14px;padding:7px 8px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);width:100%}
+.insp.crowd .cmode{display:flex;margin-top:10px}
+.insp.crowd .cmode button{flex:1;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.08em;padding:8px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.insp.crowd .cmode button[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.insp.crowd .ccount{font-size:15px;margin:6px 0}
+.insp.crowd .cnote{font-size:13.5px;color:var(--ink2);border-left:2px solid var(--line);padding-left:9px}
+@media (max-width:520px){.shr-demo,.insp.crowd .cfs{grid-template-columns:minmax(0,1fr)}}
+
 /* identity title + share */
 .mate .via2{margin-top:8px;opacity:.8}
 .rtl-k{margin-bottom:-2px}
@@ -795,7 +811,7 @@ svg.simple.focus .zedge:not(.on){stroke-opacity:.12}
     <div class="tintro">
       <div class="lbl">DWG MFS-001 · Sheet 1 of 1 · Model space</div>
       <h1>Metaphysical<br>Field Survey</h1>
-      <p>A three-axis model: what is fundamental (X), where the ultimate is (Y), and whether truth is found or made (Z). Drag to turn it, or pick a view. Each philosopher is plotted twice: a solid point where they placed themselves, and a hollow point where their arguments actually commit them. The dashed vector between the two is the drift, and a dashed hollow point marks a reading scholars still dispute. Each point is colored by the highest good it aims at; religious traditions, plotted by their core doctrine, have violet italic names. Use the tabs to show only philosophers or only religions, and tap a highest good under the model to show only those who aim at it. Select any point or block to read about it, or take the test to drop your own pins.</p>
+      <p>A three-axis model: what is fundamental (X), where the ultimate is (Y), and whether truth is found or made (Z). Drag to turn it, or pick a view. Each thinker is plotted twice: a solid point where they placed themselves, and a hollow point where their arguments actually commit them. The dashed vector between the two is the drift, and a dashed hollow point marks a reading scholars still dispute. Each point is colored by the highest good it aims at; religious traditions, plotted by their core doctrine, have violet italic names. Use the tabs to show only thinkers or only religions, and tap a highest good under the model to show only those who aim at it. Select any point or block to read about it, or take the test to drop your own pins.</p>
     </div>
     <details class="anote" id="anote">
       <summary><span class="lbl">Note from the author</span><span class="anmore">Why this survey exists</span></summary>
@@ -818,11 +834,11 @@ svg.simple.focus .zedge:not(.on){stroke-opacity:.12}
   <section class="sheet">
     <div class="model">
       <div class="viewport" id="vp">
-        <div class="vscroll" id="vscroll"><svg id="plot" viewBox="0 0 1320 1000" aria-label="Three-dimensional metaphysical model with philosophers plotted"></svg></div>
+        <div class="vscroll" id="vscroll"><svg id="plot" viewBox="0 0 1320 1000" aria-label="Three-dimensional metaphysical model with thinkers plotted"></svg></div>
         <div class="views" role="group" aria-label="Views">
           <button data-view="iso" aria-pressed="true" title="Three-quarter view of all three axes">3D</button><button data-view="front" title="X–Y: the classic two-axis map">FRONT</button><button data-view="side" title="Z–Y: truth found or made, against where the ultimate is">SIDE</button><button data-view="top" title="X–Z: mind or matter, against truth found or made">TOP</button><i class="sep"></i><button data-rot="l" aria-label="Turn left">⟲</button><button data-rot="r" aria-label="Turn right">⟳</button><button data-rot="u" aria-label="Tilt up">▲</button><button data-rot="d" aria-label="Tilt down">▼</button>
         </div>
-        <div class="kinds" role="group" aria-label="Show"><button data-kind="all" aria-pressed="true">ALL</button><button data-kind="phil" aria-pressed="false">PHILOSOPHERS</button><button data-kind="rel" aria-pressed="false">RELIGIONS</button></div>
+        <div class="kinds" role="group" aria-label="Show"><button data-kind="all" aria-pressed="true">ALL</button><button data-kind="phil" aria-pressed="false">THINKERS</button><button data-kind="rel" aria-pressed="false">RELIGIONS</button><button data-kind="crowd" aria-pressed="false" id="crowdTab" hidden>RESPONSES</button></div>
         <div class="zoom">
           <button id="zIn" aria-label="Zoom in">+</button>
           <button id="zOut" aria-label="Zoom out">−</button>
@@ -852,7 +868,7 @@ svg.simple.focus .zedge:not(.on){stroke-opacity:.12}
       <div class="pblock">
         <div class="lbl">Legend</div>
         <div class="legend">
-          <svg width="18" height="18" viewBox="-9 -9 18 18"><circle r="6" class="m-claim"/></svg><span>A person: one philosopher</span>
+          <svg width="18" height="18" viewBox="-9 -9 18 18"><circle r="6" class="m-claim"/></svg><span>A person: one thinker</span>
           <svg width="18" height="18" viewBox="-9 -9 18 18"><rect x="-5.5" y="-5.5" width="11" height="11" class="m-claim"/></svg><span>A religion: its doctrine as taught (name in violet italics)</span>
           <svg width="18" height="18" viewBox="-9 -9 18 18"><path d="M0 -7 L7 0 L0 7 L-7 0Z" class="m-claim"/></svg><span>A school of thought: many thinkers, one shared teaching, like the Stoics</span>
           <svg width="18" height="18" viewBox="-9 -9 18 18"><circle r="5.5" class="m-supp"/></svg><span>Hollow: where the work actually lands</span>
@@ -869,7 +885,7 @@ svg.simple.focus .zedge:not(.on){stroke-opacity:.12}
       <div class="tscroll">
         <table>
           <thead><tr>
-            <th data-k="tag" tabindex="0">TAG</th><th data-k="n" tabindex="0">PHILOSOPHER</th><th data-k="y0" tabindex="0">DATES</th>
+            <th data-k="tag" tabindex="0">TAG</th><th data-k="n" tabindex="0">THINKER OR TRADITION</th><th data-k="y0" tabindex="0">DATES</th>
             <th data-k="t" tabindex="0">TYPE</th><th data-k="conf" tabindex="0">READING</th><th data-k="tz" tabindex="0">TRUTH</th><th data-k="g" tabindex="0">HIGHEST GOOD</th><th data-k="cz" tabindex="0">CLAIMED ZONE</th><th data-k="sz" tabindex="0">SUPPORTED ZONE</th><th data-k="drift" tabindex="0" aria-sort="descending">DRIFT</th>
           </tr></thead>
           <tbody id="tb"></tbody>
@@ -910,7 +926,7 @@ svg.simple.focus .zedge:not(.on){stroke-opacity:.12}
       <div class="lbl">Fourth question · shown by color</div>
       <h3>What is the highest good?</h3>
       <p class="ex-q">If you had to say what a life is <b>for</b>, what would you say?</p>
-      <p>This is where a philosophy or religion says what it is arguing <i>for</i>. It isn't a scale with two ends, so it's shown as a category and a color. Two systems can disagree about everything on the three axes and still aim at the same thing: Epicurus and the Buddhists are far apart on what is fundamental and where the ultimate is, but both hold that the good life is freedom from craving and disturbance, and both train for it. The Stoics share that aim too, but second: for them virtue itself is the only good. Plato, Augustine and Latter-day Saint teaching all say the end of life is becoming like God. Nietzsche, who sits at the opposite corner of the model from Plato, also aims at the opposite good: making your own values rather than ascending to a Good already there.</p>
+      <p>This is where a thinker or tradition says what it is arguing <i>for</i>. It isn't a scale with two ends, so it's shown as a category and a color. Two systems can disagree about everything on the three axes and still aim at the same thing: Epicurus and the Buddhists are far apart on what is fundamental and where the ultimate is, but both hold that the good life is freedom from craving and disturbance, and both train for it. The Stoics share that aim too, but second: for them virtue itself is the only good. Plato, Augustine and Latter-day Saint teaching all say the end of life is becoming like God. Nietzsche, who sits at the opposite corner of the model from Plato, also aims at the opposite good: making your own values rather than ascending to a Good already there.</p>
       <ol class="ex-gscale"><li style="--gc:var(--gG)"><i></i><b>Union with the divine</b><span class="ex-d">Becoming like God, seeing God, or being joined to the One: the soul's ascent, the beatific vision, exaltation, union with Brahman.</span><span class="ex-e">Plato, Augustine, Latter-day Saints, Śaṅkara</span></li><li style="--gc:var(--gV)"><i></i><b>Character and flourishing</b><span class="ex-d">Excellence of character: wisdom, courage, justice, humaneness, a good will, lived out over a whole life. For some (Aristotle, Confucius) this is flourishing; for others (Kant, the Stoics) it is simply what is good in itself.</span><span class="ex-e">Aristotle, Kant, the Stoics, Confucianism</span></li><li style="--gc:var(--gL)"><i></i><b>Liberation and peace</b><span class="ex-d">Freedom from craving, passion and disturbance: the untroubled mind, release from the cycle, the sage who cannot be shaken.</span><span class="ex-e">Epicurus, Buddhism, Jainism, Schopenhauer</span></li><li style="--gc:var(--gH)"><i></i><b>Happiness and wellbeing</b><span class="ex-d">Pleasure, satisfied desire and the relief of suffering, for yourself and for everyone your life touches.</span><span class="ex-e">Hume, Locke, Russell</span></li><li style="--gc:var(--gF)"><i></i><b>Freedom and self-creation</b><span class="ex-d">Authenticity and self-creation: making your own values, overcoming what you were handed, being fully your own. This is freedom as the existentialists mean it, not the rational autonomy of Kant or Hegel.</span><span class="ex-e">Nietzsche, Sartre, Heidegger</span></li><li style="--gc:var(--gJ)"><i></i><b>Justice and the common good</b><span class="ex-d">A just, free society in which people flourish together; repairing the world.</span><span class="ex-e">Marx, Derrida</span></li><li style="--gc:var(--gW)"><i></i><b>Harmony with the way of things</b><span class="ex-d">Living in accord with nature, the Dao, the kami, the land and the ancestors: balance, purity, reciprocity.</span><span class="ex-e">Laozi, Shinto, Animism</span></li><li style="--gc:var(--gK)"><i></i><b>Understanding</b><span class="ex-d">Knowledge and contemplation of what is: the life of reason, the vision of truth, understanding as the highest activity.</span><span class="ex-e">Parmenides, Spinoza, Hegel</span></li><li style="--gc:var(--gA)"><i></i><b>Achievement and success</b><span class="ex-d">Making something of your life: excelling, building, rising, and leaving a legacy that lasts. Pursued for its own sake, often at the cost of comfort or happiness.</span><span class="ex-e">Machiavelli, Ayn Rand</span></li></ol>
       <p class="ex-tip"><b>See it on the map:</b> points are colored by their highest good; tap a good under the model to show only the entries that aim at it. Your test matches count this question alongside the three axes, and your results show who aims at the same good you do.</p>
     </div>
@@ -943,7 +959,7 @@ svg.simple.focus .zedge:not(.on){stroke-opacity:.12}
     <div>
       <div class="lbl">DWG MFS-001 · Sheet 2 · Findings</div>
       <h1>What the Survey Shows</h1>
-      <p>Patterns across all 63 philosophers and religions: which axis is tied to what people judge as good, how metaphysics has shifted over time, and a few surprising neighbours.</p>
+      <p>Patterns across all 63 thinkers and religions: which axis is tied to what people judge as good, how metaphysics has shifted over time, and a few surprising neighbours.</p>
     </div>
     <div class="tools"><a class="tlink" href="#">← BACK TO THE MAP</a></div>
   </header>
@@ -1106,7 +1122,7 @@ const mk=el("marker",{id:"arr",viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:7,m
 el("path",{d:"M0 1 L10 5 L0 9 Z",class:"arrowhead"},mk);
 const gGrid=el("g",{class:"layer-grid"},svg),gZ=el("g",{class:"layer-zones"},svg),gA=el("g",{class:"layer-axes"},svg);
 const gProj=el("g",{class:"layer-proj"},svg),gP=el("g",{},svg),gO=el("g",{},svg);
-const gDim=el("g",{},gO),gQ=el("g",{},gO),gYou=el("g",{class:"you-layer"},gO);
+const gDim=el("g",{},gO),gQ=el("g",{},gO),gCrowd=el("g",{class:"crowd-layer"},gO),gYou=el("g",{class:"you-layer"},gO);
 
 function shape(type,cx,cy,r,cls,parent){
  if(type==="mon")return el("circle",{cx,cy,r,class:cls},parent);
@@ -1236,7 +1252,7 @@ let rq=0,quickLabels=false;
 function render(){rq=0;gGrid.innerHTML="";gZ.innerHTML="";gA.innerHTML="";
  const far=(ax)=>{const a=[0,0,0],b=[0,0,0];a[ax]=-100;b[ax]=100;return P3(a)[2]<P3(b)[2]?-100:100;};
  [0,1,2].forEach(ax=>wallGrid(ax,far(ax)));
- markFocus();drawBlocks();drawAxes();placePoints();drawProj();drawPin();placeLabels(quickLabels);
+ markFocus();drawBlocks();drawAxes();placePoints();drawProj();drawCrowd();drawPin();placeLabels(quickLabels);
  document.getElementById("cv").textContent=CAM.view==="custom"?`${Math.round(CAM.yaw*180/Math.PI)}° / ${Math.round(CAM.pitch*180/Math.PI)}°`:VIEWS[CAM.view].n;
  document.querySelectorAll("[data-view]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.view===CAM.view)));}
 function requestRender(){if(!rq)rq=requestAnimationFrame(render);}
@@ -1261,11 +1277,38 @@ const LAY=[["no-grid","Grid"],["no-zones","Zones"],["no-claimed","Claimed"],["no
 const lw=document.getElementById("layers");
 LAY.forEach(([cls,n],k)=>{const l=document.createElement("label");l.innerHTML=`<input type="checkbox" id="lay${k}" checked> ${n.toUpperCase()}`;lw.appendChild(l);
  l.querySelector("input").addEventListener("change",e=>svg.classList.toggle(cls,!e.target.checked));});
+svg.classList.add("no-grid");document.getElementById("lay0").checked=false;
 const ew=document.getElementById("eras");
 Object.entries(ERAS).forEach(([k,n])=>{const b=document.createElement("button");b.className="chip";b.textContent=n;b.setAttribute("aria-pressed","true");
  b.onclick=()=>{S.eras.has(k)?S.eras.delete(k):S.eras.add(k);b.setAttribute("aria-pressed",S.eras.has(k));applyFilter();};ew.appendChild(b);});
-function shown(p){return S.eras.has(p.era)&&(S.kind==="all"||(S.kind==="rel")===(p.era==="rel"))&&(!S.gf||(S.gf==="N"?!p.hg:p.hg===S.gf));}
+function shown(p){return S.kind!=="crowd"&&S.eras.has(p.era)&&(S.kind==="all"||(S.kind==="rel")===(p.era==="rel"))&&(!S.gf||(S.gf==="N"?!p.hg:p.hg===S.gf));}
 function applyFilter(){P.forEach(p=>G[p.i].classList.toggle("is-off",!shown(p)));syncFilters();renderTable();requestRender();renderPanel();}
+
+
+/* ---------- Responses: everyone's pins, filterable by group ---------- */
+const CROWD={loaded:false,n:null,pins:[],tooFew:false,err:false,f:{religion:"",age:"",gender:"",grew_up:""},mode:"belief"};
+async function loadCrowd(){CROWD.loaded=true;CROWD.n=null;renderPanel();
+ const q=new URLSearchParams({mode:CROWD.mode});Object.entries(CROWD.f).forEach(([k,v])=>{if(v)q.set(k,v);});
+ try{const r=await fetch("/api/pins?"+q,{cache:"no-store"});const j=await r.json();if(!r.ok||!j.ok)throw 0;
+  CROWD.err=false;CROWD.tooFew=!!j.tooFew;CROWD.pins=j.pins||[];CROWD.n=j.tooFew?0:CROWD.pins.length;}
+ catch(e){CROWD.err=true;CROWD.pins=[];CROWD.n=0;}
+ if(S.kind==="crowd"){renderPanel();filterMsg();requestRender();}}
+function drawCrowd(){gCrowd.innerHTML="";if(S.kind!=="crowd")return;
+ const pts=CROWD.pins.map(p=>({s:P3([p[0],p[1],p[2]]),g:p[3]})).sort((a,b)=>a.s[2]-b.s[2]);
+ pts.forEach(o=>el("circle",{cx:o.s[0],cy:o.s[1],r:5.5,class:"crowd-pin",style:`--gc:var(--g${o.g||"N"})`},gCrowd));}
+function crowdPanel(){panel.className="pblock insp crowd";const f=CROWD.f;
+ const sel=(k,lab,opts)=>`<label class="cf"><span class="lbl">${lab}</span><select data-cf="${k}"><option value="">Everyone</option>${opts.map(o=>`<option${o===f[k]?" selected":""}>${esc2(o)}</option>`).join("")}</select></label>`;
+ const cnt={};CROWD.pins.forEach(p=>{const g=p[3]||"N";cnt[g]=(cnt[g]||0)+1;});const tot=CROWD.pins.length||1;
+ const ord=Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]);
+ panel.innerHTML=`<div class="lbl">Responses</div><h2>Everyone who's taken the test</h2>
+  <p class="ip-def">Each dot is one person's ${CROWD.mode==="belief"?"belief pin":"decision pin"}, colored by the highest good they aim at. Only people who chose to share are shown, each once, with no details attached.</p>
+  <div class="cmode" role="group" aria-label="Which pins"><button data-cm="belief" aria-pressed="${CROWD.mode==="belief"}">BELIEFS</button><button data-cm="decision" aria-pressed="${CROWD.mode==="decision"}">DECISIONS</button></div>
+  <div class="cfs">${sel("religion","Religious tradition",RELIGIONS)}${sel("age","Age",DEMO.ages)}${sel("gender","Gender",DEMO.genders)}${sel("grew_up","Where they grew up",DEMO.places)}</div>
+  ${CROWD.n==null?'<p class="cnote">Loading…</p>':CROWD.err?'<p class="cnote">Couldn\'t load responses right now.</p>':CROWD.tooFew?'<p class="cnote"><b>Fewer than five people match.</b> Small groups are hidden so no one can be singled out. Try a broader filter.</p>':
+   `<p class="ccount"><b>${CROWD.n}</b> ${CROWD.n===1?"person":"people"}</p>${ord.length?`<div class="gbar">${ord.map(k=>`<div class="gb" style="--gc:var(--g${k})"><span>${gChip(k==="N"?null:k)}${k==="N"?"No clear good":gName(k)}</span><span class="gt"><i style="width:${Math.round(cnt[k]/tot*100)}%"></i></span><span class="mono">${Math.round(cnt[k]/tot*100)}%</span></div>`).join("")}</div>`:""}`}
+  ${T.res&&!T.viewing?'<p class="cnote">Your own pins stay on the map in red, so you can see where you sit among everyone else.</p>':""}`;
+ panel.querySelectorAll("[data-cf]").forEach(x=>x.onchange=()=>{CROWD.f[x.dataset.cf]=x.value;loadCrowd();});
+ panel.querySelectorAll("[data-cm]").forEach(b=>b.onclick=()=>{CROWD.mode=b.dataset.cm;loadCrowd();});}
 
 /* ---------- inspector ---------- */
 const fmt=v=>(v>0?"+":"")+v.toFixed(0);
@@ -1279,11 +1322,12 @@ const dirText=(a,b)=>{const dx=b[0]-a[0],dy=b[1]-a[1],o=[];if(dx>4)o.push("towar
 const panel=document.getElementById("panel"),cmp=document.getElementById("cmp");
 function renderPanel(){
  panel.style.removeProperty("--zc");
+ if(S.kind==="crowd")return crowdPanel();
  if(S.view==="results"&&T.res)return resultsPanel();
  if(S.view==="region"&&S.zone)return regionPanel();
  if(S.view==="none"||S.sel==null){S.view="none";panel.className="pblock insp empty-state";
   panel.innerHTML=`${backBar()}<div class="lbl">Inspector</div><h2>Select to begin</h2>
-  <p class="ip-def">Click any point in the model to read that philosopher or religion: what they claimed, where their work lands, and their major works.</p>
+  <p class="ip-def">Click any point in the model to read that thinker or religion: what they claimed, where their work lands, and their major works.</p>
   <p class="ip-def">Click a colored block, or a swatch in the key under the model, to read what that region of metaphysics holds. Drag to turn the model, or use the view buttons.</p>
   <p class="empty">Or take the test to place your own pins.</p>`;return;}
  S.view="thinker";
@@ -1310,7 +1354,7 @@ function renderPanel(){
  <a class="btn" href="https://en.wikipedia.org/w/index.php?search=${wq}" target="_blank" rel="noopener">READ MORE ON WIKIPEDIA ↗</a>`;}
 function renderCmp(){
  cmp.hidden=true;return;
- if(S.pin==null||S.pin===S.sel){cmp.innerHTML=`<div class="lbl">Compare</div><p class="empty">Pin a philosopher, then select another. A dimension line on the plot measures the distance between where their work lands.</p>`;return;}
+ if(S.pin==null||S.pin===S.sel){cmp.innerHTML=`<div class="lbl">Compare</div><p class="empty">Pin a thinker, then select another. A dimension line on the plot measures the distance between where their work lands.</p>`;return;}
  const a=P[S.sel],b=P[S.pin],dx=Math.abs(a.s[0]-b.s[0]),dy=Math.abs(a.s[1]-b.s[1]),d=Math.hypot(dx,dy);
  const verdict=d<20?"Near neighbors: their systems land in almost the same place.":dx<20&&dy>=20?"They agree on what reality is made of but split on whether anything lies beyond it.":dy<20&&dx>=20?"They agree on how far reality reaches but split on whether it is mind or matter.":"They differ on both axes.";
  cmp.innerHTML=`<div class="phead"><span class="lbl">Compare · Δ ${d.toFixed(1)} u</span><button class="btn" id="unpin">CLEAR</button></div>
@@ -1474,12 +1518,13 @@ function useRes(d){T.viewing=null;Object.assign(T,{ans:d.ans.concat(Array(Math.m
 function loadSaved(){try{const d=JSON.parse(localStorage.getItem(SAVE)||"null");if(validRes(d)){useRes(d);return true;}}catch(e){}return false;}
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 let SHARE_OK=false;
+const DEMO={"ages": ["18–24", "25–34", "35–44", "45–54", "55–64", "65 or older"], "genders": ["Woman", "Man", "Another way"], "places": ["Utah", "Elsewhere in the Mountain West", "West Coast", "Midwest", "South", "Northeast", "Alaska or Hawaii", "Canada", "Mexico, Central America or the Caribbean", "South America", "Europe", "Africa", "Middle East", "South Asia", "East Asia", "Southeast Asia or the Pacific", "Australia or New Zealand", "Somewhere else"]};
 const RELIGIONS=["Latter-day Saint", "Catholic", "Protestant or Evangelical", "Orthodox Christian", "Other Christian", "Jewish", "Muslim", "Hindu", "Buddhist", "Sikh", "Spiritual but not religious", "Not religious", "Other"];
-if(/^https?:$/.test(location.protocol)){try{fetch("/api/health",{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{SHARE_OK=!!(j&&j.collecting);if(j&&j.ok)LINK_OK=true;}).catch(()=>{});}catch(e){}}
+if(/^https?:$/.test(location.protocol)){try{fetch("/api/health",{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{SHARE_OK=!!(j&&j.collecting);if(SHARE_OK){const ct=document.getElementById("crowdTab");if(ct)ct.hidden=false;}if(j&&j.ok)LINK_OK=true;}).catch(()=>{});}catch(e){}}
 function anonId(){let id=null;try{id=localStorage.getItem("mfs-rid");}catch(e){}
  if(!id||!/^[0-9a-f-]{36}$/i.test(id)){id=(crypto.randomUUID?crypto.randomUUID():"10000000-1000-4000-8000-100000000000".replace(/[018]/g,c=>(c^crypto.getRandomValues(new Uint8Array(1))[0]&15>>c/4).toString(16)));try{localStorage.setItem("mfs-rid",id);}catch(e){}}
  return id;}
-function submitResult(sh){try{const body=JSON.stringify({v:SAVE,rid:anonId(),consent:true,adult:true,religion:sh.religion||null,dur:T.t0?Math.min(86400,(Date.now()-T.t0)/1000):null,
+function submitResult(sh){try{const body=JSON.stringify({v:SAVE,rid:anonId(),consent:true,adult:true,public:true,religion:sh.religion||null,age:sh.age||null,gender:sh.gender||null,grew_up:sh.grew_up||null,dur:T.t0?Math.min(86400,(Date.now()-T.t0)/1000):null,
   ans:T.ans,res:T.res,dres:T.dres,sd:T.sd,gt:T.gt,tally:T.tally,zone:zoneAt(...T.res).id,dzone:T.dres?zoneAt(...T.dres).id:null});
  fetch("/api/responses",{method:"POST",headers:{"Content-Type":"application/json"},body,keepalive:true}).catch(()=>{});}catch(e){}}
 function startTest(){T.t0=Date.now();T.stage="q";T.i=0;T.ans=new Array(TEST.length).fill(null);T.order=TEST.map(q=>shuffle(q.o.map((_,k)=>k)));renderTestPage();}
@@ -1528,7 +1573,7 @@ function pinShape(parent,px,py,hollow,label){const g=el("g",{transform:`translat
 function drawPin(){gYou.innerHTML="";if(!T.res)return;const b=P3(T.res),px=b[0],py=b[1],showRes=S.view==="results";
  if(!document.getElementById("arrY")){const mk=el("marker",{id:"arrY",viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:7,markerHeight:7,orient:"auto-start-reverse"},defs);el("path",{d:"M0 1 L10 5 L0 9 Z",class:"you-arrow"},mk);}
  if(showRes){const ph=nearList(T.res,false,T.gt)[0],rl=nearList(T.res,true,T.gt)[0];
-  [ph,rl].forEach(r=>{const s=P3(r.ref);el("circle",{cx:s[0],cy:s[1],r:12,class:"near-ring ns"},gYou);});
+  [ph].forEach(r=>{const s=P3(r.ref);el("circle",{cx:s[0],cy:s[1],r:12,class:"near-ring ns"},gYou);});
   if(T.sd){const R=T.sd.map(v=>Math.max(4,v*.5));[[0,1],[1,2],[0,2]].forEach(([a,c])=>{const ring=[];for(let k=0;k<=36;k++){const t=k/36*TAU,q=T.res.slice();q[a]+=R[a]*Math.cos(t);q[c]+=R[c]*Math.sin(t);ring.push(P3(q));}
    el("polyline",{points:pts(ring),class:"you-spread ns"},gYou);});}}
  if(T.dres){const d=P3(T.dres),qx=d[0],qy=d[1],Ln=Math.hypot(qx-px,qy-py);
@@ -1539,7 +1584,7 @@ function resultsPanel(){const me=T.res;panel.className="pblock insp results";
  const z=zoneAt(...me),used=T.ans.filter((a,i)=>TEST[i].k==="p"&&a!=null&&(a>=0||(a.sel&&a.sel.length))).length,dUsed=T.ans.filter((a,i)=>TEST[i].k==="m"&&a&&a.sel&&a.sel.length).length;
  const nB=TEST.filter(q=>q.k==="p").length,nD=TEST.length-nB;
  const phs=nearList(me,false,T.gt),rls=nearList(me,true,T.gt),all=[...phs,...rls].sort((a,b)=>a.d-b.d);const [mg1,mg2]=topGoods(T.gt);
- const ph=phs[0],rl=rls[0],also=all.filter(r=>r!==ph&&r!==rl).slice(0,3),opp=all[all.length-1];
+ const ph=phs[0],rl=rls[0],also=phs.filter(r=>r!==ph).slice(0,3),opp=phs[phs.length-1];
  const card=(lab,r)=>`<div class="rcard"><div class="lbl">${lab}</div>
   <button class="rname${r.p.era==="rel"?" rel":""}" data-pid="${r.p.i}">${r.p.n}</button>
   <div class="rmeta mono">${r.d.toFixed(0)} units away on all four measures · nearest to ${r.which==="s"?"where their work lands":"their stated view"}</div>
@@ -1556,7 +1601,7 @@ function resultsPanel(){const me=T.res;panel.className="pblock insp results";
   dec=`<div class="rcard"><div class="lbl">How you decide</div>
    <div class="compass">${ord.map(k=>{const pc=Math.round(T.tally[k]/tot*100);return `<div class="cb${k===top?" top":""}" title="${STY[k].d}"><span class="cn">${STY[k].n}</span><span class="ct"><i style="width:${pc}%"></i></span><span class="cp mono">${pc}%</span></div>`;}).join("")}</div>
    <p class="rq">Strongest: ${STY[top].n.toLowerCase()}, ${STY[top].d}.</p></div>
-   <div class="rcard"><div class="lbl">Decides most like you</div>
+   <div class="rcard"><div class="lbl">Closest thinker or tradition to how you make decisions</div>
    <button class="rname${e0.p.era==="rel"?" rel":""}" data-pid="${e0.p.i}">${e0.p.n}</button>
    <div class="rmeta mono">${Math.round(e0.c*100)}% style match · decides by ${eTop(e0.v)}</div>
    <div class="list">${em.slice(1,4).map(r=>`<button class="pbtn${r.p.era==="rel"?" rel":""}" data-pid="${r.p.i}">${r.p.n} · ${Math.round(r.c*100)}%</button>`).join("")}</div>
@@ -1580,10 +1625,10 @@ function resultsPanel(){const me=T.res;panel.className="pblock insp results";
     serve=`<p class="rq">${c>=.75?"<b>Your decisions serve it.</b>":c>=.45?"<b>Your decisions partly serve it.</b>":"<b>Your decisions pull elsewhere.</b>"} ${gName(mg1)} is most naturally served by deciding from ${best}; ${Math.round(c*100)}% of your way of deciding points that way.</p>`;}
    return `<div class="rcard"><div class="lbl">What you're aiming at</div><div class="gbar">${ord.map(k=>`<div class="gb${k===mg1?" top":""}" style="--gc:var(--g${k})"><span>${gChip(k)}${gName(k)}</span><span class="gt"><i style="width:${Math.round(T.gt[k]/tot*100)}%"></i></span><span class="mono">${Math.round(T.gt[k]/tot*100)}%</span></div>`).join("")}</div>
    <p class="rq">${GOODS[mg1][1]}</p>${serve}</div>`;})():""}
-  ${card("Closest philosopher to your beliefs",ph)}${card("Closest religion to your beliefs",rl)}
+  ${card("Closest thinker to your metaphysical position",ph)}
   ${dec}
-  <div class="rcard"><div class="lbl">Also near your beliefs</div><div class="list">${also.map(btn).join("")}</div></div>
-  <div class="rcard"><div class="lbl">Farthest from your beliefs</div><div class="list">${btn(opp)}</div></div>
+  <div class="rcard"><div class="lbl">Also near your metaphysical position</div><div class="list">${also.map(btn).join("")}</div></div>
+  <div class="rcard"><div class="lbl">Farthest from your metaphysical position</div><div class="list">${btn(opp)}</div></div>
   <div class="tnav"><button class="btn solid" id="tMap">SEE MY PINS</button><button class="btn" data-zlink="${z.id}">READ MY REGION</button><button class="btn" id="tRetake">RETAKE THE TEST ↗</button></div>`;
  document.getElementById("tRetake").onclick=openTest;
  document.getElementById("tMap").onclick=()=>{goTo(document.getElementById("vp"));focusPin();};}
@@ -1600,14 +1645,18 @@ function renderTestPage(){const c=testCard;
   c.innerHTML=`<div class="lbl">Last step · optional</div><h2>Add your answers to the research?</h2>
   <p class="tlead">This survey tests an idea: that people's beliefs about reality shape how they decide, and that people in the same religion can see reality very differently. Your answers help check whether that holds for real people, not just famous thinkers.</p>
   <label class="shr-c"><input type="checkbox" id="shrOk"> <span>I'm 18 or older, and I agree to share my answers anonymously.</span></label>
-  <label class="shr-r"><span class="lbl">Your religious tradition, if any (optional)</span><select id="shrRel"><option value="">Prefer not to say</option>${RELIGIONS.map(r=>`<option${r===last?" selected":""}>${r}</option>`).join("")}</select></label>
+  <div class="shr-demo"><div class="lbl">About you · all optional · used only to compare groups</div>
+   ${(()=>{let dm={};try{dm=JSON.parse(localStorage.getItem("mfs-demo")||"{}");}catch(e){}
+    const sel=(id,lab,opts,cur)=>`<label class="shr-r"><span class="lbl">${lab}</span><select id="${id}"><option value="">Prefer not to say</option>${opts.map(o=>`<option${o===cur?" selected":""}>${o}</option>`).join("")}</select></label>`;
+    return sel("shrAge","Age",DEMO.ages,dm.age)+sel("shrGen","Gender",DEMO.genders,dm.gender)+sel("shrGrew","Where you grew up",DEMO.places,dm.grew_up)+sel("shrRel","Religious tradition, if any",RELIGIONS,last);})()}</div>
   <details class="shr-d"><summary>What gets shared</summary><ul>
-   <li><b>Shared:</b> your answers, your pins and highest good, the tradition you pick above, how long the test took, and a random code kept in this browser so a retake can be linked to your earlier result.</li>
+   <li><b>Shared:</b> your answers, your pins and highest good, anything you choose above (age range, gender, where you grew up, religious tradition), how long the test took, and a random code kept in this browser so a retake can be linked to your earlier result.</li>
    <li><b>Never collected:</b> your name, email or account, and this site doesn't store your IP address (like any website host, Railway may keep standard request logs).</li>
-   <li>Results are only ever looked at in aggregate. Clearing this site's data in your browser removes the random code.</li></ul></details>
+   <li><b>The Responses map:</b> your belief and decision pins appear on the public Responses tab with no details attached. Visitors can filter it by group, but a group is only shown when at least five people are in it, so no one can be singled out.</li><li>Clearing this site's data in your browser removes the random code.</li></ul></details>
   <div class="tnav"><button class="btn solid" id="shrYes" disabled>SHARE AND SEE MY RESULTS</button><button class="btn" id="shrNo">SEE MY RESULTS WITHOUT SHARING</button></div>`;
   const ok=c.querySelector("#shrOk"),yes=c.querySelector("#shrYes");ok.onchange=()=>{yes.disabled=!ok.checked;};
-  yes.onclick=()=>{if(!ok.checked)return;const rel=c.querySelector("#shrRel").value||null;try{localStorage.setItem("mfs-religion",rel||"");}catch(e){}finishTest({religion:rel});};
+  yes.onclick=()=>{if(!ok.checked)return;const v=id=>c.querySelector(id).value||null;const sh={religion:v("#shrRel"),age:v("#shrAge"),gender:v("#shrGen"),grew_up:v("#shrGrew")};
+   try{localStorage.setItem("mfs-religion",sh.religion||"");localStorage.setItem("mfs-demo",JSON.stringify({age:sh.age,gender:sh.gender,grew_up:sh.grew_up}));}catch(e){}finishTest(sh);};
   c.querySelector("#shrNo").onclick=()=>finishTest(null);return;}
  if(T.stage==="done"){c.innerHTML=`<div class="lbl">Test complete</div><h2>Placing your pins on the map…</h2>
   <p class="tlead">${T.shared?"Thank you. Your answers were shared anonymously. ":""}Your results are on the main page.</p><button class="btn solid" id="tGo">GO TO THE MAP</button>`;document.getElementById("tGo").onclick=()=>returnToMap(true);return;}
@@ -1843,8 +1892,8 @@ function setSimple(){svg.classList.toggle("simple",isPhone());}
 setSimple();matchMedia("(max-width:920px)").addEventListener("change",()=>{setSimple();requestRender();});
 function syncFilters(){document.querySelectorAll("[data-kind]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.kind===S.kind)));
  document.querySelectorAll("[data-gf]").forEach(b=>b.setAttribute("aria-pressed",String((b.dataset.gf||null)===S.gf)));}
-function filterMsg(){const n=P.filter(shown).length,k=S.kind==="phil"?"philosophers":S.kind==="rel"?"religions":"entries";msg(`Showing <b>${n}</b> ${k}${S.gf?` whose highest good is <b>${S.gf==="N"?"none proposed":gName(S.gf).toLowerCase()}</b>`:""}`);}
-document.querySelectorAll("[data-kind]").forEach(b=>b.onclick=()=>{S.kind=b.dataset.kind;applyFilter();filterMsg();});
+function filterMsg(){if(S.kind==="crowd"){msg(CROWD.n==null?"Loading responses…":`Showing <b>${CROWD.n}</b> responses`);return;}const n=P.filter(shown).length,k=S.kind==="phil"?"thinkers":S.kind==="rel"?"religions":"entries";msg(`Showing <b>${n}</b> ${k}${S.gf?` whose highest good is <b>${S.gf==="N"?"none proposed":gName(S.gf).toLowerCase()}</b>`:""}`);}
+document.querySelectorAll("[data-kind]").forEach(b=>b.onclick=()=>{S.kind=b.dataset.kind;if(S.kind==="crowd"&&!CROWD.loaded)loadCrowd();applyFilter();filterMsg();});
 document.querySelectorAll("[data-gf]").forEach(b=>b.onclick=()=>{const g=b.dataset.gf||null;S.gf=S.gf===g?null:g;applyFilter();filterMsg();});
 /* ---------- findings page (#findings) ---------- */
 const FP=document.getElementById("findingsPage"),FBODY=document.getElementById("fBody"),FTIP=document.getElementById("ftip");
@@ -1910,29 +1959,29 @@ function fZdots(){const goods=FSLOT.filter(k=>k!=="G").map(k=>{const m=P.filter(
 const FPER=[["Before 0 CE",y=>y<0],["1–1600",y=>y>=0&&y<1600],["1600s–1700s",y=>y>=1600&&y<1800],["1800s",y=>y>=1800&&y<1900],["1900s on",y=>y>=1900]];
 function fPeriods(){const ph=P.filter(p=>p.era!=="rel");return FPER.map(([n,f])=>{const m=ph.filter(p=>f(p.y0));return {n,m,x:fmean(m.map(p=>p.s[0])),y:fmean(m.map(p=>p.s[1])),z:fmean(m.map(p=>p.s[2]))};});}
 function fTime(){const per=fPeriods(),W=640,L=48,R=150,top=14,Hp=220,H=top+Hp+40,lo=-60,hi=80,sx=i=>L+i*(W-L-R)/(per.length-1),sy=v=>top+(hi-v)/(hi-lo)*Hp;
- let s=`<svg viewBox="0 0 ${W} ${H}" class="fchart" role="img" aria-label="Average Y and Z of philosophers by period">`;
+ let s=`<svg viewBox="0 0 ${W} ${H}" class="fchart" role="img" aria-label="Average Y and Z of thinkers by period">`;
  [-40,0,40,80].forEach(v=>{s+=`<line x1="${L}" x2="${W-R}" y1="${sy(v)}" y2="${sy(v)}" class="fgrid${v===0?" fzero":""}"/><text x="${L-8}" y="${sy(v)+4}" text-anchor="end" class="ftick">${fsg(v)}</text>`;});
  per.forEach((p,i)=>{s+=`<text x="${sx(i)}" y="${top+Hp+18}" text-anchor="middle" class="ftick">${fesc(p.n)}</text><text x="${sx(i)}" y="${top+Hp+32}" text-anchor="middle" class="fmini">${p.m.length} thinkers</text>`;});
  [["y","var(--py)","Y · where the ultimate is"],["z","var(--pz)","Z · truth found or made"]].forEach(([k,c,lab])=>{
   s+=`<path d="${per.map((p,i)=>(i?"L":"M")+sx(i).toFixed(1)+" "+sy(p[k]).toFixed(1)).join("")}" class="fline" style="stroke:${c}"/>`;
   per.forEach((p,i)=>{s+=`<circle cx="${sx(i)}" cy="${sy(p[k])}" r="4.5" fill="${c}" class="fring"/>`;});
   const e=per[per.length-1];s+=`<text x="${sx(per.length-1)+12}" y="${sy(e[k])+4}" class="flab">${lab.split(" ")[0]} ${fsg(e[k])}</text>`;});
- per.forEach((p,i)=>{const w=(W-L-R)/(per.length-1);s+=`<g class="fcol" tabindex="0" data-tip="Y ${fsg(p.y)} · Z ${fsg(p.z)}|${fesc(p.n)} · ${p.m.length} philosophers"><rect x="${sx(i)-w/2}" y="${top}" width="${w}" height="${Hp}" fill="transparent"/><line x1="${sx(i)}" x2="${sx(i)}" y1="${top}" y2="${top+Hp}" class="fxh"/></g>`;});
- return flegend([["var(--py)","Y · where the ultimate is",1],["var(--pz)","Z · truth found or made",1]])+s+"</svg>"+ftable(["Period","Philosophers","Average X","Average Y","Average Z"],per.map(p=>[p.n,p.m.length,fsg(p.x),fsg(p.y),fsg(p.z)]));}
+ per.forEach((p,i)=>{const w=(W-L-R)/(per.length-1);s+=`<g class="fcol" tabindex="0" data-tip="Y ${fsg(p.y)} · Z ${fsg(p.z)}|${fesc(p.n)} · ${p.m.length} thinkers"><rect x="${sx(i)-w/2}" y="${top}" width="${w}" height="${Hp}" fill="transparent"/><line x1="${sx(i)}" x2="${sx(i)}" y1="${top}" y2="${top+Hp}" class="fxh"/></g>`;});
+ return flegend([["var(--py)","Y · where the ultimate is",1],["var(--pz)","Z · truth found or made",1]])+s+"</svg>"+ftable(["Period","Thinkers","Average X","Average Y","Average Z"],per.map(p=>[p.n,p.m.length,fsg(p.x),fsg(p.y),fsg(p.z)]));}
 function fGoodsByPeriod(){const per=fPeriods(),cols=[...FSLOT,null],cnt=per.map(p=>cols.map(k=>p.m.filter(q=>(q.hg||null)===k).length)),mx=Math.max(...cnt.flat());
- return `<div class="ftscroll"><table class="fheat"><thead><tr><th>Period</th>${cols.map(k=>`<th><i class="fsw" style="background:${fgc(k)}"></i>${fgn(k)}</th>`).join("")}</tr></thead><tbody>${per.map((p,r)=>`<tr><th>${fesc(p.n)}</th>${cnt[r].map((c,j)=>`<td style="--h:${Math.round(c/mx*62)}%" tabindex="0" data-tip="${c} of ${p.m.length}|${fesc(p.n)} · ${fesc(fgn(cols[j]))}">${c||"·"}</td>`).join("")}</tr>`).join("")}</tbody></table></div><p class="fnote">Number of philosophers in each period whose highest good is each one. Darker cells hold more.</p>`;}
+ return `<div class="ftscroll"><table class="fheat"><thead><tr><th>Period</th>${cols.map(k=>`<th><i class="fsw" style="background:${fgc(k)}"></i>${fgn(k)}</th>`).join("")}</tr></thead><tbody>${per.map((p,r)=>`<tr><th>${fesc(p.n)}</th>${cnt[r].map((c,j)=>`<td style="--h:${Math.round(c/mx*62)}%" tabindex="0" data-tip="${c} of ${p.m.length}|${fesc(p.n)} · ${fesc(fgn(cols[j]))}">${c||"·"}</td>`).join("")}</tr>`).join("")}</tbody></table></div><p class="fnote">Number of thinkers in each period whose highest good is each one. Darker cells hold more.</p>`;}
 
-/* ---------- 05 · religions vs philosophers ---------- */
+/* ---------- 05 · religions vs thinkers ---------- */
 function fDumbbell(){const R=P.filter(p=>p.era==="rel"),Q=P.filter(p=>p.era!=="rel");
  const rows=[["X · mind ↔ matter",fmed(R.map(p=>p.s[0])),fmed(Q.map(p=>p.s[0])),.041],["Y · where the ultimate is",fmed(R.map(p=>p.s[1])),fmed(Q.map(p=>p.s[1])),.055],["Z · truth found or made",fmed(R.map(p=>p.s[2])),fmed(Q.map(p=>p.s[2])),.319],["Personal ↔ impersonal*",75,-55,.006]];
  const W=640,L=190,Rm=112,top=18,rh=46,sc=v=>L+(v+100)/200*(W-L-Rm),H=top+rows.length*rh+22;
- let s=`<svg viewBox="0 0 ${W} ${H}" class="fchart" role="img" aria-label="Median position of religions and philosophers">`;
+ let s=`<svg viewBox="0 0 ${W} ${H}" class="fchart" role="img" aria-label="Median position of religions and thinkers">`;
  [-100,-50,0,50,100].forEach(v=>{s+=`<line x1="${sc(v)}" x2="${sc(v)}" y1="${top-8}" y2="${top+rows.length*rh-16}" class="fgrid${v===0?" fzero":""}"/><text x="${sc(v)}" y="${H-4}" text-anchor="middle" class="ftick">${fsg(v)}</text>`;});
  rows.forEach(([n,a,b,pv],i)=>{const y=top+i*rh+8;s+=`<text x="${L-12}" y="${y+4}" text-anchor="end" class="flab">${fesc(n)}</text><line x1="${sc(Math.min(a,b))}" x2="${sc(Math.max(a,b))}" y1="${y}" y2="${y}" class="fconn"/>`;
-  [[a,"var(--rel)","Religions"],[b,"var(--ink2)","Philosophers"]].forEach(([v,c,lab])=>{s+=`<g tabindex="0" data-tip="${fsg(v)}|${lab} · median ${fesc(n)}"><circle cx="${sc(v)}" cy="${y}" r="12" fill="transparent"/><circle cx="${sc(v)}" cy="${y}" r="6" fill="${c}" class="fring"/></g>`;});
+  [[a,"var(--rel)","Religions"],[b,"var(--ink2)","Thinkers"]].forEach(([v,c,lab])=>{s+=`<g tabindex="0" data-tip="${fsg(v)}|${lab} · median ${fesc(n)}"><circle cx="${sc(v)}" cy="${y}" r="12" fill="transparent"/><circle cx="${sc(v)}" cy="${y}" r="6" fill="${c}" class="fring"/></g>`;});
   s+=`<text x="${W-Rm+14}" y="${y+4}" class="fval${pv<.05?" fsig":""}">${fp(pv)}${pv<.05?"":" · no real gap"}</text>`;});
- return flegend([["var(--rel)","Religions (15)"],["var(--ink2)","Philosophers (46)"]])+s+"</svg>"+`<p class="fnote">Dots are medians. *The personal ↔ impersonal scores come from the earlier version of the map, which measured them directly.</p>`+
-  ftable(["Measure","Religions (median)","Philosophers (median)","Difference likely real?"],rows.map(r=>[r[0],fsg(r[1]),fsg(r[2]),fp(r[3])+(r[3]<.05?" · yes":" · no")]));}
+ return flegend([["var(--rel)","Religions (15)"],["var(--ink2)","Thinkers (48)"]])+s+"</svg>"+`<p class="fnote">Dots are medians. *The personal ↔ impersonal scores come from the earlier version of the map, which measured them directly.</p>`+
+  ftable(["Measure","Religions (median)","Thinkers (median)","Difference likely real?"],rows.map(r=>[r[0],fsg(r[1]),fsg(r[2]),fp(r[3])+(r[3]<.05?" · yes":" · no")]));}
 
 /* ---------- 06 · decision styles vs axes ---------- */
 const FDM={"P":{"sx":[-0.21,0.281],"sy":[0.45,0.018],"z":[0.43,0.024],"pers":[0.15,0.448]},"F":{"sx":[-0.51,0.006],"sy":[0.68,0.0],"z":[-0.09,0.636],"pers":[0.87,0.0]},"C":{"sx":[0.38,0.038],"sy":[-0.11,0.575],"z":[0.51,0.005],"pers":[-0.38,0.044]},"I":{"sx":[0.07,0.713],"sy":[-0.53,0.003],"z":[-0.41,0.033],"pers":[-0.28,0.135]},"O":{"sx":[0.44,0.017],"sy":[-0.49,0.007],"z":[-0.35,0.06],"pers":[-0.36,0.054]},"M":{"sx":[-0.05,0.796],"sy":[-0.11,0.565],"z":[-0.21,0.282],"pers":[-0.01,0.977]}};
@@ -1946,10 +1995,10 @@ function fMatrix(){const cols=[["sx","X · matter"],["sy","Y · beyond"],["z","Z
 /* ---------- 07 · drift by good ---------- */
 function fDrift(){const ph=P.filter(p=>p.era!=="rel"&&p.hg),gs=FSLOT.map(k=>({k,m:ph.filter(p=>p.hg===k)})).filter(o=>o.m.length>=2).map(o=>({...o,v:fmean(o.m.map(p=>p.drift))})).sort((a,b)=>a.v-b.v);
  const W=640,L=196,R=60,top=6,rh=30,bh=16,max=Math.ceil(Math.max(...gs.map(o=>o.v))/10)*10,sc=v=>L+(W-L-R)*v/max,H=top+gs.length*rh+24;
- let s=`<svg viewBox="0 0 ${W} ${H}" class="fchart" role="img" aria-label="Average drift of philosophers by highest good">`;
+ let s=`<svg viewBox="0 0 ${W} ${H}" class="fchart" role="img" aria-label="Average drift of thinkers by highest good">`;
  for(let v=0;v<=max;v+=10)s+=`<line x1="${sc(v)}" x2="${sc(v)}" y1="${top}" y2="${top+gs.length*rh-8}" class="fgrid"/><text x="${sc(v)}" y="${H-4}" text-anchor="middle" class="ftick">${v}</text>`;
- gs.forEach((o,i)=>{const y=top+i*rh,w=Math.max(2,sc(o.v)-L),hl=o.k==="G";s+=`<text x="${L-12}" y="${y+bh-3}" text-anchor="end" class="flab${hl?" fb":""}">${fgn(o.k)} · ${o.m.length}</text><path d="${fbar(L,y,w,bh)}" fill="${hl?fgc("G"):"var(--fgray)"}" class="fmark" tabindex="0" data-tip="${o.v.toFixed(1)} units|${fgn(o.k)} · ${o.m.length} philosophers"/><text x="${L+w+6}" y="${y+bh-3}" class="fval">${o.v.toFixed(1)}</text>`;});
- return s+"</svg>"+`<p class="fnote">Drift is the distance between where a philosopher placed themselves and where their arguments land. Philosophers only, so religions coded "as taught" don't skew it. Goods held by a single philosopher are left out.</p>`+ftable(["Highest good","Philosophers","Average drift"],gs.map(o=>[fgn(o.k),o.m.length,o.v.toFixed(1)]));}
+ gs.forEach((o,i)=>{const y=top+i*rh,w=Math.max(2,sc(o.v)-L),hl=o.k==="G";s+=`<text x="${L-12}" y="${y+bh-3}" text-anchor="end" class="flab${hl?" fb":""}">${fgn(o.k)} · ${o.m.length}</text><path d="${fbar(L,y,w,bh)}" fill="${hl?fgc("G"):"var(--fgray)"}" class="fmark" tabindex="0" data-tip="${o.v.toFixed(1)} units|${fgn(o.k)} · ${o.m.length} thinkers"/><text x="${L+w+6}" y="${y+bh-3}" class="fval">${o.v.toFixed(1)}</text>`;});
+ return s+"</svg>"+`<p class="fnote">Drift is the distance between where a thinker placed themselves and where their arguments land. Thinkers only, so religions coded "as taught" don't skew it. Goods held by a single thinker are left out.</p>`+ftable(["Highest good","Thinkers","Average drift"],gs.map(o=>[fgn(o.k),o.m.length,o.v.toFixed(1)]));}
 
 /* ---------- 08 · the truth fault line inside theism ---------- */
 function fTheism(){const m=P.filter(p=>p.hg==="G").sort((a,b)=>a.s[2]-b.s[2]),W=640,L=200,R=120,top=8,rh=21,sc=z=>L+(z+100)/200*(W-L-R),H=top+m.length*rh+38,bold=new Set(["Plato","Latter-day Saints","Joseph Smith","al-Ghazālī"]);
@@ -1997,19 +2046,19 @@ function buildFindings(){if(fBuilt)return;fBuilt=true;
   ["03","f-truth","Once God is set aside, the truth axis matters most",
    `<p>Among the 36 entries whose good is <i>not</i> union with the divine, Z (truth found or made) is the best guide: it explains 46% of the spread, a pattern chance would almost never produce (p &lt; .001). Y explains 25%, a weaker link (p = .03) that could still be chance given how many patterns were checked, and X explains nothing.</p><p>The goods you conform yourself to (understanding, liberation, character, harmony) sit where truth is found. The goods you create or win (happiness, freedom, justice) sit where it is made.</p><p class="fcaveat">This is a tendency in the averages, not a sorting rule. Close neighbours in the model still often hold different goods.</p>`,
    fZdots(),"ω² as above, computed only among the 36 entries whose good isn't union with the divine."],
-  ["04","f-time","Philosophy lost transcendence and found truth, but not mind",
-   `<p>Across 48 philosophers, later thinkers place the ultimate lower (ρ = −.42) and treat truth as more made (ρ = −.35). Mind vs. matter shows no trend at all (ρ = +.09). The familiar story of a "rise of materialism" doesn't appear here; the loss of a beyond and of found truth does.</p>`,
-   fTime()+`<h3 class="fsub">The highest good: consensus, then pluralism, then silence</h3><p class="flead2">Before 1600, philosophers mostly agree: 6 of 10 aim at union with the divine. The 1800s hold six different goods among 13 thinkers, and three of them name none. Every philosopher before 1800 names a highest good; four of the nine from the 1900s on name none.</p>`+fGoodsByPeriod(),
-   "ρ (rho) is a rank correlation, from −1 (one goes up as the other goes down) through 0 (no link) to +1 (they rise together), tested by permutation. Periods group philosophers by birth year."],
-  ["05","f-religion","Religions and philosophers differ on everything except truth",
-   `<p>Religions are more mind-first than philosophers and far more personal, but whether truth is found or made doesn't separate them at all. It's the question a religion leaves most open, which is where members of the same faith can differ most.</p><p>Religions also cover only four highest goods: union with the divine, liberation, character and harmony. None aims at freedom, happiness, justice, understanding or achievement.</p>`,
-   fDumbbell(),"Mann–Whitney tests on the medians of 15 religions and 48 philosophers."],
+  ["04","f-time","Thought lost transcendence and found truth, but not mind",
+   `<p>Across 48 thinkers, later thinkers place the ultimate lower (ρ = −.42) and treat truth as more made (ρ = −.35). Mind vs. matter shows no trend at all (ρ = +.09). The familiar story of a "rise of materialism" doesn't appear here; the loss of a beyond and of found truth does.</p>`,
+   fTime()+`<h3 class="fsub">The highest good: consensus, then pluralism, then silence</h3><p class="flead2">Before 1600, thinkers mostly agree: 6 of 10 aim at union with the divine. The 1800s hold six different goods among 13 thinkers, and three of them name none. Every thinker before 1800 names a highest good; four of the nine from the 1900s on name none.</p>`+fGoodsByPeriod(),
+   "ρ (rho) is a rank correlation, from −1 (one goes up as the other goes down) through 0 (no link) to +1 (they rise together), tested by permutation. Periods group thinkers by birth year."],
+  ["05","f-religion","Religions and thinkers differ on everything except truth",
+   `<p>Religions are more mind-first than thinkers and far more personal, but whether truth is found or made doesn't separate them at all. It's the question a religion leaves most open, which is where members of the same faith can differ most.</p><p>Religions also cover only four highest goods: union with the divine, liberation, character and harmony. None aims at freedom, happiness, justice, understanding or achievement.</p>`,
+   fDumbbell(),"Mann–Whitney tests on the medians of 15 religions and 48 thinkers."],
   ["06","f-decide","How you decide tracks where you stand",
    `<p>Among the 29 entries with a decision profile, deciding by faith goes with a personal, transcendent ultimate. Deciding by character or principle goes with truth that is found. Deciding by gut feeling goes with an ultimate close to this world and truth that is made.</p>`,
    fMatrix(),"Decision profiles are the weights used to match test-takers' ways of deciding (principle, faith, character, gut feeling, outcomes, community)."],
   ["07","f-drift","Thinkers who aim at union with God are the most consistent",
-   `<p>For philosophers who aim at union with the divine, arguments land 6.5 units from their own claims on average. For philosophers aiming at any other good, it's 27 (p = .004). Thinkers aiming at achievement or happiness drift most. A likely reason: theists state their metaphysics outright and build on it, while several thinkers aiming at worldly goods make claims their own arguments undercut. ${fname(fby("Hobbes"))}, the biggest drift in the model, affirmed a God his mechanism leaves no room for.</p>`,
-   fDrift(),"Mann–Whitney test comparing drift for philosophers aiming at union with the divine against all other philosophers."],
+   `<p>For thinkers who aim at union with the divine, arguments land 6.5 units from their own claims on average. For thinkers aiming at any other good, it's 27 (p = .004). Thinkers aiming at achievement or happiness drift most. A likely reason: theists state their metaphysics outright and build on it, while several thinkers aiming at worldly goods make claims their own arguments undercut. ${fname(fby("Hobbes"))}, the biggest drift in the model, affirmed a God his mechanism leaves no room for.</p>`,
+   fDrift(),"Mann–Whitney test comparing drift for thinkers aiming at union with the divine against all other thinkers."],
   ["08","f-theism","Truth is the fault line inside theism",
    `<p>No group is more divided about truth than the one aiming at union with the divine. It runs from ${fname(fby("al-Ghazālī"))}, for whom good is whatever God commands, to ${fname(fby("Plato"))}, for whom the Forms bind even the gods. There is a hint, too small to be sure of, that traditions where truth binds God lean less on faith when deciding.</p><p>${fname(fby("Latter-day Saints"))} and ${fname(fby("Joseph Smith"))} break that hint: as truth-found as Plato, and as faith-led as the voluntarists.</p>`,
    fTheism(),"Spread on Z within this group is 59 units (standard deviation), against about 42 for the other goods. The faith trend is ρ = −.40 across 13 entries, which is not significant."],
@@ -2024,7 +2073,7 @@ function buildFindings(){if(fBuilt)return;fBuilt=true;
   <div class="fstats"><div class="fstat"><span class="lbl">Strongest link</span><b>69%</b><p>of the spread on Y, where the ultimate is, lines up with the highest good</p></div>
   <div class="fstat"><span class="lbl">One line</span><b>91%</b><p>of entries are sorted correctly into "union with the divine" or not by a single cut at Y +34</p></div>
   <div class="fstat"><span class="lbl">Prediction</span><b>50%</b><p>of entries' exact highest good, out of nine, is predicted from position alone. Always guessing the most common good gets 36%</p></div></div>
-  <p class="flead">These findings come from the survey's own data: 48 philosophers and 15 religions placed on three axes, each with a highest good (7 philosophers propose none and are left out wherever the good is compared). Every number here was computed from those placements, with permutation tests to rule out chance.</p>
+  <p class="flead">These findings come from the survey's own data: 48 thinkers and 15 religions placed on three axes, each with a highest good (7 thinkers propose none and are left out wherever the good is compared). Every number here was computed from those placements, with permutation tests to rule out chance.</p>
   <nav class="ftoc" aria-label="Findings">${secs.map(s=>`<button data-fjump="${s[1]}"><span>${s[0]}</span>${s[2]}</button>`).join("")}<button data-fjump="f-caveats"><span>12</span>How much to trust this</button></nav></section>`+
   secs.map(s=>fSec(...s)).join("")+
   `<section class="fsec" id="f-caveats"><div class="fsh"><span class="fno">12</span><h2>How much to trust this</h2></div><div class="flead">
