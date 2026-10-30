@@ -1,13 +1,13 @@
 # Metaphysical Field Survey
 
-A 3D, CAD-style model of 46 philosophers and 15 religious traditions, placed by their metaphysical claims, plus a test that puts your own pins in the model.
+A 3D, CAD-style model of 48 philosophers and 15 religious traditions, placed by their metaphysical claims, plus a test that puts your own pins in the model.
 
 ## The three axes, and a fourth question
 
 - **X · What is fundamental?** (left ↔ right): if you broke everything down to its most basic ingredient, would you find mind or matter?
 - **Y · Where is the ultimate?** (up ↕ down): if you keep asking "but why?", where does the chain finally stop: beyond the universe, in the universe itself, or nowhere at all? This also tells you *who* would make truth, if truth is made: God's will sits high, human construction sits low.
 - **Z · Is truth found or made?** (front ↔ back): are the deepest truths (logic, math, right and wrong, the order of nature) eternal and discovered, or brought into being by a will or mind? Plato, Latter-day Saint teaching and Jainism sit at the front, where truth is uncreated and binds even God. Most Christian theology sits mid-way, with truth grounded in God's nature. Voluntarists like Ockham and al-Ghazālī, and constructivists like Nietzsche, sit at the back.
-- **What is the highest good?** (shown by color): what a life is ultimately for. This isn't a scale, so it's a category: union with the divine, character and flourishing, liberation and peace, happiness and wellbeing, freedom and self-creation, justice and the common good, harmony with the way of things, or understanding. It shows kinships the axes hide: the Stoics and the Buddhists both aim at freedom from craving and disturbance; Plato, Augustine and Latter-day Saint teaching all aim at becoming like God; Nietzsche aims at the opposite of Plato's good as well as sitting at the opposite corner of the model.
+- **What is the highest good?** (shown by color): what a life is ultimately for. This isn't a scale, so it's a category: union with the divine, character and flourishing, liberation and peace, happiness and wellbeing, freedom and self-creation, justice and the common good, harmony with the way of things, understanding, or achievement and success. It shows kinships the axes hide: Epicurus and the Buddhists both aim at freedom from craving and disturbance; Plato, Augustine and Latter-day Saint teaching all aim at becoming like God; Nietzsche aims at the opposite of Plato's good as well as sitting at the opposite corner of the model.
 
 ## Using the model
 
@@ -32,7 +32,7 @@ Thirty-six questions in seven parts. It opens in its own tab, and when you finis
 
 ### How the test was checked
 
-Each question was answered as all 61 mapped thinkers and traditions would answer it, based on their own writings, and the results were compared with their places in the model. The test puts 43 of 61 in the correct one of 17 blocks, 46 of 61 in the correct column, and 58 of 61 on the correct side of the truth axis (average truth-axis error about 12 units). The five highest-good questions, answered independently for each entry, recover the intended good for 54 of the 55 entries that name one. Counting the good, 45 of 61 entries find themselves in their own top three matches (up from 38 on the axes alone). The page's scoring was checked against the validation harness on all 61 answer sheets.
+Each question was answered as all 61 mapped thinkers and traditions would answer it, based on their own writings, and the results were compared with their places in the model. The test puts 43 of 61 in the correct one of 17 blocks, 46 of 61 in the correct column, and 58 of 61 on the correct side of the truth axis (average truth-axis error about 12 units). The five highest-good questions, answered independently for each entry, recover the intended good for 55 of the 56 entries that name one (Machiavelli and Ayn Rand, added later, are checked on these five questions only). Counting the good, 44 of 61 entries find themselves in their own top three matches (up from 38 on the axes alone). The page's scoring was checked against the validation harness on all 61 answer sheets.
 
 ## Collecting results (no login)
 

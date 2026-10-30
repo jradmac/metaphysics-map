@@ -57,7 +57,7 @@ async function initDb() {
 /* ---------- validation ---------- */
 const RELIGIONS = ['Latter-day Saint', 'Catholic', 'Protestant or Evangelical', 'Orthodox Christian', 'Other Christian',
   'Jewish', 'Muslim', 'Hindu', 'Buddhist', 'Sikh', 'Spiritual but not religious', 'Not religious', 'Other'];
-const GOODS = ['G', 'V', 'L', 'H', 'F', 'J', 'W', 'K'];
+const GOODS = ['G', 'V', 'L', 'H', 'F', 'J', 'W', 'K', 'A'];
 const STYLES = ['P', 'F', 'C', 'I', 'O', 'M'];
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const num = (v, lo, hi) => typeof v === 'number' && Number.isFinite(v) && v >= lo && v <= hi;
@@ -146,6 +146,23 @@ const ROWS_SQL = `select id, created_at, rid, version, religion, duration_s, bel
   row_number() over (partition by rid order by created_at) as attempt
   from responses order by created_at desc limit 20000`;
 
+/* ---------- link previews for shared results (?r=...) ---------- */
+const TITLES = JSON.parse(fs.readFileSync(path.join(ROOT, 'titles.json'), 'utf8'));
+const escHtml = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+function previewMeta(r, req) {
+  if (!r || r.length > 4000) return null;
+  let d; try { d = JSON.parse(Buffer.from(r, 'base64url').toString('utf8')); } catch (e) { return null; }
+  const title = d && TITLES[d.z]; if (!title) return null;
+  const name = typeof d.n === 'string' ? d.n.replace(/[\u0000-\u001f]/g, '').trim().slice(0, 30) : '';
+  const art = /^[AEIOU]/.test(title) ? 'an' : 'a';
+  const head = name ? `${name} is ${art} ${title}` : `I'm ${art} ${title}`;
+  const desc = 'See their results on the Metaphysical Field Survey, then take the test and find where you land.';
+  return [`<meta property="og:type" content="website">`, `<meta property="og:site_name" content="Metaphysical Field Survey">`,
+    `<meta property="og:title" content="${escHtml(head)}">`, `<meta property="og:description" content="${escHtml(desc)}">`,
+    `<meta name="twitter:card" content="summary">`, `<meta name="twitter:title" content="${escHtml(head)}">`,
+    `<meta name="twitter:description" content="${escHtml(desc)}">`].join('\n');
+}
+
 /* ---------- routes ---------- */
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, 'http://x');
@@ -186,7 +203,10 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (req.method === 'GET' && (p === '/' || p === '/index.html')) {
-      return send(res, 200, fs.readFileSync(path.join(ROOT, 'index.html')), 'text/html; charset=utf-8', { 'Cache-Control': 'no-cache' });
+      let html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+      const meta = previewMeta(url.searchParams.get('r'), req);
+      if (meta) html = html.replace('</title>', '</title>\n' + meta);
+      return send(res, 200, html, 'text/html; charset=utf-8', { 'Cache-Control': 'no-cache' });
     }
     return send(res, 404, 'Not found', 'text/plain; charset=utf-8');
   } catch (e) {
