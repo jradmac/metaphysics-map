@@ -352,7 +352,8 @@ body.modal-open{overflow:hidden}
 .explain{border:1.5px solid var(--ink);background:var(--sheet);padding:16px 18px;display:flex;flex-direction:column;gap:14px}
 .ex-head h2{margin:2px 0 0;font-size:20px;line-height:1.25;text-wrap:balance}
 .ex-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
-@media (max-width:1180px){.ex-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:1180px){.ex-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ex-col.zc3{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:22px;row-gap:8px;align-content:start}.zc3>*{grid-column:1}.zc3>.ex-scale{grid-column:2;grid-row:1/span 6;align-self:start}}
+@media (max-width:820px){.ex-col.zc3{display:flex}}
 @media (max-width:820px){.ex-grid{grid-template-columns:minmax(0,1fr)}}
 .ex-col{display:flex;flex-direction:column;gap:8px;min-width:0}
 .ex-col h3{margin:0;font-size:18px}
@@ -648,7 +649,7 @@ svg.focus .ztag.on{opacity:1}
         <ol class="ex-scale"><li><span class="ex-v mono">+100</span><b>Wholly beyond</b><span class="ex-d">The final answer is outside the universe, the way a painter is outside a painting.</span><span class="ex-e">Plotinus, Islam</span></li><li><span class="ex-v mono">+50</span><b>Beyond and present</b><span class="ex-d">The source is beyond the universe and also runs through all of it.</span><span class="ex-e">Sikhism, Laozi</span></li><li><span class="ex-v mono">0</span><b>The world itself</b><span class="ex-d">The universe is the final answer, sacred or rational in its own right.</span><span class="ex-e">Spinoza, the Stoics</span></li><li><span class="ex-v mono">−50</span><b>Only this world</b><span class="ex-d">There is no final answer. The universe just exists.</span><span class="ex-e">Hume, Marx</span></li><li><span class="ex-v mono">−100</span><b>Constructed</b><span class="ex-d">The question is a mistake. "Why" only works inside human language and culture.</span><span class="ex-e">Foucault, Derrida</span></li></ol>
         <p class="ex-tip"><b>Quick check:</b> is there something more real than the universe that the universe depends on? If yes, you sit near the top.</p>
       </div>
-      <div class="ex-col">
+      <div class="ex-col zc3">
         <div class="lbl">Front ↔ back · Z axis</div>
         <h3>Is truth found or made?</h3>
         <p class="ex-q">Was <b>2 + 2 = 4</b> true before anyone counted? Could anyone, even God, make cruelty good just by approving of it?</p>
