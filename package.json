@@ -1,0 +1,16 @@
+{
+  "name": "metaphysics-map",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Metaphysical Field Survey: the 3D model, the test, and anonymous result collection.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "pg": "^8.13.1"
+  }
+}

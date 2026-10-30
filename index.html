@@ -718,6 +718,17 @@ svg.simple.focus .zedge:not(.on){stroke-opacity:.12}
  .fsh h2{font-size:18px}
 }
 
+
+/* share step */
+.shr-c{display:flex;gap:10px;align-items:flex-start;font-size:15px;border:1px solid var(--line);padding:12px;cursor:pointer}
+.shr-c input{width:18px;height:18px;margin:2px 0 0;flex:none;accent-color:var(--ink)}
+.shr-r{display:flex;flex-direction:column;gap:6px}
+.shr-r select{font:inherit;font-size:15px;padding:9px 10px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);max-width:420px}
+.shr-d summary{cursor:pointer;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;color:var(--ink2)}
+.shr-d ul{margin:8px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:13.5px;color:var(--ink2);max-width:70ch}
+.shr-d b{color:var(--ink)}
+.shr-note{color:var(--ink2);border-left:2px solid var(--gG);padding-left:9px}
+
 /* default scale: matches the layout at 75% browser zoom */
 .wrap,.tpage,.fpage{zoom:.75}
 .empty-state h2{margin:0;font-size:22px}
@@ -1390,10 +1401,19 @@ const SOUL=TEST.findIndex(q=>q.id==="soul");
 const T={stage:"intro",i:0,ans:[],order:[],res:null,dres:null,tally:null,sd:null,gt:null};
 const SAVE="mfs-test-v11";
 function validRes(d){const ok=a=>Array.isArray(a)&&a.length===3&&a.every(v=>typeof v==="number"&&isFinite(v));return d&&Array.isArray(d.ans)&&d.ans.length===TEST.length&&ok(d.res)&&(d.dres==null||ok(d.dres))&&(d.gt==null||typeof d.gt==="object");}
-function useRes(d){Object.assign(T,{ans:d.ans,res:d.res,dres:d.dres||null,tally:d.tally||null,sd:d.sd||[0,0,0],gt:d.gt||null});}
+function useRes(d){Object.assign(T,{ans:d.ans,res:d.res,dres:d.dres||null,tally:d.tally||null,sd:d.sd||[0,0,0],gt:d.gt||null,shared:!!d.shared});}
 function loadSaved(){try{const d=JSON.parse(localStorage.getItem(SAVE)||"null");if(validRes(d)){useRes(d);return true;}}catch(e){}return false;}
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function startTest(){T.stage="q";T.i=0;T.ans=new Array(TEST.length).fill(null);T.order=TEST.map(q=>shuffle(q.o.map((_,k)=>k)));renderTestPage();}
+let SHARE_OK=false;
+const RELIGIONS=["Latter-day Saint", "Catholic", "Protestant or Evangelical", "Orthodox Christian", "Other Christian", "Jewish", "Muslim", "Hindu", "Buddhist", "Sikh", "Spiritual but not religious", "Not religious", "Other"];
+if(/^https?:$/.test(location.protocol)){try{fetch("/api/health",{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{SHARE_OK=!!(j&&j.collecting);}).catch(()=>{});}catch(e){}}
+function anonId(){let id=null;try{id=localStorage.getItem("mfs-rid");}catch(e){}
+ if(!id||!/^[0-9a-f-]{36}$/i.test(id)){id=(crypto.randomUUID?crypto.randomUUID():"10000000-1000-4000-8000-100000000000".replace(/[018]/g,c=>(c^crypto.getRandomValues(new Uint8Array(1))[0]&15>>c/4).toString(16)));try{localStorage.setItem("mfs-rid",id);}catch(e){}}
+ return id;}
+function submitResult(sh){try{const body=JSON.stringify({v:SAVE,rid:anonId(),consent:true,adult:true,religion:sh.religion||null,dur:T.t0?Math.min(86400,(Date.now()-T.t0)/1000):null,
+  ans:T.ans,res:T.res,dres:T.dres,sd:T.sd,gt:T.gt,tally:T.tally,zone:zoneAt(...T.res).id,dzone:T.dres?zoneAt(...T.dres).id:null});
+ fetch("/api/responses",{method:"POST",headers:{"Content-Type":"application/json"},body,keepalive:true}).catch(()=>{});}catch(e){}}
+function startTest(){T.t0=Date.now();T.stage="q";T.i=0;T.ans=new Array(TEST.length).fill(null);T.order=TEST.map(q=>shuffle(q.o.map((_,k)=>k)));renderTestPage();}
 function scoreTest(){const acc=[[0,0,[]],[0,0,[]],[0,0,[]]];const gt={};GORD.forEach(k=>gt[k]=0);let gw=0;const sp=SPV[T.ans[SOUL]]??-20;
  const add=(ax,v,w)=>{acc[ax][0]+=v*w;acc[ax][1]+=w;acc[ax][2].push([v,w]);};
  T.ans.forEach((a,i)=>{if(TEST[i].k!=="p"||a==null||a<0)return;const v=TEST[i].o[a][1];
@@ -1504,8 +1524,21 @@ function renderTestPage(){const c=testCard;
   <p class="tlead">Seven short parts. The first maps how you actually make decisions. The next five map what you believe about your mind, the universe, meaning, truth, and whether truth is found or made. The last asks what you think a life is for.</p>
   <p class="empty">Go with your gut, and answer with what you actually think rather than what you were taught. If nothing fits, choose "Not sure" and it won't move your pins. When you finish, you'll go back to the map, where two pins mark your beliefs and your decisions in the 3D model.</p>
   <button class="btn solid" id="tStart">START THE TEST</button>`;document.getElementById("tStart").onclick=startTest;return;}
+ if(T.stage==="share"){let last="";try{last=localStorage.getItem("mfs-religion")||"";}catch(e){}
+  c.innerHTML=`<div class="lbl">Last step · optional</div><h2>Add your answers to the research?</h2>
+  <p class="tlead">This survey tests an idea: that people's beliefs about reality shape how they decide, and that people in the same religion can see reality very differently. Your answers help check whether that holds for real people, not just famous thinkers.</p>
+  <label class="shr-c"><input type="checkbox" id="shrOk"> <span>I'm 18 or older, and I agree to share my answers anonymously.</span></label>
+  <label class="shr-r"><span class="lbl">Your religious tradition, if any (optional)</span><select id="shrRel"><option value="">Prefer not to say</option>${RELIGIONS.map(r=>`<option${r===last?" selected":""}>${r}</option>`).join("")}</select></label>
+  <details class="shr-d"><summary>What gets shared</summary><ul>
+   <li><b>Shared:</b> your answers, your pins and highest good, the tradition you pick above, how long the test took, and a random code kept in this browser so a retake can be linked to your earlier result.</li>
+   <li><b>Never collected:</b> your name, email or account, and this site doesn't store your IP address (like any website host, Railway may keep standard request logs).</li>
+   <li>Results are only ever looked at in aggregate. Clearing this site's data in your browser removes the random code.</li></ul></details>
+  <div class="tnav"><button class="btn solid" id="shrYes" disabled>SHARE AND SEE MY RESULTS</button><button class="btn" id="shrNo">SEE MY RESULTS WITHOUT SHARING</button></div>`;
+  const ok=c.querySelector("#shrOk"),yes=c.querySelector("#shrYes");ok.onchange=()=>{yes.disabled=!ok.checked;};
+  yes.onclick=()=>{if(!ok.checked)return;const rel=c.querySelector("#shrRel").value||null;try{localStorage.setItem("mfs-religion",rel||"");}catch(e){}finishTest({religion:rel});};
+  c.querySelector("#shrNo").onclick=()=>finishTest(null);return;}
  if(T.stage==="done"){c.innerHTML=`<div class="lbl">Test complete</div><h2>Placing your pins on the map…</h2>
-  <p class="tlead">Your results are on the main page.</p><button class="btn solid" id="tGo">GO TO THE MAP</button>`;document.getElementById("tGo").onclick=()=>returnToMap(true);return;}
+  <p class="tlead">${T.shared?"Thank you. Your answers were shared anonymously. ":""}Your results are on the main page.</p><button class="btn solid" id="tGo">GO TO THE MAP</button>`;document.getElementById("tGo").onclick=()=>returnToMap(true);return;}
  const q=TEST[T.i],n=TEST.length;
  c.innerHTML=`<div class="phead"><span class="lbl">Part ${q.sec+1} of ${SECT.length} · ${SECT[q.sec]}</span><span class="lbl">Question ${T.i+1} of ${n}</span></div>
   <div class="tprog" role="progressbar" aria-valuemin="0" aria-valuemax="${n}" aria-valuenow="${T.i}"><i style="width:${(T.i/n*100).toFixed(0)}%"></i></div>
@@ -1524,9 +1557,10 @@ function renderTestPage(){const c=testCard;
  c.querySelector("#tBack").onclick=()=>{if(T.i>0){T.i--;renderTestPage();}};
  c.querySelector("#tSkip").onclick=()=>{T.ans[T.i]=-1;advance();};
  const r=c.getBoundingClientRect();if(r.top<0)window.scrollTo(0,Math.max(0,window.scrollY+r.top-12));}
-function advance(){if(T.i<TEST.length-1){T.i++;renderTestPage();}else finishTest();}
-function finishTest(){const B=scoreTest();T.res=B.pin;T.sd=B.sd;T.gt=B.gt;const D=scoreDecisions(T.res[0],T.res[1],T.res[2]);T.dres=D.pin;T.tally=D.tally;T.stage="done";
- const data={ans:T.ans,res:T.res,dres:T.dres,tally:T.tally,sd:T.sd,gt:T.gt,t:Date.now()};
+function advance(){if(T.i<TEST.length-1){T.i++;renderTestPage();}else if(SHARE_OK){T.stage="share";renderTestPage();}else finishTest(null);}
+function finishTest(sh){const B=scoreTest();T.res=B.pin;T.sd=B.sd;T.gt=B.gt;const D=scoreDecisions(T.res[0],T.res[1],T.res[2]);T.dres=D.pin;T.tally=D.tally;T.stage="done";
+ T.shared=!!sh;const data={ans:T.ans,res:T.res,dres:T.dres,tally:T.tally,sd:T.sd,gt:T.gt,shared:T.shared,t:Date.now()};
+ if(sh)submitResult(sh);
  try{localStorage.setItem(SAVE,JSON.stringify(data));}catch(e){}
  try{if(window.opener&&!window.opener.closed)window.opener.postMessage({mfs:"results",data},"*");}catch(e){}
  renderTestPage();setTimeout(()=>returnToMap(false),900);}
@@ -1540,7 +1574,7 @@ function showResults(card){S.view="results";refresh();updateHeader();if(card!==f
   msg(`Your pins: belief <b>(${fmt(T.res[0])}, ${fmt(T.res[1])}, ${fmt(T.res[2])})</b> · ${zoneAt(...T.res).n}`);});}
 function openResultsCard(){const m=document.getElementById("rmodal"),b=document.getElementById("rmBody");if(!m||!T.res)return;
  const tmp=document.createElement("div");tmp.innerHTML=panel.innerHTML;tmp.querySelectorAll(".tnav,.backres,.axf").forEach(x=>x.remove());const ms=tmp.querySelector(".mates");if(ms){const h=document.createElement("div");h.className="lbl";h.textContent="Who shares each of your views";tmp.appendChild(h);tmp.appendChild(ms);}
- b.innerHTML=tmp.innerHTML;b.scrollTop=0;m.hidden=false;document.body.classList.add("rm-open");setTimeout(()=>document.getElementById("rmMap").focus(),30);}
+ b.innerHTML=(T.shared?`<p class="rq shr-note">Shared anonymously. Thank you for adding to the research.</p>`:"")+tmp.innerHTML;b.scrollTop=0;m.hidden=false;document.body.classList.add("rm-open");setTimeout(()=>document.getElementById("rmMap").focus(),30);}
 function closeResultsCard(){const m=document.getElementById("rmodal");if(m&&!m.hidden){m.hidden=true;document.body.classList.remove("rm-open");}}
 document.getElementById("rmClose").onclick=closeResultsCard;
 document.getElementById("rmMap").onclick=()=>{closeResultsCard();S.view="results";refresh();goTo(document.getElementById("vp"));focusPin();};

@@ -34,9 +34,28 @@ Thirty-six questions in seven parts. It opens in its own tab, and when you finis
 
 Each question was answered as all 61 mapped thinkers and traditions would answer it, based on their own writings, and the results were compared with their places in the model. The test puts 43 of 61 in the correct one of 17 blocks, 46 of 61 in the correct column, and 58 of 61 on the correct side of the truth axis (average truth-axis error about 12 units). The five highest-good questions, answered independently for each entry, recover the intended good for 54 of the 55 entries that name one. Counting the good, 45 of 61 entries find themselves in their own top three matches (up from 38 on the axes alone). The page's scoring was checked against the validation harness on all 61 answer sheets.
 
+## Collecting results (no login)
+
+When someone finishes the test on the live site, they're asked whether to add their answers to the research. Nothing is sent unless they tick "I'm 18 or older, and I agree to share my answers anonymously". They can also pick their religious tradition (optional).
+
+- **Stored:** answers, belief and decision pins, highest good, chosen tradition, time taken, and a random code kept in their browser so a retake links to their earlier result.
+- **Never stored:** names, emails, accounts or IP addresses (addresses are only held in memory for a few minutes to stop spam).
+- **Seeing results:** go to `/results` on the live site. The username can be anything; the password is `ADMIN_KEY`. The page shows the goods people aim at, whether the map's main finding holds for real people, how widely members of one faith spread on each axis, belief–decision gaps, retakes, and a CSV download.
+
+The Desktop copy and the claude.ai preview never send anything; the share step only appears when the page is served by `server.js` with a database connected.
+
+### Railway setup
+
+1. In the Railway project, click **+ Create → Database → PostgreSQL**.
+2. Open the web service → **Variables** and add:
+   - `DATABASE_URL` = `${{Postgres.DATABASE_URL}}`
+   - `ADMIN_KEY` = a long password of your choice
+3. Push this repo. Railway runs `npm start` (`node server.js`), which creates the table on first start.
+4. Visit `https://<your-site>/api/health`. It should say `"collecting":true`.
+
 ## Running it
 
-Open `index.html` in any browser. It's one self-contained file with no build step, and it works offline except for the web font.
+Open `index.html` in any browser for the map and test (no build step). To run the server locally: `npm install`, then `DATABASE_URL=postgres://... ADMIN_KEY=secret npm start`.
 
 ## A note on accuracy
 
