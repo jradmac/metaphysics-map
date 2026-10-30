@@ -44,6 +44,10 @@ When someone finishes the test on the live site, they're asked whether to add th
 
 The Desktop copy and the claude.ai preview never send anything; the share step only appears when the page is served by `server.js` with a database connected.
 
+### Sharing a result
+
+The results card shows an identity title for the belief pin's region (for example "Eternal-Law Materialist"). On the live site, **Share my results** makes a link (with an optional first name) that opens straight to that person's card, with buttons to see them on the map or take the test. The result lives in the link itself, so nothing extra is stored, and `server.js` adds a preview title like "Jared is an Eternal-Law Materialist" for iMessage and other apps.
+
 ### Railway setup
 
 1. In the Railway project, click **+ Create → Database → PostgreSQL**.
