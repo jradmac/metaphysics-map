@@ -11,6 +11,7 @@ A 3D, CAD-style model of 46 philosophers and 15 religious traditions, placed by 
 
 ## Using the model
 
+- **On a phone** the model starts as just the colored region blocks. Tap a block to see who sits in it, then tap a name to see who agrees with them.
 - **Drag** to turn it, **shift-drag** to pan, **scroll** to zoom. On a phone, tap any point or block and the model flies to it.
 - **Filters:** tabs under the view buttons show all entries, only philosophers or only religions. Points are colored by their highest good; tap a good under the model to show only the entries that aim at it.
 - **View buttons:** 3D, FRONT (the classic X–Y map), SIDE (truth against the ultimate) and TOP (mind or matter against truth), plus turn and tilt.
@@ -20,7 +21,7 @@ A 3D, CAD-style model of 46 philosophers and 15 religious traditions, placed by 
 
 ## The test
 
-Thirty-six questions in seven parts. It opens in its own tab, and when you finish, it closes and places your pins in the model.
+Thirty-six questions in seven parts. It opens in its own tab, and when you finish, a results card pops up with everything in one scrollable place; tap "Show me on the map" to see your pins in the model.
 
 1. **How you decide** comes first. Six real-life scenarios; pick up to three answers and star the one that matters most. This places your **decision pin**, which moves up–down (where you look for guidance) and front–back (whether you act as if right and wrong are found or made).
 2. **Your mind, The universe, Meaning, Truth, Found or made, and The good** place your **belief pin** and your **highest good**. The last part asks directly, mostly without mentioning God, whether truth is found or made: was 2 + 2 = 4 true before anyone counted, could the deepest truths change, are scientists discovering or inventing laws, and Plato's Euthyphro question. The last part asks what a life is for: what would make yours a good one, what stands out in a truly good person, what gets in the way, which one thing you'd keep, and why you try to be good.

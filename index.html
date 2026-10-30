@@ -566,6 +566,44 @@ svg.focus .ztag.on{opacity:1}
 .axdot.px{fill:var(--px)}.axdot.py{fill:var(--py)}.axdot.pz{fill:var(--pz)}
 @media (max-width:920px){.views button{height:38px;min-width:44px;font-size:12px}}
 
+
+/* results card */
+.rmodal{position:fixed;inset:0;z-index:50;background:color-mix(in srgb,var(--ink) 45%,transparent);display:flex;align-items:center;justify-content:center;padding:16px}
+.rmodal[hidden]{display:none}
+.rmcard{background:var(--sheet);border:1.5px solid var(--ink);width:min(640px,100%);max-height:min(88vh,1100px);display:flex;flex-direction:column;box-shadow:0 18px 48px rgba(0,0,0,.25)}
+.rmhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:14px 16px 10px;border-bottom:1px solid var(--line)}
+.rmhead h2{margin:2px 0 0;font-size:22px}
+.rmx{font:inherit;font-size:16px;width:36px;height:36px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.rmbody{overflow:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px;-webkit-overflow-scrolling:touch}
+.rmbody .phead{display:none}
+.rmfoot{padding:12px 16px;border-top:1px solid var(--line);display:flex;justify-content:center}
+.rmfoot .btn{width:100%;padding:12px;font-size:13px}
+body.rm-open{overflow:hidden}
+/* phones: the model starts as just the colored region blocks */
+svg.simple .ph{display:none}
+svg.simple.focus .ph:not(.is-dim):not(.is-off){display:inline}
+svg.simple .zface{fill-opacity:.1}
+svg.simple .zface.tb{fill-opacity:.06}
+svg.simple .zedge{stroke-opacity:.6;stroke-width:1.4}
+svg.simple .ztag rect{transform-box:fill-box}
+svg.simple .zone-id{font-size:13px}
+svg.simple .g-minor{display:none}
+svg.simple.focus .zface:not(.on){fill-opacity:.02}
+svg.simple.focus .zedge:not(.on){stroke-opacity:.12}
+@media (max-width:920px){
+ .vscroll svg{width:100%!important;max-width:100%!important}
+ .vscroll{max-height:none;overflow:hidden}
+ svg.simple .name{font-size:36px;stroke-width:7px}
+ svg.simple .m-claim,svg.simple .m-supp{transform-box:fill-box;transform-origin:center;transform:scale(2.3)}
+ svg.simple .ring,svg.simple .selhalo{stroke-width:4}
+ svg.simple .zone-id{font-size:26px}
+ svg.simple .tick,svg.simple .anchor{font-size:24px}
+ svg.simple .axlbl{font-size:24px}
+ svg.simple .vec{stroke-width:3}
+ .views,.kinds{transform:scale(.85);transform-origin:top left}
+ .kinds{top:48px}
+}
+
 /* default scale: matches the layout at 75% browser zoom */
 .wrap,.tpage{zoom:.75}
 .empty-state h2{margin:0;font-size:22px}
@@ -603,7 +641,7 @@ svg.focus .ztag.on{opacity:1}
       <div class="zkey" id="zkey"></div>
       <div class="howto"><span><i class="k-dot"></i>Solid point: what they claimed</span><span><i class="k-ring"></i>Hollow point: where their arguments land</span><span><i class="k-ring dash"></i>Dashed hollow point: contested reading</span><span><i class="k-drift"></i>Orange arrow: drift between the two</span><span><i class="k-dim"></i>Red ring: the thinker you selected</span><span><i class="k-pin"></i>Red pins: your beliefs (solid) and decisions (hollow)</span><span><i class="k-spread"></i>Dashed red rings: how far your answers ranged</span><span><i class="k-px"></i>Select a thinker: their 6 closest stay solid. Use “Show on the map” in the panel to see one axis at a time</span><span><i class="k-ring"></i>Faded points sit farther back</span></div>
       <div class="cmd" aria-live="polite">
-        <span class="msg" id="cmdMsg">Command: <b>SELECT</b> a point or a block to inspect. Drag to turn, shift-drag to pan, scroll to zoom.</span><span class="mhint">Tap a point or block and the model flies to it · use the view buttons to turn it</span>
+        <span class="msg" id="cmdMsg">Command: <b>SELECT</b> a point or a block to inspect. Drag to turn, shift-drag to pan, scroll to zoom.</span><span class="mhint">Tap a colored block to see who sits there · tap a name to see who agrees with them</span>
         <span>X <b id="cx">—</b></span><span>Y <b id="cy">—</b></span><span>Z <b id="czz">—</b></span><span>ZONE <b id="cz">—</b></span><span>VIEW <b id="cv">ISO</b></span>
       </div>
     </div>
@@ -687,6 +725,13 @@ svg.focus .ztag.on{opacity:1}
     <p class="ex-why"><b>Why separate questions?</b> They're independent. Catholics and Latter-day Saints both put the ultimate at the top, but split left and right over whether God is pure spirit or has a glorified body. The Stoics and Dennett both sit on the matter side, but split top and bottom over whether the universe is sacred or simply there. Latter-day Saints and Plato split on matter, yet sit together at the front of the model, where intelligence and law are uncreated and even God works within them; most Christian theology sits further back, with truth grounded in God's own nature. Plato and the Stoics agree that truth is found, yet aim at different goods: likeness to God for one, the untroubled sage for the other.</p>
     <p class="ex-why"><b>Drafting notes.</b> Coordinates are interpretive judgments, not measurements. "Supported" positions follow the strongest scholarly reading of what each system requires, which sometimes differs from what the author said about it. Where the two agree, only one point shows. Region borders sit exactly halfway between anchor values (X −75, −25, +25; Y +25, −25, −75; Z 0), so each region's size follows the axes rather than a school. Every column except Anti-Realism splits at Z 0 into a truth-found half (solid) and a truth-made half (dashed). Who makes truth is read off the vertical axis: God's will sits high, human construction sits low. Classical theism sits left of center because its ultimate ground, God, is an immaterial mind.</p>
   </section>
+  <div class="rmodal" id="rmodal" hidden role="dialog" aria-modal="true" aria-labelledby="rmTitle">
+    <div class="rmcard">
+      <div class="rmhead"><div><div class="lbl">Test complete</div><h2 id="rmTitle">Your results</h2></div><button class="rmx" id="rmClose" aria-label="Close">✕</button></div>
+      <div class="rmbody" id="rmBody"></div>
+      <div class="rmfoot"><button class="btn solid" id="rmMap">SHOW ME ON THE MAP</button></div>
+    </div>
+  </div>
 </div>
 
 <div class="tpage" id="testPage" hidden>
@@ -1362,19 +1407,27 @@ function returnToMap(now){if(returned&&!now)return;returned=true;let op=null;try
  if(op){try{op.focus();}catch(e){}try{window.close();}catch(e){}}
  setTimeout(()=>{if(!window.closed)location.hash="my-pins";},op?400:0);}
 function focusPin(){const v=T.dres?T.res.map((a,k)=>(a+T.dres[k])/2):T.res;focusPoint(v,1.35);if(isPhone())setTimeout(()=>scrollMapTo(W/2,H/2),720);}
-function showResults(){S.view="results";refresh();updateHeader();
+function showResults(card){S.view="results";refresh();updateHeader();if(card!==false)setTimeout(openResultsCard,60);
  requestAnimationFrame(()=>{goTo(document.getElementById("vp"));focusPin();
   msg(`Your pins: belief <b>(${fmt(T.res[0])}, ${fmt(T.res[1])}, ${fmt(T.res[2])})</b> · ${zoneAt(...T.res).n}`);});}
+function openResultsCard(){const m=document.getElementById("rmodal"),b=document.getElementById("rmBody");if(!m||!T.res)return;
+ const tmp=document.createElement("div");tmp.innerHTML=panel.innerHTML;tmp.querySelectorAll(".tnav,.backres,.axf").forEach(x=>x.remove());const ms=tmp.querySelector(".mates");if(ms){const h=document.createElement("div");h.className="lbl";h.textContent="Who shares each of your views";tmp.appendChild(h);tmp.appendChild(ms);}
+ b.innerHTML=tmp.innerHTML;b.scrollTop=0;m.hidden=false;document.body.classList.add("rm-open");setTimeout(()=>document.getElementById("rmMap").focus(),30);}
+function closeResultsCard(){const m=document.getElementById("rmodal");if(m&&!m.hidden){m.hidden=true;document.body.classList.remove("rm-open");}}
+document.getElementById("rmClose").onclick=closeResultsCard;
+document.getElementById("rmMap").onclick=()=>{closeResultsCard();S.view="results";refresh();goTo(document.getElementById("vp"));focusPin();};
+document.getElementById("rmodal").addEventListener("click",e=>{if(e.target.id==="rmodal")closeResultsCard();else if(e.target.closest("[data-pid],[data-zlink]"))closeResultsCard();},true);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeResultsCard();});
 function updateHeader(){const r=!!T.res;document.getElementById("myRes").hidden=!r;document.getElementById("openTest").textContent=r?"RETAKE THE TEST ↗":"TAKE THE TEST ↗";}
 function route(){const h=location.hash.replace("#","");
  if(h==="test"){wrapEl.hidden=true;testPage.hidden=false;if(T.stage!=="q"){T.stage="intro";returned=false;}renderTestPage();window.scrollTo(0,0);return;}
  testPage.hidden=true;wrapEl.hidden=false;
- if(h==="my-pins"&&loadSaved())showResults();}
+ if(h==="my-pins"&&loadSaved())showResults(true);}
 window.addEventListener("hashchange",route);
 window.addEventListener("storage",e=>{if(e.key!==SAVE||!testPage.hidden)return;if(loadSaved())showResults();});
 window.addEventListener("message",e=>{const m=e.data;if(!m||m.mfs!=="results"||!validRes(m.data)||!testPage.hidden)return;useRes(m.data);try{localStorage.setItem(SAVE,JSON.stringify(m.data));}catch(err){}showResults();});
 document.getElementById("openTest").onclick=openTest;
-document.getElementById("myRes").onclick=()=>{if(!T.res)return;S.view="results";refresh();revealPanel();};
+document.getElementById("myRes").onclick=()=>{if(!T.res)return;S.view="results";refresh();openResultsCard();return;revealPanel();};
 document.getElementById("tpBack").onclick=e=>{e.preventDefault();let op=null;try{op=window.opener&&!window.opener.closed?window.opener:null;}catch(err){}
  if(op){try{op.focus();}catch(err){}try{window.close();}catch(err){}}setTimeout(()=>{if(!window.closed)location.hash="";},op?300:0);};
 
@@ -1509,6 +1562,8 @@ function focusProfile(i){select(i,false);revealPanel();}
 
 buildZones();
 svg.classList.add("by-good");
+function setSimple(){svg.classList.toggle("simple",isPhone());}
+setSimple();matchMedia("(max-width:920px)").addEventListener("change",()=>{setSimple();requestRender();});
 function syncFilters(){document.querySelectorAll("[data-kind]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.kind===S.kind)));
  document.querySelectorAll("[data-gf]").forEach(b=>b.setAttribute("aria-pressed",String((b.dataset.gf||null)===S.gf)));}
 function filterMsg(){const n=P.filter(shown).length,k=S.kind==="phil"?"philosophers":S.kind==="rel"?"religions":"entries";msg(`Showing <b>${n}</b> ${k}${S.gf?` whose highest good is <b>${S.gf==="N"?"none proposed":gName(S.gf).toLowerCase()}</b>`:""}`);}
