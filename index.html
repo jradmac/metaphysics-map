@@ -17,15 +17,15 @@
 /* Layout: one drafting sheet — model space (plot) left, properties palette right, schedule + title block below. Light = vellum, dark = CAD model space. */
 :root{
   --paper:#e9eef1; --sheet:#f6f8f9; --ink:#16303f; --ink2:#4d6676; --line:#98adbb; --grid:#dce5eb; --grid2:#c9d6de;
-  --claim:#0b72a0; --supp:#b85f00; --zone:#6d8797; --sel:#c0262d; --rel:#7b3fa6; --px:#1f6fb2; --py:#a06a00; --per:#b2307a; --imp:#13867c; --pxt:rgba(31,111,178,.11); --pyt:rgba(160,106,0,.12); --pz:#24875a; --pzt:rgba(36,135,90,.10); --gG:#c09a1a; --gV:#2f6fb5; --gL:#13867c; --gH:#d9542b; --gF:#b2307a; --gJ:#8b5a2b; --gW:#5b8c32; --gK:#6a4fb8; --gN:#8a99a3; --z1:#a8457a; --z2:#2f6fb5; --z3:#5b54b0; --z4:#b0752a; --z5:#23898a; --z6:#5b8c32; --z7:#b5483d; --z8:#8a6e52; --z9:#6c7588; --zop:.10; --hl:rgba(11,114,160,.08);
+  --claim:#0b72a0; --supp:#b85f00; --zone:#6d8797; --sel:#c0262d; --rel:#7b3fa6; --px:#1f6fb2; --py:#a06a00; --per:#b2307a; --imp:#13867c; --pxt:rgba(31,111,178,.11); --pyt:rgba(160,106,0,.12); --pz:#24875a; --pzt:rgba(36,135,90,.10); --fA:#2a78d6; --fB:#eb6834; --fgray:#b9c6cf; --gG:#eda100; --gV:#2a78d6; --gL:#1baf7a; --gH:#eb6834; --gF:#e87ba4; --gJ:#e34948; --gW:#008300; --gK:#6250d6; --gN:#8a99a3; --z1:#a8457a; --z2:#2f6fb5; --z3:#5b54b0; --z4:#b0752a; --z5:#23898a; --z6:#5b8c32; --z7:#b5483d; --z8:#8a6e52; --z9:#6c7588; --zop:.10; --hl:rgba(11,114,160,.08);
   --f-ui:"B612",ui-sans-serif,system-ui,sans-serif; --f-mono:"B612 Mono",ui-monospace,Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --paper:#090f14; --sheet:#0e171e; --ink:#cfe2ec; --ink2:#7f9aaa; --line:#355061; --grid:#13212b; --grid2:#1b2d3a;
-  --claim:#3cc4f2; --supp:#ffad33; --zone:#5f8296; --sel:#ff5d5d; --rel:#c89bff; --px:#5fb0f5; --py:#f0b545; --per:#f07ab5; --imp:#4fcbbd; --pxt:rgba(95,176,245,.13); --pyt:rgba(240,181,69,.13); --pz:#5fd39b; --pzt:rgba(95,211,155,.12); --gG:#e9c252; --gV:#6fa8f0; --gL:#4fcbbd; --gH:#ff8a5e; --gF:#f07ab5; --gJ:#c99461; --gW:#9acb6c; --gK:#a89cf0; --gN:#5f7280; --z1:#f08cc0; --z2:#6fa8f0; --z3:#a39cf5; --z4:#e3ab5c; --z5:#58cbc3; --z6:#9acb6c; --z7:#f2806f; --z8:#c9ab8c; --z9:#a9b3c6; --zop:.13; --hl:rgba(60,196,242,.09); color-scheme:dark}}
+  --claim:#3cc4f2; --supp:#ffad33; --zone:#5f8296; --sel:#ff5d5d; --rel:#c89bff; --px:#3987e5; --py:#c98500; --per:#f07ab5; --imp:#4fcbbd; --pxt:rgba(95,176,245,.13); --pyt:rgba(240,181,69,.13); --pz:#199e70; --pzt:rgba(95,211,155,.12); --fA:#3987e5; --fB:#d95926; --fgray:#3e5463; --gG:#c98500; --gV:#3987e5; --gL:#199e70; --gH:#d95926; --gF:#d55181; --gJ:#e66767; --gW:#008300; --gK:#9085e9; --gN:#5f7280; --z1:#f08cc0; --z2:#6fa8f0; --z3:#a39cf5; --z4:#e3ab5c; --z5:#58cbc3; --z6:#9acb6c; --z7:#f2806f; --z8:#c9ab8c; --z9:#a9b3c6; --zop:.13; --hl:rgba(60,196,242,.09); color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#090f14; --sheet:#0e171e; --ink:#cfe2ec; --ink2:#7f9aaa; --line:#355061; --grid:#13212b; --grid2:#1b2d3a;
-  --claim:#3cc4f2; --supp:#ffad33; --zone:#5f8296; --sel:#ff5d5d; --rel:#c89bff; --px:#5fb0f5; --py:#f0b545; --per:#f07ab5; --imp:#4fcbbd; --pxt:rgba(95,176,245,.13); --pyt:rgba(240,181,69,.13); --pz:#5fd39b; --pzt:rgba(95,211,155,.12); --gG:#e9c252; --gV:#6fa8f0; --gL:#4fcbbd; --gH:#ff8a5e; --gF:#f07ab5; --gJ:#c99461; --gW:#9acb6c; --gK:#a89cf0; --gN:#5f7280; --z1:#f08cc0; --z2:#6fa8f0; --z3:#a39cf5; --z4:#e3ab5c; --z5:#58cbc3; --z6:#9acb6c; --z7:#f2806f; --z8:#c9ab8c; --z9:#a9b3c6; --zop:.13; --hl:rgba(60,196,242,.09); color-scheme:dark}
+  --claim:#3cc4f2; --supp:#ffad33; --zone:#5f8296; --sel:#ff5d5d; --rel:#c89bff; --px:#3987e5; --py:#c98500; --per:#f07ab5; --imp:#4fcbbd; --pxt:rgba(95,176,245,.13); --pyt:rgba(240,181,69,.13); --pz:#199e70; --pzt:rgba(95,211,155,.12); --fA:#3987e5; --fB:#d95926; --fgray:#3e5463; --gG:#c98500; --gV:#3987e5; --gL:#199e70; --gH:#d95926; --gF:#d55181; --gJ:#e66767; --gW:#008300; --gK:#9085e9; --gN:#5f7280; --z1:#f08cc0; --z2:#6fa8f0; --z3:#a39cf5; --z4:#e3ab5c; --z5:#58cbc3; --z6:#9acb6c; --z7:#f2806f; --z8:#c9ab8c; --z9:#a9b3c6; --zop:.13; --hl:rgba(60,196,242,.09); color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--paper);color:var(--ink);font-family:var(--f-ui);font-size:14px;line-height:1.5;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
@@ -604,8 +604,122 @@ svg.simple.focus .zedge:not(.on){stroke-opacity:.12}
  .kinds{top:48px}
 }
 
+
+/* ---------- findings page ---------- */
+.fpage{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:16px;width:100%}
+.fbody{display:flex;flex-direction:column;gap:16px}
+.fintro,.fsec{border:1.5px solid var(--ink);background:var(--sheet);padding:18px 20px;display:flex;flex-direction:column;gap:12px;scroll-margin-top:12px}
+.fstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line)}
+.fstat{padding:12px 14px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+.fstat:last-child{border-right:0}
+.fstat b{font-family:var(--f-ui);font-size:48px;font-weight:700;line-height:1.05}
+.fstat p{margin:2px 0 0;font-size:13px;color:var(--ink2);line-height:1.45}
+.ftoc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:6px}
+.ftoc button{text-align:left;font:inherit;font-size:13px;line-height:1.35;background:transparent;border:1px solid var(--line);color:var(--ink);padding:8px 10px;cursor:pointer;display:flex;gap:8px;align-items:baseline}
+.ftoc button:hover{background:var(--hl);border-color:var(--ink)}
+.ftoc button span{font-family:var(--f-mono);font-size:11px;color:var(--ink2)}
+.fsh{display:flex;gap:12px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px}
+.fno{font-family:var(--f-mono);font-size:12px;color:var(--ink2);border:1px solid var(--line);padding:2px 6px;flex:none}
+.fsh h2{margin:0;font-size:20px;line-height:1.25;text-wrap:balance}
+.flead p,.flead2{margin:0 0 8px;font-size:14.5px;max-width:76ch;line-height:1.6}
+.flead p:last-child{margin-bottom:0}
+.fcaveat{color:var(--ink2);border-left:2px solid var(--line);padding-left:10px}
+.fhow{margin:0;font-size:12.5px;color:var(--ink2);max-width:92ch;line-height:1.5;border-top:1px solid var(--grid2);padding-top:8px}
+.fhow b{color:var(--ink)}
+.fnote{margin:6px 0 0;font-size:12.5px;color:var(--ink2);max-width:92ch}
+.fsub{margin:18px 0 4px;font-size:16px}
+.ffig{display:flex;flex-direction:column;gap:4px}
+.fchart{width:100%;max-width:780px;height:auto;display:block}
+.ftick{fill:var(--ink2);font-family:var(--f-mono);font-size:11px}
+.fmini{fill:var(--ink2);font-family:var(--f-mono);font-size:9.5px}
+.flab{fill:var(--ink);font-family:var(--f-ui);font-size:13px}
+.flab.fb{font-weight:700}
+.flab.frel{font-style:italic}
+.fval{fill:var(--ink);font-family:var(--f-mono);font-size:11.5px}
+.fval.fsig{font-weight:700}
+.fgrid{stroke:var(--grid2);stroke-width:1}
+.fgrid.fzero{stroke:var(--line)}
+.ftrack{stroke:var(--grid2);stroke-width:1}
+.fframe{fill:none;stroke:var(--line);stroke-width:1}
+.fghost{fill:var(--ink2);opacity:.32}
+.fring{stroke:var(--sheet);stroke-width:2}
+.fline{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.favg{stroke:var(--ink);stroke-width:2}
+.fconn{stroke:var(--line);stroke-width:2}
+.fxh{stroke:var(--ink2);stroke-width:1;opacity:0}
+.fcol:hover .fxh,.fcol:focus .fxh{opacity:.7}
+.fcol:focus,.fpt:focus,.fmark:focus{outline:none}
+.fmark{cursor:default}
+.fmark:hover,.fmark:focus{opacity:.82}
+.fpt{cursor:pointer}
+.fpt:hover .fring,.fpt:focus .fring{stroke:var(--ink)}
+.fmult{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.fcell{margin:0;border:1px solid var(--grid2);padding:6px 6px 2px}
+.fcell figcaption{display:flex;align-items:center;gap:4px;font-size:13px}
+.fcell figcaption span{margin-left:auto;font-family:var(--f-mono);font-size:11px;color:var(--ink2)}
+.fpanel{width:100%;height:auto;display:block}
+.fsw{display:inline-block;width:10px;height:10px;border-radius:2px;flex:none;vertical-align:-1px;margin-right:4px}
+.flegend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--ink);margin:2px 0 6px}
+.flegend span{display:inline-flex;align-items:center;gap:6px}
+.flegend i{width:12px;height:12px;border-radius:2px;flex:none}
+.flegend i.ln{height:3px;width:18px}
+.ftbl summary{cursor:pointer;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--ink2);margin-top:8px;width:max-content}
+.ftscroll{overflow-x:auto;max-width:100%}
+.ftbl table,.fheat{border-collapse:collapse;font-size:12.5px;margin-top:6px;font-variant-numeric:tabular-nums}
+.ftbl th,.ftbl td,.fheat th,.fheat td{border-bottom:1px solid var(--grid2);padding:5px 9px;text-align:left;white-space:nowrap}
+.ftbl th{font-weight:700}
+.fheat thead th{font-size:11px;font-weight:400;color:var(--ink2);vertical-align:bottom;white-space:normal;min-width:62px;max-width:96px;line-height:1.3}
+.fheat tbody th{font-weight:700;font-size:12.5px}
+.fheat td{text-align:center;font-family:var(--f-mono);background:color-mix(in srgb,var(--fA) var(--h,0%),var(--sheet));color:var(--ink);border-right:2px solid var(--sheet)}
+.fmat td{background:color-mix(in srgb,var(--c) var(--h,0%),var(--sheet));min-width:76px}
+.fmat td.sig{font-weight:700}
+.fmat td.ns{color:var(--ink2)}
+.fdiv{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink2);margin-top:8px}
+.fdiv b{width:180px;height:10px;background:linear-gradient(90deg,var(--fB),var(--sheet) 50%,var(--fA));border:1px solid var(--line)}
+.fquad{display:grid;grid-template-columns:150px 1fr 1fr;border:1px solid var(--line)}
+.fqh,.fqv{font-size:13px;font-weight:700;padding:8px 10px;background:var(--hl);line-height:1.3}
+.fqh small,.fqv small{display:block;font-weight:400;font-family:var(--f-mono);font-size:10.5px;color:var(--ink2);margin-top:2px}
+.fqc{padding:8px 10px;display:flex;flex-wrap:wrap;gap:5px;align-content:flex-start;border-top:1px solid var(--grid2);border-left:1px solid var(--grid2);min-height:70px}
+.fqc.hl{box-shadow:inset 0 0 0 2px var(--gG)}
+.fqc p{margin:2px 0 0;width:100%;font-size:12px;color:var(--ink2)}
+.fname{font:inherit;font-size:13px;line-height:1.3;background:var(--sheet);color:var(--ink);border:1px solid var(--line);padding:1px 7px;cursor:pointer}
+.fname.rel{font-style:italic;color:var(--rel)}
+.fname:hover{border-color:var(--ink)}
+.fpairs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fpair{border:1px solid var(--line);padding:10px 12px;display:flex;flex-direction:column;gap:7px}
+.fpn{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.fpn span{color:var(--ink2)}
+.fmeter{height:8px;background:color-mix(in srgb,var(--fA) 16%,var(--sheet));border-radius:4px;overflow:hidden}
+.fmeter i{display:block;height:100%;background:var(--fA);border-radius:4px}
+.fpm{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;align-items:baseline}
+.fpm span{color:var(--ink2);font-size:12.5px}
+.fpair p{margin:0;font-size:13.5px;line-height:1.5}
+.frgs{display:flex;flex-direction:column;gap:9px;margin-bottom:6px}
+.frg{display:grid;grid-template-columns:230px minmax(0,1fr) 140px;gap:12px;align-items:center;font-size:13px}
+.frn small{font-family:var(--f-mono);color:var(--ink2);margin-left:4px}
+.frp{font-size:12px;color:var(--ink2)}
+.fseg{position:relative;height:8px;display:block}
+.fseg i{position:absolute;top:0;height:100%;border-radius:4px}
+#ftip{position:fixed;z-index:60;pointer-events:none;background:var(--sheet);color:var(--ink);border:1px solid var(--ink);padding:6px 9px;font-size:12px;display:flex;flex-direction:column;gap:2px;max-width:280px;box-shadow:0 6px 18px rgba(0,0,0,.18);font-family:var(--f-ui)}
+#ftip b{font-family:var(--f-mono);font-size:13px}
+#ftip span{color:var(--ink2)}
+#ftip[hidden]{display:none}
+@media (max-width:820px){
+ .fmult{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .fstats{grid-template-columns:minmax(0,1fr)}
+ .fstat{border-right:0;border-bottom:1px solid var(--line)}
+ .fstat:last-child{border-bottom:0}
+ .fpairs{grid-template-columns:minmax(0,1fr)}
+ .frg{grid-template-columns:minmax(0,1fr)}
+ .frp{display:none}
+ .fquad{grid-template-columns:96px 1fr 1fr}
+ .fqh,.fqv{font-size:12px;padding:6px}
+ .fintro,.fsec{padding:14px}
+ .fsh h2{font-size:18px}
+}
+
 /* default scale: matches the layout at 75% browser zoom */
-.wrap,.tpage{zoom:.75}
+.wrap,.tpage,.fpage{zoom:.75}
 .empty-state h2{margin:0;font-size:22px}
 .empty-state{gap:10px}
 </style>
@@ -618,6 +732,7 @@ svg.simple.focus .zedge:not(.on){stroke-opacity:.12}
       <p>A three-axis model: what is fundamental (X), where the ultimate is (Y), and whether truth is found or made (Z). Drag to turn it, or pick a view. Each philosopher is plotted twice: a solid point where they placed themselves, and a hollow point where their arguments actually commit them. The dashed vector between the two is the drift, and a dashed hollow point marks a reading scholars still dispute. Each point is colored by the highest good it aims at; religious traditions, plotted by their core doctrine, have violet italic names. Use the tabs to show only philosophers or only religions, and tap a highest good under the model to show only those who aim at it. Select any point or block to read about it, or take the test to drop your own pins.</p>
     </div>
     <div class="tools" role="group" aria-label="Test">
+      <button id="openFind">FINDINGS</button>
       <button id="myRes" hidden>MY RESULTS</button>
       <button id="openTest" class="go">TAKE THE TEST ↗</button>
     </div>
@@ -745,6 +860,19 @@ svg.simple.focus .zedge:not(.on){stroke-opacity:.12}
   </header>
   <section class="tp-card test" id="testCard" aria-live="polite"></section>
 </div>
+
+<div class="fpage" id="findingsPage" hidden>
+  <header class="top">
+    <div>
+      <div class="lbl">DWG MFS-001 · Sheet 2 · Findings</div>
+      <h1>What the Survey Shows</h1>
+      <p>Patterns across all 61 philosophers and religions: which axis is tied to what people judge as good, how metaphysics has shifted over time, and a few surprising neighbours.</p>
+    </div>
+    <div class="tools"><a class="tlink" href="#">← BACK TO THE MAP</a></div>
+  </header>
+  <div class="fbody" id="fBody"></div>
+</div>
+<div id="ftip" role="tooltip" hidden></div>
 
 <script>
 (function(){
@@ -1419,7 +1547,9 @@ document.getElementById("rmMap").onclick=()=>{closeResultsCard();S.view="results
 document.getElementById("rmodal").addEventListener("click",e=>{if(e.target.id==="rmodal")closeResultsCard();else if(e.target.closest("[data-pid],[data-zlink]"))closeResultsCard();},true);
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeResultsCard();});
 function updateHeader(){const r=!!T.res;document.getElementById("myRes").hidden=!r;document.getElementById("openTest").textContent=r?"RETAKE THE TEST ↗":"TAKE THE TEST ↗";}
-function route(){const h=location.hash.replace("#","");
+function route(){const h=location.hash.replace("#","");const fpg=document.getElementById("findingsPage");fpg.hidden=h!=="findings";
+ if(h==="findings"){wrapEl.hidden=true;testPage.hidden=true;buildFindings();window.scrollTo(0,0);document.title="Findings · Metaphysical Field Survey";return;}
+ document.title="Metaphysical Field Survey";
  if(h==="test"){wrapEl.hidden=true;testPage.hidden=false;if(T.stage!=="q"){T.stage="intro";returned=false;}renderTestPage();window.scrollTo(0,0);return;}
  testPage.hidden=true;wrapEl.hidden=false;
  if(h==="my-pins"&&loadSaved())showResults(true);}
@@ -1427,6 +1557,7 @@ window.addEventListener("hashchange",route);
 window.addEventListener("storage",e=>{if(e.key!==SAVE||!testPage.hidden)return;if(loadSaved())showResults();});
 window.addEventListener("message",e=>{const m=e.data;if(!m||m.mfs!=="results"||!validRes(m.data)||!testPage.hidden)return;useRes(m.data);try{localStorage.setItem(SAVE,JSON.stringify(m.data));}catch(err){}showResults();});
 document.getElementById("openTest").onclick=openTest;
+document.getElementById("openFind").onclick=()=>{location.hash="findings";};
 document.getElementById("myRes").onclick=()=>{if(!T.res)return;S.view="results";refresh();openResultsCard();return;revealPanel();};
 document.getElementById("tpBack").onclick=e=>{e.preventDefault();let op=null;try{op=window.opener&&!window.opener.closed?window.opener:null;}catch(err){}
  if(op){try{op.focus();}catch(err){}try{window.close();}catch(err){}}setTimeout(()=>{if(!window.closed)location.hash="";},op?300:0);};
@@ -1569,6 +1700,193 @@ function syncFilters(){document.querySelectorAll("[data-kind]").forEach(b=>b.set
 function filterMsg(){const n=P.filter(shown).length,k=S.kind==="phil"?"philosophers":S.kind==="rel"?"religions":"entries";msg(`Showing <b>${n}</b> ${k}${S.gf?` whose highest good is <b>${S.gf==="N"?"none proposed":gName(S.gf).toLowerCase()}</b>`:""}`);}
 document.querySelectorAll("[data-kind]").forEach(b=>b.onclick=()=>{S.kind=b.dataset.kind;applyFilter();filterMsg();});
 document.querySelectorAll("[data-gf]").forEach(b=>b.onclick=()=>{const g=b.dataset.gf||null;S.gf=S.gf===g?null:g;applyFilter();filterMsg();});
+/* ---------- findings page (#findings) ---------- */
+const FP=document.getElementById("findingsPage"),FBODY=document.getElementById("fBody"),FTIP=document.getElementById("ftip");
+const fesc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fsg=v=>{const r=Math.round(v);return r>0?"+"+r:r<0?"−"+Math.abs(r):"0";};
+const FSLOT=["V","H","L","G","F","W","K","J"];   /* validated categorical order */
+const FGN={G:"Union with the divine",V:"Character",L:"Liberation & peace",H:"Happiness",F:"Freedom",J:"Justice",W:"Harmony",K:"Understanding"};
+const fgn=k=>k?FGN[k]:"None proposed",fgc=k=>`var(--g${k||"N"})`;
+const fby=n=>P.find(p=>p.n===n),fmean=a=>a.reduce((x,y)=>x+y,0)/(a.length||1);
+const fmed=a=>{const b=[...a].sort((x,y)=>x-y),m=b.length>>1;return b.length?(b.length%2?b[m]:(b[m-1]+b[m])/2):0;};
+const fd3=(a,b)=>Math.hypot(a.s[0]-b.s[0],a.s[1]-b.s[1],a.s[2]-b.s[2]);
+const fp=p=>p<.001?"p < .001":"p = "+p.toFixed(3).replace(/^0/,"");
+const fbar=(x,y,w,h)=>{const r=Math.min(4,w,h/2);return `M${x} ${y}H${x+w-r}Q${x+w} ${y} ${x+w} ${y+r}V${y+h-r}Q${x+w} ${y+h} ${x+w-r} ${y+h}H${x}Z`;};
+const fname=p=>`<button class="fname${p.era==="rel"?" rel":""}" data-fpid="${p.i}">${fesc(p.n)}</button>`;
+const ftable=(head,rows)=>`<details class="ftbl"><summary>Show the numbers as a table</summary><div class="ftscroll"><table><thead><tr>${head.map(h=>`<th>${fesc(h)}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${fesc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></details>`;
+const flegend=items=>`<div class="flegend">${items.map(([c,t,line])=>`<span><i class="${line?"ln":""}" style="background:${c}"></i>${fesc(t)}</span>`).join("")}</div>`;
+
+/* tooltips: value first, label second; same on hover and keyboard focus */
+function ftipShow(t,x,y){const [v,l]=(t.dataset.tip||"").split("|");FTIP.textContent="";const b=document.createElement("b");b.textContent=v;FTIP.appendChild(b);
+ if(l){const s=document.createElement("span");s.textContent=l;FTIP.appendChild(s);}FTIP.hidden=false;
+ const w=FTIP.offsetWidth,h=FTIP.offsetHeight;FTIP.style.left=Math.max(8,Math.min(innerWidth-w-8,x+14))+"px";FTIP.style.top=(y-h-14<8?y+18:y-h-14)+"px";}
+FP.addEventListener("pointermove",e=>{const t=e.target.closest&&e.target.closest("[data-tip]");if(t)ftipShow(t,e.clientX,e.clientY);else FTIP.hidden=true;});
+FP.addEventListener("pointerleave",()=>{FTIP.hidden=true;});
+FP.addEventListener("focusin",e=>{const t=e.target.closest&&e.target.closest("[data-tip]");if(!t)return;const r=t.getBoundingClientRect();ftipShow(t,r.left+r.width/2,r.top);});
+FP.addEventListener("focusout",()=>{FTIP.hidden=true;});
+FP.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-fpid]");if(b){e.stopPropagation();const i=+b.dataset.fpid;FTIP.hidden=true;location.hash="";setTimeout(()=>{focusProfile(i);},80);return;}
+ const j=e.target.closest&&e.target.closest("[data-fjump]");if(j){const t=document.getElementById(j.dataset.fjump);if(t)t.scrollIntoView({behavior:reduced()?"auto":"smooth",block:"start"});}});
+
+/* ---------- 01 · which axis carries the good ---------- */
+function fAxisBars(){const rows=[["X · mind ↔ matter",.16,0],["Y · where the ultimate is",.65,.17],["Z · truth found or made",.23,.39]];
+ const W=640,L=196,R=74,top=10,rh=60,bh=18,max=.7,sc=v=>L+(W-L-R)*v/max,H=top+rows.length*rh+26;
+ let s=`<svg viewBox="0 0 ${W} ${H}" class="fchart" role="img" aria-label="Share of each axis explained by the highest good">`;
+ [0,.2,.4,.6].forEach(v=>{s+=`<line x1="${sc(v)}" x2="${sc(v)}" y1="${top}" y2="${top+rows.length*rh-14}" class="fgrid"/><text x="${sc(v)}" y="${H-6}" text-anchor="middle" class="ftick">${Math.round(v*100)}%</text>`;});
+ rows.forEach(([n,a,b],i)=>{const y=top+i*rh;s+=`<text x="${L-12}" y="${y+bh+5}" text-anchor="end" class="flab">${fesc(n)}</text>`;
+  [[a,"--fA","All 55 entries"],[b,"--fB","Leaving out union with the divine"]].forEach(([v,c,lab],k)=>{const yy=y+k*(bh+2),w=Math.max(2,sc(v)-L);
+   s+=`<path d="${fbar(L,yy,w,bh)}" fill="var(${c})" class="fmark" tabindex="0" data-tip="${v?Math.round(v*100)+"%":"None"}|${fesc(n)} · ${lab}"/><text x="${L+w+6}" y="${yy+bh-5}" class="fval">${v?Math.round(v*100)+"%":"none"}</text>`;});});
+ return flegend([["var(--fA)","All 55 entries"],["var(--fB)","Leaving out union with the divine (35)"]])+s+"</svg>"+
+  ftable(["Axis","Share explained, all entries","Share explained, other goods only"],rows.map(r=>[r[0],Math.round(r[1]*100)+"%",r[2]?Math.round(r[2]*100)+"%":"0% (none)"]));}
+
+/* ---------- 02 · small multiples, one panel per good ---------- */
+function fMultiples(){const items=P.filter(p=>p.hg),S=190,pd=18,sx=z=>pd+(z+100)/200*(S-2*pd),sy=y=>pd+(100-y)/200*(S-2*pd);
+ const cells=FSLOT.map(k=>{const mem=items.filter(p=>p.hg===k);let s=`<svg viewBox="0 0 ${S} ${S}" class="fpanel" role="img" aria-label="${fesc(fgn(k))}: ${mem.length} entries">`;
+  s+=`<rect x="${pd}" y="${pd}" width="${S-2*pd}" height="${S-2*pd}" class="fframe"/><line x1="${sx(0)}" x2="${sx(0)}" y1="${pd}" y2="${S-pd}" class="fgrid"/><line x1="${pd}" x2="${S-pd}" y1="${sy(0)}" y2="${sy(0)}" class="fgrid"/>`;
+  s+=`<text x="${pd}" y="${S-5}" class="fmini">made</text><text x="${S-pd}" y="${S-5}" text-anchor="end" class="fmini">found</text><text x="${pd}" y="${pd-5}" class="fmini">↑ beyond</text>`;
+  items.filter(p=>p.hg!==k).forEach(p=>{s+=`<circle cx="${sx(p.s[2]).toFixed(1)}" cy="${sy(p.s[1]).toFixed(1)}" r="2.4" class="fghost"/>`;});
+  mem.forEach(p=>{const x=sx(p.s[2]).toFixed(1),y=sy(p.s[1]).toFixed(1);s+=`<g class="fpt" tabindex="0" data-fpid="${p.i}" data-tip="${fesc(p.n)}|Y ${fsg(p.s[1])} · Z ${fsg(p.s[2])}"><circle cx="${x}" cy="${y}" r="12" fill="transparent"/><circle cx="${x}" cy="${y}" r="4.5" fill="${fgc(k)}" class="fring"/></g>`;});
+  return `<figure class="fcell"><figcaption><i class="fsw" style="background:${fgc(k)}"></i><b>${fgn(k)}</b><span>${mem.length}</span></figcaption>${s}</svg></figure>`;}).join("");
+ return `<div class="fmult">${cells}</div><p class="fnote">In each panel, left to right is Z (truth made → found) and bottom to top is Y (constructed → beyond). Gray dots are everyone else, for comparison. Tap a dot to open that entry on the map.</p>`+
+  ftable(["Entry","Highest good","Y","Z"],items.slice().sort((a,b)=>FSLOT.indexOf(a.hg)-FSLOT.indexOf(b.hg)).map(p=>[p.n,fgn(p.hg),fsg(p.s[1]),fsg(p.s[2])]));}
+
+/* ---------- 03 · truth axis among the other goods ---------- */
+function fZdots(){const goods=FSLOT.filter(k=>k!=="G").map(k=>{const m=P.filter(p=>p.hg===k);return {k,m,avg:fmean(m.map(p=>p.s[2]))};}).sort((a,b)=>b.avg-a.avg);
+ const W=640,L=168,R=78,top=8,rh=34,sc=z=>L+(z+100)/200*(W-L-R),H=top+goods.length*rh+40;
+ let s=`<svg viewBox="0 0 ${W} ${H}" class="fchart" role="img" aria-label="Where each non-divine good sits on the truth axis">`;
+ [-100,-50,0,50,100].forEach(v=>{s+=`<line x1="${sc(v)}" x2="${sc(v)}" y1="${top}" y2="${top+goods.length*rh}" class="fgrid${v===0?" fzero":""}"/><text x="${sc(v)}" y="${top+goods.length*rh+16}" text-anchor="middle" class="ftick">${fsg(v)}</text>`;});
+ s+=`<text x="${sc(-100)}" y="${H-4}" class="ftick">← truth made</text><text x="${sc(100)}" y="${H-4}" text-anchor="end" class="ftick">truth found →</text>`;
+ goods.forEach((o,i)=>{const y=top+i*rh+rh/2;s+=`<rect x="0" y="${y-5}" width="10" height="10" rx="2" fill="${fgc(o.k)}"/><text x="16" y="${y+4}" class="flab">${fgn(o.k)} · ${o.m.length}</text><line x1="${sc(-100)}" x2="${sc(100)}" y1="${y}" y2="${y}" class="ftrack"/>`;
+  o.m.forEach(p=>{const x=sc(p.s[2]).toFixed(1);s+=`<g class="fpt" tabindex="0" data-fpid="${p.i}" data-tip="Z ${fsg(p.s[2])}|${fesc(p.n)}"><circle cx="${x}" cy="${y}" r="12" fill="transparent"/><circle cx="${x}" cy="${y}" r="4.5" fill="${fgc(o.k)}" class="fring"/></g>`;});
+  s+=`<line x1="${sc(o.avg)}" x2="${sc(o.avg)}" y1="${y-10}" y2="${y+10}" class="favg"/><text x="${W-R+10}" y="${y+4}" class="fval">avg ${fsg(o.avg)}</text>`;});
+ return s+"</svg>"+`<p class="fnote">Each dot is one entry; the dark tick is the group's average.</p>`+ftable(["Highest good","Entries","Average Z"],goods.map(o=>[fgn(o.k),o.m.length,fsg(o.avg)]));}
+
+/* ---------- 04 · time ---------- */
+const FPER=[["Before 0 CE",y=>y<0],["1–1600",y=>y>=0&&y<1600],["1600s–1700s",y=>y>=1600&&y<1800],["1800s",y=>y>=1800&&y<1900],["1900s on",y=>y>=1900]];
+function fPeriods(){const ph=P.filter(p=>p.era!=="rel");return FPER.map(([n,f])=>{const m=ph.filter(p=>f(p.y0));return {n,m,x:fmean(m.map(p=>p.s[0])),y:fmean(m.map(p=>p.s[1])),z:fmean(m.map(p=>p.s[2]))};});}
+function fTime(){const per=fPeriods(),W=640,L=48,R=150,top=14,Hp=220,H=top+Hp+40,lo=-60,hi=80,sx=i=>L+i*(W-L-R)/(per.length-1),sy=v=>top+(hi-v)/(hi-lo)*Hp;
+ let s=`<svg viewBox="0 0 ${W} ${H}" class="fchart" role="img" aria-label="Average Y and Z of philosophers by period">`;
+ [-40,0,40,80].forEach(v=>{s+=`<line x1="${L}" x2="${W-R}" y1="${sy(v)}" y2="${sy(v)}" class="fgrid${v===0?" fzero":""}"/><text x="${L-8}" y="${sy(v)+4}" text-anchor="end" class="ftick">${fsg(v)}</text>`;});
+ per.forEach((p,i)=>{s+=`<text x="${sx(i)}" y="${top+Hp+18}" text-anchor="middle" class="ftick">${fesc(p.n)}</text><text x="${sx(i)}" y="${top+Hp+32}" text-anchor="middle" class="fmini">${p.m.length} thinkers</text>`;});
+ [["y","var(--py)","Y · where the ultimate is"],["z","var(--pz)","Z · truth found or made"]].forEach(([k,c,lab])=>{
+  s+=`<path d="${per.map((p,i)=>(i?"L":"M")+sx(i).toFixed(1)+" "+sy(p[k]).toFixed(1)).join("")}" class="fline" style="stroke:${c}"/>`;
+  per.forEach((p,i)=>{s+=`<circle cx="${sx(i)}" cy="${sy(p[k])}" r="4.5" fill="${c}" class="fring"/>`;});
+  const e=per[per.length-1];s+=`<text x="${sx(per.length-1)+12}" y="${sy(e[k])+4}" class="flab">${lab.split(" ")[0]} ${fsg(e[k])}</text>`;});
+ per.forEach((p,i)=>{const w=(W-L-R)/(per.length-1);s+=`<g class="fcol" tabindex="0" data-tip="Y ${fsg(p.y)} · Z ${fsg(p.z)}|${fesc(p.n)} · ${p.m.length} philosophers"><rect x="${sx(i)-w/2}" y="${top}" width="${w}" height="${Hp}" fill="transparent"/><line x1="${sx(i)}" x2="${sx(i)}" y1="${top}" y2="${top+Hp}" class="fxh"/></g>`;});
+ return flegend([["var(--py)","Y · where the ultimate is",1],["var(--pz)","Z · truth found or made",1]])+s+"</svg>"+ftable(["Period","Philosophers","Average X","Average Y","Average Z"],per.map(p=>[p.n,p.m.length,fsg(p.x),fsg(p.y),fsg(p.z)]));}
+function fGoodsByPeriod(){const per=fPeriods(),cols=[...FSLOT,null],cnt=per.map(p=>cols.map(k=>p.m.filter(q=>(q.hg||null)===k).length)),mx=Math.max(...cnt.flat());
+ return `<div class="ftscroll"><table class="fheat"><thead><tr><th>Period</th>${cols.map(k=>`<th><i class="fsw" style="background:${fgc(k)}"></i>${fgn(k)}</th>`).join("")}</tr></thead><tbody>${per.map((p,r)=>`<tr><th>${fesc(p.n)}</th>${cnt[r].map((c,j)=>`<td style="--h:${Math.round(c/mx*62)}%" tabindex="0" data-tip="${c} of ${p.m.length}|${fesc(p.n)} · ${fesc(fgn(cols[j]))}">${c||"·"}</td>`).join("")}</tr>`).join("")}</tbody></table></div><p class="fnote">Number of philosophers in each period whose highest good is each one. Darker cells hold more.</p>`;}
+
+/* ---------- 05 · religions vs philosophers ---------- */
+function fDumbbell(){const R=P.filter(p=>p.era==="rel"),Q=P.filter(p=>p.era!=="rel");
+ const rows=[["X · mind ↔ matter",fmed(R.map(p=>p.s[0])),fmed(Q.map(p=>p.s[0])),.041],["Y · where the ultimate is",fmed(R.map(p=>p.s[1])),fmed(Q.map(p=>p.s[1])),.055],["Z · truth found or made",fmed(R.map(p=>p.s[2])),fmed(Q.map(p=>p.s[2])),.319],["Personal ↔ impersonal*",75,-55,.006]];
+ const W=640,L=190,Rm=112,top=18,rh=46,sc=v=>L+(v+100)/200*(W-L-Rm),H=top+rows.length*rh+22;
+ let s=`<svg viewBox="0 0 ${W} ${H}" class="fchart" role="img" aria-label="Median position of religions and philosophers">`;
+ [-100,-50,0,50,100].forEach(v=>{s+=`<line x1="${sc(v)}" x2="${sc(v)}" y1="${top-8}" y2="${top+rows.length*rh-16}" class="fgrid${v===0?" fzero":""}"/><text x="${sc(v)}" y="${H-4}" text-anchor="middle" class="ftick">${fsg(v)}</text>`;});
+ rows.forEach(([n,a,b,pv],i)=>{const y=top+i*rh+8;s+=`<text x="${L-12}" y="${y+4}" text-anchor="end" class="flab">${fesc(n)}</text><line x1="${sc(Math.min(a,b))}" x2="${sc(Math.max(a,b))}" y1="${y}" y2="${y}" class="fconn"/>`;
+  [[a,"var(--rel)","Religions"],[b,"var(--ink2)","Philosophers"]].forEach(([v,c,lab])=>{s+=`<g tabindex="0" data-tip="${fsg(v)}|${lab} · median ${fesc(n)}"><circle cx="${sc(v)}" cy="${y}" r="12" fill="transparent"/><circle cx="${sc(v)}" cy="${y}" r="6" fill="${c}" class="fring"/></g>`;});
+  s+=`<text x="${W-Rm+14}" y="${y+4}" class="fval${pv<.05?" fsig":""}">${fp(pv)}${pv<.05?"":" · no real gap"}</text>`;});
+ return flegend([["var(--rel)","Religions (15)"],["var(--ink2)","Philosophers (46)"]])+s+"</svg>"+`<p class="fnote">Dots are medians. *The personal ↔ impersonal scores come from the earlier version of the map, which measured them directly.</p>`+
+  ftable(["Measure","Religions (median)","Philosophers (median)","Difference likely real?"],rows.map(r=>[r[0],fsg(r[1]),fsg(r[2]),fp(r[3])+(r[3]<.05?" · yes":" · no")]));}
+
+/* ---------- 06 · decision styles vs axes ---------- */
+const FDM={"P":{"sx":[-0.21,0.281],"sy":[0.45,0.018],"z":[0.43,0.024],"pers":[0.15,0.448]},"F":{"sx":[-0.51,0.006],"sy":[0.68,0.0],"z":[-0.09,0.636],"pers":[0.87,0.0]},"C":{"sx":[0.38,0.038],"sy":[-0.11,0.575],"z":[0.51,0.005],"pers":[-0.38,0.044]},"I":{"sx":[0.07,0.713],"sy":[-0.53,0.003],"z":[-0.41,0.033],"pers":[-0.28,0.135]},"O":{"sx":[0.44,0.017],"sy":[-0.49,0.007],"z":[-0.35,0.06],"pers":[-0.36,0.054]},"M":{"sx":[-0.05,0.796],"sy":[-0.11,0.565],"z":[-0.21,0.282],"pers":[-0.01,0.977]}};
+function fMatrix(){const cols=[["sx","X · matter"],["sy","Y · beyond"],["z","Z · truth found"],["pers","Personal*"]],nm={P:"Principle",F:"Faith",C:"Character",I:"Gut feeling",O:"Outcomes",M:"Community"};
+ const cell=([r,p])=>{const a=Math.round(Math.abs(r)*(p<.05?78:34)),c=r>=0?"--fA":"--fB",t=(r>=0?"+":"−")+Math.abs(r).toFixed(2).replace(/^0/,"");
+  return `<td class="${p<.05?"sig":"ns"}" style="--c:var(${c});--h:${a}%" tabindex="0" data-tip="ρ ${t}|${p<.05?"Unlikely to be chance":"Could easily be chance"} · ${fp(p)}">${t}</td>`;};
+ return `<div class="ftscroll"><table class="fheat fmat"><thead><tr><th>Decides by…</th>${cols.map(c=>`<th>${c[1]}</th>`).join("")}</tr></thead><tbody>${Object.keys(nm).map(k=>`<tr><th>${nm[k]}</th>${cols.map(([c])=>cell(FDM[k][c])).join("")}</tr>`).join("")}</tbody></table></div>
+ <div class="fdiv"><span>goes opposite</span><b aria-hidden="true"></b><span>goes together</span></div>
+ <p class="fnote">Rank correlations (ρ, from −1 to +1) between how much each of 29 thinkers and traditions leans on a way of deciding and where they sit. Bold, saturated cells are unlikely to be chance (p &lt; .05); pale cells could easily be chance. *Personal scores come from the earlier version of the map.</p>`;}
+
+/* ---------- 07 · drift by good ---------- */
+function fDrift(){const ph=P.filter(p=>p.era!=="rel"&&p.hg),gs=FSLOT.map(k=>({k,m:ph.filter(p=>p.hg===k)})).filter(o=>o.m.length>=2).map(o=>({...o,v:fmean(o.m.map(p=>p.drift))})).sort((a,b)=>a.v-b.v);
+ const W=640,L=196,R=60,top=6,rh=30,bh=16,max=Math.ceil(Math.max(...gs.map(o=>o.v))/10)*10,sc=v=>L+(W-L-R)*v/max,H=top+gs.length*rh+24;
+ let s=`<svg viewBox="0 0 ${W} ${H}" class="fchart" role="img" aria-label="Average drift of philosophers by highest good">`;
+ for(let v=0;v<=max;v+=10)s+=`<line x1="${sc(v)}" x2="${sc(v)}" y1="${top}" y2="${top+gs.length*rh-8}" class="fgrid"/><text x="${sc(v)}" y="${H-4}" text-anchor="middle" class="ftick">${v}</text>`;
+ gs.forEach((o,i)=>{const y=top+i*rh,w=Math.max(2,sc(o.v)-L),hl=o.k==="G";s+=`<text x="${L-12}" y="${y+bh-3}" text-anchor="end" class="flab${hl?" fb":""}">${fgn(o.k)} · ${o.m.length}</text><path d="${fbar(L,y,w,bh)}" fill="${hl?fgc("G"):"var(--fgray)"}" class="fmark" tabindex="0" data-tip="${o.v.toFixed(1)} units|${fgn(o.k)} · ${o.m.length} philosophers"/><text x="${L+w+6}" y="${y+bh-3}" class="fval">${o.v.toFixed(1)}</text>`;});
+ return s+"</svg>"+`<p class="fnote">Drift is the distance between where a philosopher placed themselves and where their arguments land. Philosophers only, so religions coded "as taught" don't skew it. Goods held by a single philosopher are left out.</p>`+ftable(["Highest good","Philosophers","Average drift"],gs.map(o=>[fgn(o.k),o.m.length,o.v.toFixed(1)]));}
+
+/* ---------- 08 · the truth fault line inside theism ---------- */
+function fTheism(){const m=P.filter(p=>p.hg==="G").sort((a,b)=>a.s[2]-b.s[2]),W=640,L=200,R=120,top=8,rh=21,sc=z=>L+(z+100)/200*(W-L-R),H=top+m.length*rh+38,bold=new Set(["Plato","Latter-day Saints","Joseph Smith","al-Ghazālī"]);
+ let s=`<svg viewBox="0 0 ${W} ${H}" class="fchart" role="img" aria-label="Truth axis among traditions aiming at union with the divine">`;
+ [-100,-50,0,50,100].forEach(v=>{s+=`<line x1="${sc(v)}" x2="${sc(v)}" y1="${top}" y2="${top+m.length*rh}" class="fgrid${v===0?" fzero":""}"/><text x="${sc(v)}" y="${top+m.length*rh+16}" text-anchor="middle" class="ftick">${fsg(v)}</text>`;});
+ s+=`<text x="${sc(-100)}" y="${H-4}" class="ftick">← truth willed by God</text><text x="${sc(100)}" y="${H-4}" text-anchor="end" class="ftick">truth binds even God →</text><text x="${W-R+14}" y="${top-1}" class="fmini">decides by faith</text>`;
+ m.forEach((p,i)=>{const y=top+i*rh+rh/2+4,x=sc(p.s[2]),f=ETH[p.n]?Math.round((ETH[p.n].F||0)*100):null;
+  s+=`<text x="${L-12}" y="${y+4}" text-anchor="end" class="flab${bold.has(p.n)?" fb":""}${p.era==="rel"?" frel":""}">${fesc(p.n)}</text><line x1="${sc(-100)}" x2="${sc(100)}" y1="${y}" y2="${y}" class="ftrack"/>`;
+  s+=`<g class="fpt" tabindex="0" data-fpid="${p.i}" data-tip="Z ${fsg(p.s[2])}|${fesc(p.n)}${f!=null?" · decides by faith "+f+"%":""}"><circle cx="${x}" cy="${y}" r="10" fill="transparent"/><circle cx="${x}" cy="${y}" r="4.5" fill="${fgc("G")}" class="fring"/></g>`;
+  if(f!=null)s+=`<text x="${W-R+14}" y="${y+4}" class="fval">${f}%</text>`;});
+ return s+"</svg>"+ftable(["Tradition or thinker","Z (truth)","Weight on faith when deciding"],m.map(p=>[p.n,fsg(p.s[2]),ETH[p.n]?Math.round((ETH[p.n].F||0)*100)+"%":"—"]));}
+
+/* ---------- 09 · the empty corner ---------- */
+function fQuad(){const L=a=>a.map(n=>fby(n)).filter(Boolean).map(fname).join("");
+ return `<div class="fquad"><div></div><div class="fqh">Truth willed or made<small>Z −50 or lower</small></div><div class="fqh">Truth eternal, binding even God<small>Z +75 or higher</small></div>
+ <div class="fqv">A someone<small>personal +60 or higher</small></div><div class="fqc">${L(["al-Ghazālī","Ockham","Descartes","Kierkegaard","Islam (Sunni kalām)"])}</div><div class="fqc hl">${L(["Joseph Smith","Latter-day Saints"])}<p>The only two.</p></div>
+ <div class="fqv">A something<small>personal −60 or lower</small></div><div class="fqc">${L(["Nietzsche","Carnap","Sartre","Foucault","Derrida"])}</div><div class="fqc">${L(["Parmenides","Aristotle","Plotinus","Śaṅkara","Spinoza"])}</div></div>
+ <p class="fnote">Fourteen more traditions with a personal God sit between the columns, with truth grounded in God's own nature: Augustine, Aquinas, Catholicism, classical Christianity, rabbinic Judaism and others. Personal scores come from the earlier version of the map.</p>`;}
+
+/* ---------- 10 · unexpected neighbours ---------- */
+function fPairs(){const pairs=[["Latter-day Saints","The Stoics","After Joseph Smith, the nearest entry to Latter-day Saint teaching is Stoicism, not any Christian tradition (Catholicism is 121 units away, Plato 109). Both treat spirit as refined matter, place the divine inside the cosmos, and hold that law is eternal. They split on the good: becoming like God vs. the unshakable sage."],
+  ["Catholicism","Dvaita Vedānta","The tightest pair in the model. Madhva, who founded Dvaita, and Aquinas were 13th-century contemporaries on opposite sides of the world, and arrived independently at nearly the same picture: a personal God, with souls and matter that are real but depend on him."],
+  ["Laozi","Theravāda Buddhism","Almost the same place, different goods: harmony with the Dao for one, release from craving for the other."],
+  ["al-Ghazālī","Joseph Smith","The farthest-apart pair in the whole model aims at the same good, union with the divine. One holds that God's will makes truth and nature has no necessity; the other that God is embodied and works within eternal law."]];
+ return `<div class="fpairs">${pairs.map(([a,b,t])=>{const A=fby(a),B=fby(b),d=fd3(A,B),same=A.hg===B.hg;
+  return `<article class="fpair"><div class="fpn">${fname(A)}<span>↔</span>${fname(B)}</div><div class="fmeter" tabindex="0" data-tip="${Math.round(d)} units|of a possible 346"><i style="width:${(d/346*100).toFixed(1)}%"></i></div>
+  <div class="fpm"><b>${Math.round(d)} units apart</b><span>${same?`Same good · <i class="fsw" style="background:${fgc(A.hg)}"></i>${fgn(A.hg)}`:`Different goods · <i class="fsw" style="background:${fgc(A.hg)}"></i>${fgn(A.hg)} vs <i class="fsw" style="background:${fgc(B.hg)}"></i>${fgn(B.hg)}`}</span></div><p>${t}</p></article>`;}).join("")}</div>`;}
+
+/* ---------- 11 · regions and the good ---------- */
+function fRegions(){const rs=ZONES.map(z=>({z,m:P.filter(p=>p.hg&&p.sz.id===z.id)})).filter(o=>o.m.length>=3).map(o=>{const c={};o.m.forEach(p=>c[p.hg]=(c[p.hg]||0)+1);return {...o,c,top:Math.max(...Object.values(c))/o.m.length};}).sort((a,b)=>b.top-a.top||b.m.length-a.m.length);
+ const rows=rs.map(o=>{let x=0;const n=o.m.length,segs=FSLOT.filter(k=>o.c[k]).map(k=>{const w=o.c[k]/n*100,seg=`<i style="left:${x}%;width:calc(${w}% - 2px);background:${fgc(k)}" tabindex="0" data-tip="${o.c[k]} of ${n}|${fesc(fgn(k))} · ${fesc(o.z.n)}"></i>`;x+=w;return seg;}).join("");
+  return `<div class="frg"><span class="frn">${fesc(o.z.n)} <small>${n}</small></span><span class="fseg">${segs}</span><span class="frp">${Math.round(o.top*100)}% share one good</span></div>`;}).join("");
+ return `<div class="frgs">${rows}</div>`+flegend(FSLOT.map(k=>[fgc(k),fgn(k)]))+ftable(["Region","Entries","Breakdown of highest goods"],rs.map(o=>[o.z.n,o.m.length,FSLOT.filter(k=>o.c[k]).map(k=>fgn(k)+" "+o.c[k]).join(", ")]));}
+
+/* ---------- page assembly ---------- */
+function fSec(n,id,title,lead,fig,how){return `<section class="fsec" id="${id}"><div class="fsh"><span class="fno">${n}</span><h2>${title}</h2></div><div class="flead">${lead}</div><div class="ffig">${fig}</div>${how?`<p class="fhow"><b>How this was measured.</b> ${how}</p>`:""}</section>`;}
+let fBuilt=false;
+function buildFindings(){if(fBuilt)return;fBuilt=true;
+ const secs=[
+  ["01","f-axes","Where the ultimate is predicts the highest good most strongly",
+   `<p>Of the three axes, Y (where the ultimate is) is tied most strongly to what a tradition says life is for. The highest good accounts for 65% of the spread on Y, against 23% for Z and 16% for X.</p><p>Almost all of that comes from one split. A single line at Y +34 sorts "union with the divine" from every other good correctly 91% of the time. ${fname(fby("Joseph Smith"))} (+20) is the only union-with-God entry below the line, with ${fname(fby("Latter-day Saints"))} (+34) right on it. ${fname(fby("Parmenides"))}, ${fname(fby("Descartes"))}, ${fname(fby("Locke"))} and ${fname(fby("Zoroastrianism"))} sit above it without aiming at union.</p><p>Mind vs. matter (X) only seems to matter because it travels with Y: mind-first views tend to put the ultimate beyond the world. Once Y is known, X adds nothing.</p>`,
+   fAxisBars(),"“Share of the spread explained” is ω² (omega squared): how much of the variation on an axis lines up with which good an entry holds, corrected for the fact that eight groups would line up somewhat by chance alone (about 13% before correction). Chance was ruled out with permutation tests, which reshuffle the goods thousands of times to see how often a pattern this strong appears by accident."],
+  ["02","f-panels","Each highest good has its own territory",
+   `<p>Give each good its own panel and the pattern is visible at a glance. Union with the divine fills the top of the model. Understanding, liberation and character lean toward the side where truth is found. Freedom and justice sit low and toward the side where truth is made.</p>`,fMultiples(),""],
+  ["03","f-truth","Once God is set aside, the truth axis matters most",
+   `<p>Among the 35 entries whose good is <i>not</i> union with the divine, Z (truth found or made) is the best guide: it explains 39% of the spread, a pattern chance would rarely produce (p = .002). Y explains 17%, which isn't significant, and X explains nothing.</p><p>The goods you conform yourself to (understanding, liberation, character, harmony) sit where truth is found. The goods you create or win (happiness, freedom, justice) sit where it is made.</p><p class="fcaveat">This is a tendency in the averages, not a sorting rule. Close neighbours in the model still often hold different goods.</p>`,
+   fZdots(),"ω² as above, computed only among the 35 entries whose good isn't union with the divine."],
+  ["04","f-time","Philosophy lost transcendence and found truth, but not mind",
+   `<p>Across 47 philosophers (46 people and the Stoics), later thinkers place the ultimate lower (ρ = −.41) and treat truth as more made (ρ = −.41). Mind vs. matter shows no trend at all (ρ = +.08). The familiar story of a "rise of materialism" doesn't appear here; the loss of a beyond and of found truth does.</p>`,
+   fTime()+`<h3 class="fsub">The highest good: consensus, then pluralism, then silence</h3><p class="flead2">Medieval philosophers mostly agree: 6 of 9 aim at union with the divine. The 1800s hold seven different goods among 13 thinkers. Every philosopher before 1800 names a highest good; half of those from the 1900s name none.</p>`+fGoodsByPeriod(),
+   "ρ (rho) is a rank correlation, from −1 (one goes up as the other goes down) through 0 (no link) to +1 (they rise together), tested by permutation. Periods group philosophers by birth year."],
+  ["05","f-religion","Religions and philosophers differ on everything except truth",
+   `<p>Religions are more mind-first than philosophers and far more personal, but whether truth is found or made doesn't separate them at all. It's the question a religion leaves most open, which is where members of the same faith can differ most.</p><p>Religions also cover only four highest goods: union with the divine, liberation, character and harmony. None aims at freedom, happiness, justice or understanding.</p>`,
+   fDumbbell(),"Mann–Whitney tests on the medians of 15 religions and 46 philosophers."],
+  ["06","f-decide","How you decide tracks where you stand",
+   `<p>Among the 29 entries with a decision profile, deciding by faith goes with a personal, transcendent ultimate. Deciding by character or principle goes with truth that is found. Deciding by gut feeling goes with an ultimate close to this world and truth that is made.</p>`,
+   fMatrix(),"Decision profiles are the weights used to match test-takers' ways of deciding (principle, faith, character, gut feeling, outcomes, community)."],
+  ["07","f-drift","Thinkers who aim at union with God are the most consistent",
+   `<p>For philosophers who aim at union with the divine, arguments land 6.5 units from their own claims on average. For philosophers aiming at any other good, it's 23 (p = .008). Happiness and freedom thinkers drift most. A likely reason: theists state their metaphysics outright and build on it, while several thinkers aiming at worldly goods make claims their own arguments undercut. ${fname(fby("Hobbes"))}, the biggest drift in the model, affirmed a God his mechanism leaves no room for.</p>`,
+   fDrift(),"Mann–Whitney test comparing drift for philosophers aiming at union with the divine against all other philosophers."],
+  ["08","f-theism","Truth is the fault line inside theism",
+   `<p>No group is more divided about truth than the one aiming at union with the divine. It runs from ${fname(fby("al-Ghazālī"))}, for whom good is whatever God commands, to ${fname(fby("Plato"))}, for whom the Forms bind even the gods. There is a hint, too small to be sure of, that traditions where truth binds God lean less on faith when deciding.</p><p>${fname(fby("Latter-day Saints"))} and ${fname(fby("Joseph Smith"))} break that hint: as truth-found as Plato, and as faith-led as the voluntarists.</p>`,
+   fTheism(),"Spread on Z within this group is 59 units (standard deviation), against about 42 for the other goods. The faith trend is ρ = −.40 across 13 entries, which is not significant."],
+  ["09","f-corner","A corner almost no one occupies",
+   `<p>Whether the ultimate is a person and whether truth is eternal are unrelated across the model (ρ = .08), so every combination is open. Yet only two entries hold a personal God <i>and</i> truth that binds even God: Joseph Smith and Latter-day Saints.</p>`,
+   fQuad(),""],
+  ["10","f-pairs","Unexpected neighbours",`<p>Distances in the model sometimes cut straight across the usual family lines.</p>`,fPairs(),"Distance is measured across all three axes, where the largest possible gap is 346 units."],
+  ["11","f-regions","Where the model agrees, and disagrees, about the good",
+   `<p>Some regions agree on what life is for. In Intellectualist Theism, 10 of 11 aim at union with the divine; in Rational Idealism and Voluntarist Theism, all of them do. Cosmic Law, the balanced middle of the model, holds four different goods among eight members. The middle is where traditions disagree most about the point of life.</p>`,
+   fRegions(),"Regions with at least three members whose work lands there. Each bar splits the region's members by highest good."]];
+ FBODY.innerHTML=`<section class="fintro">
+  <div class="fstats"><div class="fstat"><span class="lbl">Strongest link</span><b>65%</b><p>of the spread on Y, where the ultimate is, lines up with the highest good</p></div>
+  <div class="fstat"><span class="lbl">One line</span><b>91%</b><p>of entries are sorted correctly into "union with the divine" or not by a single cut at Y +34</p></div>
+  <div class="fstat"><span class="lbl">Prediction</span><b>49%</b><p>of entries' exact highest good, out of eight, is predicted from position alone. Always guessing the most common good gets 36%</p></div></div>
+  <p class="flead">These findings come from the survey's own data: 46 philosophers and 15 religions placed on three axes, each with a highest good (6 philosophers propose none and are left out wherever the good is compared). Every number here was computed from those placements, with permutation tests to rule out chance.</p>
+  <nav class="ftoc" aria-label="Findings">${secs.map(s=>`<button data-fjump="${s[1]}"><span>${s[0]}</span>${s[2]}</button>`).join("")}<button data-fjump="f-caveats"><span>12</span>How much to trust this</button></nav></section>`+
+  secs.map(s=>fSec(...s)).join("")+
+  `<section class="fsec" id="f-caveats"><div class="fsh"><span class="fno">12</span><h2>How much to trust this</h2></div><div class="flead">
+  <p><b>The same hand made both sides.</b> Every position on the map and every highest good was assigned by reading each thinker's own writing and the main scholarly interpretations. So these correlations partly measure how consistent those judgments are, not independent facts about the traditions.</p>
+  <p><b>Some links are close to built in.</b> If the ultimate is beyond the world, it's natural for the good to be reaching it. The Y finding is the least surprising for that reason; the truth-axis and decision findings are less obvious.</p>
+  <p><b>The sample is small and hand-picked.</b> There are 55 entries with a highest good, some goods have only two to four members, and the list isn't a random sample of the world's thinkers. Many patterns were checked, so a few weaker ones could be flukes.</p>
+  <p><b>What would really test it:</b> answers from real people. The test measures both the axes and the highest good independently, so results from many test-takers could show whether these patterns hold in real lives, and whether members of the same religion split on whether truth is found or made.</p></div></section>`;}
+
 loadSaved();
 refresh();
 updateHeader();

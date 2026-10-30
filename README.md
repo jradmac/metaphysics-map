@@ -19,6 +19,10 @@ A 3D, CAD-style model of 46 philosophers and 15 religious traditions, placed by 
 - **Seventeen regions** as translucent blocks. Each of the nine columns (Idealism, Classical Theism, Materialist Theism, Pantheism, Physicalism and so on) splits at Z 0 into a truth-found half and a truth-made half, for example Intellectualist vs Voluntarist Theism. Anti-Realism runs the full depth.
 - **Focus on a selection:** select anyone and everything fades except the entries that share their view on at least one axis or their highest good. Three planes pass through their position, the three axes light up with their values, and the panel lists who agrees on each.
 
+## Findings
+
+The **Findings** page (button at the top, or `index.html#findings`) shows what the data reveals: which axis is tied most strongly to the highest good, how philosophy has shifted over time, how religions and philosophers differ, how ways of deciding track the axes, and a few surprising neighbours. Every chart has a table view, and tapping a dot opens that entry on the map. It ends with an honest section on how far to trust the patterns.
+
 ## The test
 
 Thirty-six questions in seven parts. It opens in its own tab, and when you finish, a results card pops up with everything in one scrollable place; tap "Show me on the map" to see your pins in the model.
