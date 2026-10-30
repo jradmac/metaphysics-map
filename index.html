@@ -531,6 +531,25 @@ svg.by-good .ph .vec{stroke:var(--gc)}
 @media (max-width:920px){.kinds{top:54px}.kinds button{height:36px;font-size:12px}}
 .gkey[hidden]{display:none}
 .ph.is-dim{opacity:.06}
+.pband.one{opacity:1}
+.pline.one{fill:none;stroke-width:1.6;stroke-dasharray:none}
+.selhalo.dash{stroke-dasharray:3 3}
+.axf{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin:2px 0 4px}
+.axf .lbl{margin-right:4px}
+.axb{font-family:var(--f-mono);font-size:11px;letter-spacing:.04em;background:transparent;color:var(--ink);border:1px solid var(--line);padding:5px 9px;cursor:pointer}
+.axb:hover{background:var(--hl)}
+.axb[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.axb.px[aria-pressed="true"]{background:var(--px);border-color:var(--px)}
+.axb.py[aria-pressed="true"]{background:var(--py);border-color:var(--py)}
+.axb.pz[aria-pressed="true"]{background:var(--pz);border-color:var(--pz)}
+.conn{stroke-width:1.3;opacity:.55;pointer-events:none}
+.conn.px{stroke:var(--px)}.conn.py{stroke:var(--py)}.conn.pz{stroke:var(--pz)}
+.conn.dash{stroke-dasharray:3 3}
+.wit{stroke-width:1.8!important;stroke-dasharray:none!important;opacity:.9}
+.wit.dash{stroke-dasharray:4 3!important}
+.selhalo{fill:none;stroke:var(--sel);stroke-width:2.4;pointer-events:none}
+.ph.is-sel .name{font-size:14px}
+.phit{stroke-width:2.2}
 svg.focus .wall{fill-opacity:.25}
 svg.focus .g-minor,svg.focus .g-major{opacity:.35}
 svg.focus .pband{opacity:.35}
@@ -582,7 +601,7 @@ svg.focus .ztag.on{opacity:1}
       </div>
       <div class="colorby gfilter" role="group" aria-label="Filter by highest good"><span class="lbl">Highest good · tap to filter</span><button data-gf="" class="gall" aria-pressed="true">All</button><button data-gf="G" style="--gc:var(--gG)" aria-pressed="false" title="Becoming like God, seeing God, or being joined to the One: the soul's ascent, the beatific vision, exaltation, union with Brahman."><i></i>Union with the divine</button><button data-gf="V" style="--gc:var(--gV)" aria-pressed="false" title="Excellence of character and a full, well-lived human life (eudaimonia): wisdom, courage, justice, humaneness, practiced in a community."><i></i>Character and flourishing</button><button data-gf="L" style="--gc:var(--gL)" aria-pressed="false" title="Freedom from craving, passion and disturbance: the untroubled mind, release from the cycle, the sage who cannot be shaken."><i></i>Liberation and peace</button><button data-gf="H" style="--gc:var(--gH)" aria-pressed="false" title="Pleasure, satisfied desire and the relief of suffering, for yourself and for everyone your life touches."><i></i>Happiness and wellbeing</button><button data-gf="F" style="--gc:var(--gF)" aria-pressed="false" title="Autonomy and authenticity: making your own values, overcoming what you were handed, being fully your own."><i></i>Freedom and self-creation</button><button data-gf="J" style="--gc:var(--gJ)" aria-pressed="false" title="A just, free society in which people flourish together; repairing the world."><i></i>Justice and the common good</button><button data-gf="W" style="--gc:var(--gW)" aria-pressed="false" title="Living in accord with nature, the Dao, the kami, the land and the ancestors: balance, purity, reciprocity."><i></i>Harmony with the way of things</button><button data-gf="K" style="--gc:var(--gK)" aria-pressed="false" title="Knowledge and contemplation of what is: the life of reason, the vision of truth, understanding as the highest activity."><i></i>Understanding</button><button data-gf="N" style="--gc:var(--gN)" aria-pressed="false" title="Thinkers who proposed no highest good"><i></i>None proposed</button></div>
       <div class="zkey" id="zkey"></div>
-      <div class="howto"><span><i class="k-dot"></i>Solid point: what they claimed</span><span><i class="k-ring"></i>Hollow point: where their arguments land</span><span><i class="k-ring dash"></i>Dashed hollow point: contested reading</span><span><i class="k-drift"></i>Orange arrow: drift between the two</span><span><i class="k-dim"></i>Red ring: the thinker you selected</span><span><i class="k-pin"></i>Red pins: your beliefs (solid) and decisions (hollow)</span><span><i class="k-spread"></i>Dashed red rings: how far your answers ranged</span><span><i class="k-px"></i>Blue plane: same view on what's fundamental</span><span><i class="k-py"></i>Gold plane: same view on where the ultimate is</span><span><i class="k-pz"></i>Green plane: same view on whether truth is found or made</span><span><i class="k-ring"></i>Faded points sit farther back</span></div>
+      <div class="howto"><span><i class="k-dot"></i>Solid point: what they claimed</span><span><i class="k-ring"></i>Hollow point: where their arguments land</span><span><i class="k-ring dash"></i>Dashed hollow point: contested reading</span><span><i class="k-drift"></i>Orange arrow: drift between the two</span><span><i class="k-dim"></i>Red ring: the thinker you selected</span><span><i class="k-pin"></i>Red pins: your beliefs (solid) and decisions (hollow)</span><span><i class="k-spread"></i>Dashed red rings: how far your answers ranged</span><span><i class="k-px"></i>Select a thinker: their 6 closest stay solid. Use “Show on the map” in the panel to see one axis at a time</span><span><i class="k-ring"></i>Faded points sit farther back</span></div>
       <div class="cmd" aria-live="polite">
         <span class="msg" id="cmdMsg">Command: <b>SELECT</b> a point or a block to inspect. Drag to turn, shift-drag to pan, scroll to zoom.</span><span class="mhint">Tap a point or block and the model flies to it · use the view buttons to turn it</span>
         <span>X <b id="cx">—</b></span><span>Y <b id="cy">—</b></span><span>Z <b id="czz">—</b></span><span>ZONE <b id="cz">—</b></span><span>VIEW <b id="cv">ISO</b></span>
@@ -603,13 +622,12 @@ svg.focus .ztag.on{opacity:1}
       <div class="pblock">
         <div class="lbl">Legend</div>
         <div class="legend">
-          <svg width="18" height="18" viewBox="-9 -9 18 18"><circle r="6" class="m-claim"/></svg><span>Monist: one kind of ultimate stuff</span>
-          <svg width="18" height="18" viewBox="-9 -9 18 18"><rect x="-5.5" y="-5.5" width="11" height="11" class="m-claim"/></svg><span>Dualist: two irreducible kinds</span>
-          <svg width="18" height="18" viewBox="-9 -9 18 18"><path d="M0 -7 L6.5 5 L-6.5 5Z" class="m-claim"/></svg><span>Pluralist: many basic things</span>
-          <svg width="18" height="18" viewBox="-9 -9 18 18"><path d="M0 -7 L7 0 L0 7 L-7 0Z" class="m-claim"/></svg><span>Process / anti-substance</span>
-          <svg width="18" height="18" viewBox="-9 -9 18 18"><circle r="5.5" class="m-supp"/></svg><span>Where the work actually lands</span>
-          <svg width="18" height="18" viewBox="-9 -9 18 18"><circle r="5.5" class="m-supp" style="stroke-dasharray:3 2"/></svg><span>Contested reading of where it lands</span>
-          <svg width="18" height="18" viewBox="-9 -9 18 18"><circle r="6" style="fill:var(--gG);stroke:var(--sheet);stroke-width:1.5"/></svg><span>Color: the highest good it aims at</span><svg width="18" height="18" viewBox="-9 -9 18 18"><text x="0" y="4" text-anchor="middle" style="fill:var(--rel);font-style:italic;font-size:11px">Ab</text></svg><span>Violet italic name: a religious tradition (doctrine as taught)</span>
+          <svg width="18" height="18" viewBox="-9 -9 18 18"><circle r="6" class="m-claim"/></svg><span>A person: one philosopher</span>
+          <svg width="18" height="18" viewBox="-9 -9 18 18"><rect x="-5.5" y="-5.5" width="11" height="11" class="m-claim"/></svg><span>A religion: its doctrine as taught (name in violet italics)</span>
+          <svg width="18" height="18" viewBox="-9 -9 18 18"><path d="M0 -7 L7 0 L0 7 L-7 0Z" class="m-claim"/></svg><span>A school of thought: many thinkers, one shared teaching, like the Stoics</span>
+          <svg width="18" height="18" viewBox="-9 -9 18 18"><circle r="5.5" class="m-supp"/></svg><span>Hollow: where the work actually lands</span>
+          <svg width="18" height="18" viewBox="-9 -9 18 18"><circle r="5.5" class="m-supp" style="stroke-dasharray:3 2"/></svg><span>Dashed hollow: a contested reading</span>
+          <svg width="18" height="18" viewBox="-9 -9 18 18"><circle r="6" style="fill:var(--gG);stroke:var(--sheet);stroke-width:1.5"/></svg><span>Color: the highest good it aims at</span>
         </div>
       </div>
     </aside>
@@ -846,10 +864,12 @@ function shape(type,cx,cy,r,cls,parent){
  if(type==="plur")return el("path",{d:`M${cx} ${cy-r*1.15} L${cx+r*1.05} ${cy+r*.8} L${cx-r*1.05} ${cy+r*.8}Z`,class:cls},parent);
  return el("path",{d:`M${cx} ${cy-r*1.2} L${cx+r*1.2} ${cy} L${cx} ${cy+r*1.2} L${cx-r*1.2} ${cy}Z`,class:cls},parent);}
 
+const SCHOOLS=new Set(["The Stoics"]);
+P.forEach(p=>{p.kind=p.era==="rel"?"rel":SCHOOLS.has(p.n)?"school":"person";p.shp=p.kind==="rel"?"dual":p.kind==="school"?"proc":"mon";});
 const G={};
 P.forEach(p=>{const g=el("g",{class:"ph"+(p.era==="rel"?" rel":"")+(p.conf==="c"?" contested":""),style:`--gc:var(--g${p.hg||"N"})`,"data-id":p.i,tabindex:0,role:"button","aria-label":p.n},gP);G[p.i]=g;p.g=g;
- if(p.drift>2){p.vecEl=el("line",{class:"vec","marker-end":"url(#arr)"},g);p.gs=el("g",{},g);shape(p.t,0,0,5,"m-supp",p.gs);}
- p.gc=el("g",{},g);shape(p.t,0,0,6,"m-claim",p.gc);el("circle",{cx:0,cy:0,r:16,fill:"transparent"},p.gc);
+ if(p.drift>2){p.vecEl=el("line",{class:"vec","marker-end":"url(#arr)"},g);p.gs=el("g",{},g);shape(p.shp,0,0,5,"m-supp",p.gs);}
+ p.gc=el("g",{},g);shape(p.shp,0,0,6,"m-claim",p.gc);el("circle",{cx:0,cy:0,r:16,fill:"transparent"},p.gc);
  p.leader=el("line",{class:"leader ns",visibility:"hidden"},g);
  const nt=el("text",{class:"name"},g);nt.textContent=p.n;p.label=nt;});
 
@@ -894,10 +914,10 @@ function drawAxes(){tickBoxes=[];
    el("line",{x1:s[0],y1:s[1],x2:s[0]+nx*7,y2:s[1]+ny*7,class:"axis ns"},gA);
    tickTxt(s[0]+nx*20,s[1]+ny*20+4,(v>0?"+":"")+v,"tick",ax===1?"end":"middle");}
   const fi=focusInfo();if(fi){const q=e.p0.slice();q[ax]=Math.max(-100,Math.min(100,fi.pt[ax]));const s=P3(q),col=["px","py","pz"][ax];
-   el("line",{x1:e.s0[0],y1:e.s0[1],x2:e.s1[0],y2:e.s1[1],class:"axhl "+col+" ns"},gA);
-   el("circle",{cx:s[0],cy:s[1],r:5,class:"axdot "+col},gA);
-   const lab=(fi.pt[ax]>0?"+":"")+Math.round(fi.pt[ax]),w=lab.length*7+14,ox=s[0]+nx*(ax===1?44:30),oy=s[1]+ny*30;
-   const g=el("g",{class:"ptag "+col},gA);el("rect",{x:ox-w/2,y:oy-9,width:w,height:18,class:"ns"},g);txt(ox,oy+4,lab,"","middle",g);tickBoxes.push([ox-w/2,oy-9,ox+w/2,oy+9]);}
+   if(S.axf===ax)el("line",{x1:e.s0[0],y1:e.s0[1],x2:e.s1[0],y2:e.s1[1],class:"axhl "+col+" ns"},gA);
+   el("circle",{cx:s[0],cy:s[1],r:S.axf===ax?5:3.5,class:"axdot "+col},gA);
+   if(S.axf===ax){const lab=(fi.pt[ax]>0?"+":"")+Math.round(fi.pt[ax]),w=lab.length*7+14,ox=s[0]+nx*(ax===1?44:30),oy=s[1]+ny*30;
+   const g=el("g",{class:"ptag "+col},gA);el("rect",{x:ox-w/2,y:oy-9,width:w,height:18,class:"ns"},g);txt(ox,oy+4,lab,"","middle",g);tickBoxes.push([ox-w/2,oy-9,ox+w/2,oy+9]);}}
   if(L>560)A.a.forEach(([v,lab])=>{const q=e.p0.slice();q[ax]=v;const s=P3(q);tickTxt(s[0]+nx*38,s[1]+ny*38+4,lab,"anchor",ax===1?"end":v===-100&&ax!==1?"start":v===100&&ax!==1?"end":"middle");});
   let deg=Math.atan2(dy,dx)*180/Math.PI,flip=false;if(deg>90){deg-=180;flip=true;}if(deg<-90){deg+=180;flip=true;}
   const lab=flip?`${A.hi} ◄─── ${A.n} ───► ${A.lo}`:`${A.lo} ◄─── ${A.n} ───► ${A.hi}`;
@@ -1070,42 +1090,45 @@ function axisMates(pt,ex){const vis=P.filter(q=>q.i!==ex&&shown(q));
    if(ds<=BAND)return {q,pt:q.s,d:ds,via:"s"};if(dc<=BAND)return {q,pt:q.c,d:dc,via:"c"};return null;}).filter(Boolean).sort((a,b)=>a.d-b.d);
  return {xs:pick(0),ys:pick(1),zs:pick(2)};}
 function mateList(arr){return arr.length?arr.map(m=>`<button class="pbtn${m.q.era==="rel"?" rel":""}" data-pid="${m.q.i}" title="${m.via==="c"&&m.q.drift>2?"Matches their stated view":"Matches where their work lands"}">${m.q.n}${m.via==="c"&&m.q.drift>2?'<small class="via"> · stated</small>':""}</button>`).join(""):'<span class="empty">No one else within ±'+BAND+'</span>';}
+function axfChips(){const c=[[null,"Closest 6"],[0,"Same X"],[1,"Same Y"],[2,"Same Z"],["g","Same good"]];
+ return `<div class="axf" role="group" aria-label="Show on the map"><span class="lbl">Show on the map</span>${c.map(([k,n])=>`<button data-axf="${k}" class="axb ${k===null?"":k==="g"?"gq":AXC[k]}" aria-pressed="${(S.axf??null)===k}">${n}</button>`).join("")}</div>`;}
 function goodMates(g,ex){return g?P.filter(q=>q.i!==ex&&shown(q)&&(q.hg===g||q.g2===g)).sort((a,b)=>(b.hg===g)-(a.hg===g)).map(q=>({q,via:q.hg===g?"p":"s"})):[];}
 function goodList(arr){return arr.length?arr.map(m=>`<button class="pbtn${m.q.era==="rel"?" rel":""}" data-pid="${m.q.i}" title="${m.via==="p"?"Their highest good":"Their second good"}">${m.q.n}${m.via==="s"?'<small class="via"> · second</small>':""}</button>`).join(""):'<span class="empty">No one else</span>';}
 function goodMateHTML(g,ex){return g?`<div class="mate mg" style="--gc:var(--g${g})"><div class="lbl"><i class="mk"></i>Same highest good · ${gName(g)}</div><div class="list">${goodList(goodMates(g,ex))}</div></div>`:"";}
 function matesHTML(pt,ex,g){const m=axisMates(pt,ex);
- return `<div class="mates"><div class="mate mx"><div class="lbl"><i class="mk"></i>Same view on what's fundamental · X ${fmt(pt[0])} ±${BAND}</div><div class="list">${mateList(m.xs)}</div></div>
+ return `${axfChips()}<div class="mates"><div class="mate mx"><div class="lbl"><i class="mk"></i>Same view on what's fundamental · X ${fmt(pt[0])} ±${BAND}</div><div class="list">${mateList(m.xs)}</div></div>
  <div class="mate my"><div class="lbl"><i class="mk"></i>Same view on where the ultimate is · Y ${fmt(pt[1])} ±${BAND}</div><div class="list">${mateList(m.ys)}</div></div>
  <div class="mate mz"><div class="lbl"><i class="mk"></i>Same view on whether truth is found or made · Z ${fmt(pt[2])} ±${BAND}</div><div class="list">${mateList(m.zs)}</div></div>${goodMateHTML(g,ex)}</div>`;}
 function projTag(x,y,txt,cls){const g=el("g",{class:"ptag "+cls},gProj),w=txt.length*7+12;el("rect",{x:x-w/2,y:y-9,width:w,height:18,class:"ns"},g);const t=el("text",{x,y:y+4,"text-anchor":"middle"},g);t.textContent=txt;}
 function planeQuad(ax,v){const o=[0,1,2].filter(i=>i!==ax),mkp=(a,b)=>{const q=[0,0,0];q[ax]=v;q[o[0]]=a;q[o[1]]=b;return q;};return [mkp(-100,-100),mkp(100,-100),mkp(100,100),mkp(-100,100)];}
-function drawProj(){gProj.innerHTML="";const src=[];
- if(S.view==="results"){if(T.res){src.push({pt:T.res,ax:[0,1,2],ex:-1});if(T.dres)src.push({pt:T.dres,ax:[1,2],ex:-1,dash:1});}}
- else if(S.view==="thinker"&&S.sel!=null&&P[S.sel]&&shown(P[S.sel]))src.push({pt:P[S.sel].s,ax:[0,1,2],ex:S.sel});
- src.forEach(o=>{const m=axisMates(o.pt,o.ex),lists=[m.xs,m.ys,m.zs];
-  o.ax.forEach(ax=>{const v=o.pt[ax],cls=AXC[ax]+(o.dash?" dash":""),q=planeQuad(ax,v).map(P3);
-   const lo=planeQuad(ax,Math.max(-100,v-BAND)).map(P3),hi=planeQuad(ax,Math.min(100,v+BAND)).map(P3);
-   if(!o.dash)el("polygon",{points:pts(q),class:"pband "+cls},gProj);
-   el("polygon",{points:pts(q),class:"pline "+cls+" ns"},gProj);
-   if(!o.dash)[lo,hi].forEach(b=>el("polygon",{points:pts(b),class:"pedge "+cls+" ns"},gProj));
-   lists[ax].forEach(h=>{const s=P3(h.pt);el("circle",{cx:s[0],cy:s[1],r:o.dash?13:10,class:"phit "+cls+" ns"},gProj);});
-   // tag at the lowest corner of the plane
-   let lowest=q[0];q.forEach(c=>{if(c[1]>lowest[1])lowest=c;});
-   projTag(lowest[0],Math.min(H-12,lowest[1]+14+(o.dash?20:0)),AXN[ax]+" "+fmt(v),cls);});
-  // witness lines from the point to the three back walls
-  const s0=P3(o.pt);o.ax.forEach(ax=>{const a=[0,0,0],b=[0,0,0];a[ax]=-100;b[ax]=100;const w=P3(a)[2]<P3(b)[2]?-100:100,q=o.pt.slice();q[ax]=w;const s1=P3(q);
-   el("line",{x1:s0[0],y1:s0[1],x2:s1[0],y2:s1[1],class:"wit "+AXC[ax]+" ns"},gProj);el("circle",{cx:s1[0],cy:s1[1],r:2.5,class:"witdot "+AXC[ax]},gProj);});});}
+function closestTo(pt,ex,g,n){return P.filter(q=>q.i!==ex&&shown(q)).map(q=>{const d=Math.min(Math.hypot(q.c[0]-pt[0],q.c[1]-pt[1],q.c[2]-pt[2]),Math.hypot(q.s[0]-pt[0],q.s[1]-pt[1],q.s[2]-pt[2]));
+ const gg=!g||!q.hg?0:q.hg===g?0:q.g2===g?18:36;return {q,d:Math.hypot(d,gg)};}).sort((a,b)=>a.d-b.d).slice(0,n);}
+function drawProj(){gProj.innerHTML="";const fi=focusInfo();if(!fi)return;const s0=P3(fi.pt),ax=S.axf;
+ if(ax===0||ax===1||ax===2){const v=fi.pt[ax];
+  el("polygon",{points:pts(planeQuad(ax,v).map(P3)),class:"pband one "+AXC[ax]},gProj);
+  el("polygon",{points:pts(planeQuad(ax,v).map(P3)),class:"pline one "+AXC[ax]+" ns"},gProj);
+  axisMates(fi.pt,fi.ex)[["xs","ys","zs"][ax]].forEach(h=>{const s=P3(h.pt);el("circle",{cx:s[0],cy:s[1],r:10,class:"phit "+AXC[ax]+" ns"},gProj);});}
+ if(T.dres&&S.view==="results"){const d=P3(T.dres);el("circle",{cx:d[0],cy:d[1],r:15,class:"selhalo dash ns"},gProj);}
+ el("circle",{cx:s0[0],cy:s0[1],r:17,class:"selhalo ns"},gProj);}
 function focusInfo(){if(S.view==="thinker"&&S.sel!=null&&P[S.sel]&&shown(P[S.sel]))return {pt:P[S.sel].s,ex:S.sel,g:P[S.sel].hg};
  if(S.view==="results"&&T.res)return {pt:T.res,ex:-1,g:typeof topGoods==="function"?topGoods(T.gt)[0]:null};return null;}
-function markFocus(){const fi=focusInfo();let keep=null;
+let lastSel=null;
+function markFocus(){const fi=focusInfo();let keep=null;const key=S.view+":"+S.sel;if(key!==lastSel){lastSel=key;S.axf=null;}
  if(S.view==="region"&&S.zone){keep=new Set(P.filter(q=>q.sz.id===S.zone||q.cz.id===S.zone).map(q=>q.i));}
- if(fi){keep=new Set();const m=axisMates(fi.pt,fi.ex);[m.xs,m.ys,m.zs].forEach(a=>a.forEach(h=>keep.add(h.q.i)));if(typeof goodMates==="function")goodMates(fi.g,fi.ex).forEach(h=>keep.add(h.q.i));if(fi.ex>=0)keep.add(fi.ex);
-  if(S.view==="results")[...nearList(T.res,false,T.gt).slice(0,1),...nearList(T.res,true,T.gt).slice(0,1)].forEach(r=>keep.add(r.p.i));}
+ if(fi){keep=new Set();const m=axisMates(fi.pt,fi.ex),ax=S.axf;
+  if(ax===0||ax===1||ax===2)[m.xs,m.ys,m.zs][ax].forEach(h=>keep.add(h.q.i));
+  else if(ax==="g")goodMates(fi.g,fi.ex).forEach(h=>keep.add(h.q.i));
+  else closestTo(fi.pt,fi.ex,fi.g,6).forEach(r=>keep.add(r.q.i));
+  if(fi.ex>=0)keep.add(fi.ex);}
  svg.classList.toggle("focus",!!keep);
  P.forEach(p=>{p.dim=!!keep&&!keep.has(p.i);G[p.i].classList.toggle("is-dim",p.dim);});}
 function markSel(){const th=S.view==="thinker";P.forEach(p=>{const g=G[p.i];g.classList.toggle("is-sel",p.i===S.sel&&th);g.classList.toggle("is-pin",p.i===S.pin&&th);
  g.querySelectorAll(".ring").forEach(r=>r.remove());
  if(th&&(p.i===S.sel||p.i===S.pin)){const r=el("circle",{cx:0,cy:0,r:12,class:"ring ns"},p.gc);if(p.i===S.pin&&p.i!==S.sel)r.setAttribute("stroke-dasharray","3 3");}});}
+
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-axf]");if(!b)return;const v=b.dataset.axf;S.axf=v==="null"?null:v==="g"?"g":+v;
+ document.querySelectorAll("[data-axf]").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.axf===String(S.axf))));
+ const vw=S.axf===0||S.axf===1?"front":S.axf===2?"side":null;if(vw){const v=VIEWS[vw];flyTo({yaw:v.yaw,pitch:v.pitch,view:vw,zoom:1.45,t:[0,0,0]},650);}else requestRender();});
 
 /* ---------- table ---------- */
 const tb=document.getElementById("tb");
