@@ -12,10 +12,11 @@ A 3D, CAD-style model of 46 philosophers and 15 religious traditions, placed by 
 ## Using the model
 
 - **Drag** to turn it, **shift-drag** to pan, **scroll** to zoom. On a phone, tap any point or block and the model flies to it.
+- **Filters:** tabs under the view buttons show all entries, only philosophers or only religions. Points are colored by their highest good; tap a good under the model to show only the entries that aim at it.
 - **View buttons:** 3D, FRONT (the classic X–Y map), SIDE (truth against the ultimate) and TOP (mind or matter against truth), plus turn and tilt.
 - **Two points per thinker:** a solid point for what they claimed, and a hollow point for where their arguments actually commit them, joined by a drift arrow. Contested readings are dashed. Faded points sit farther back.
 - **Seventeen regions** as translucent blocks. Each of the nine columns (Idealism, Classical Theism, Materialist Theism, Pantheism, Physicalism and so on) splits at Z 0 into a truth-found half and a truth-made half, for example Intellectualist vs Voluntarist Theism. Anti-Realism runs the full depth.
-- **Axis planes:** select anyone to see three planes through their position, and lists of who shares their view on each axis.
+- **Focus on a selection:** select anyone and everything fades except the entries that share their view on at least one axis or their highest good. Three planes pass through their position, the three axes light up with their values, and the panel lists who agrees on each.
 
 ## The test
 

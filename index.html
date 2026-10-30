@@ -142,7 +142,7 @@ button:focus-visible,th:focus-visible,.chip:focus-visible{outline:2px solid var(
 .qresult .big{font-size:22px;color:var(--sel)}
 
 /* below */
-.below{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:16px;align-items:start}
+.below{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;align-items:start}
 @media (max-width:920px){.below{grid-template-columns:minmax(0,1fr)}}
 .sched{border:1.5px solid var(--ink);background:var(--sheet);min-width:0}
 .sched .phead{padding:10px 14px;border-bottom:1px solid var(--ink)}
@@ -477,11 +477,11 @@ svg.by-good .ph .vec{stroke:var(--gc)}
 .zface{fill:var(--zc);fill-opacity:.035;stroke:none;cursor:pointer}
 .zface:hover{fill-opacity:.08}
 .zface.tb{fill-opacity:.02}
-.zface.on{fill-opacity:.13}
+.zface.on{fill-opacity:.2}
 .zface.dim{fill-opacity:.008}
 .zedge{fill:none;stroke:var(--zc);stroke-opacity:.38;stroke-width:1;pointer-events:none}
 .zedge.tb{stroke-dasharray:4 3}
-.zedge.on{stroke-opacity:1;stroke-width:2.2}
+.zedge.on{stroke-opacity:1;stroke-width:2.6}
 .zedge.dim{stroke-opacity:.12}
 .ztag{cursor:pointer}
 .ph{opacity:var(--fade,1)}
@@ -518,7 +518,32 @@ svg.by-good .ph .vec{stroke:var(--gc)}
 .zsibn{font-size:13px;color:var(--ink2);margin-right:10px}
 .ucs{stroke-width:1.8}
 .pgrad[hidden]{display:none}
+.kinds{position:absolute;top:46px;left:10px;display:flex;border:1px solid var(--line);background:var(--sheet)}
+.kinds button{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;height:28px;padding:0 10px;border:0;border-right:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.kinds button:last-child{border-right:0}
+.kinds button:hover{background:var(--hl)}
+.kinds button[aria-pressed="true"]{background:var(--ink);color:var(--sheet)}
+.gfilter button{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-ui);font-size:12px;letter-spacing:0}
+.gfilter button i{width:9px;height:9px;border-radius:50%;background:var(--gc);flex:none}
+.gfilter button[aria-pressed="true"]{border-color:var(--gc,var(--ink));background:color-mix(in srgb,var(--gc,var(--ink)) 14%,transparent);color:var(--ink)}
+.gfilter .gall[aria-pressed="true"]{border-color:var(--ink);background:var(--hl)}
+@media (max-width:920px){.kinds{top:54px}.kinds button{height:36px;font-size:12px}}
 .gkey[hidden]{display:none}
+.ph.is-dim{opacity:.06}
+svg.focus .wall{fill-opacity:.25}
+svg.focus .g-minor,svg.focus .g-major{opacity:.35}
+svg.focus .pband{opacity:.35}
+svg.focus .pedge{opacity:.3}
+svg.focus .zface.on{fill-opacity:.2}
+.ph.is-dim .name,.ph.is-dim .leader{display:none}
+svg.focus .zface:not(.on){fill-opacity:.004}
+svg.focus .zedge:not(.on){stroke-opacity:.06}
+svg.focus .ztag{opacity:.18}
+svg.focus .ztag.on{opacity:1}
+.axhl{stroke-width:3.2;opacity:.9;fill:none}
+.axhl.px{stroke:var(--px)}.axhl.py{stroke:var(--py)}.axhl.pz{stroke:var(--pz)}
+.axdot{stroke:var(--sheet);stroke-width:1.5}
+.axdot.px{fill:var(--px)}.axdot.py{fill:var(--py)}.axdot.pz{fill:var(--pz)}
 @media (max-width:920px){.views button{height:38px;min-width:44px;font-size:12px}}
 
 /* default scale: matches the layout at 75% browser zoom */
@@ -532,7 +557,7 @@ svg.by-good .ph .vec{stroke:var(--gc)}
     <div>
       <div class="lbl">DWG MFS-001 · Sheet 1 of 1 · Model space</div>
       <h1>Metaphysical Field Survey</h1>
-      <p>A three-axis model: what is fundamental (X), where the ultimate is (Y), and whether truth is found or made (Z). Drag to turn it, or pick a view. Each philosopher is plotted twice: a solid point where they placed themselves, and a hollow point where their arguments actually commit them. The dashed vector between the two is the drift, and a dashed hollow point marks a reading scholars still dispute. Religious traditions are plotted in violet by their core doctrine. Select any point or block to read about it, or take the test to drop your own pins.</p>
+      <p>A three-axis model: what is fundamental (X), where the ultimate is (Y), and whether truth is found or made (Z). Drag to turn it, or pick a view. Each philosopher is plotted twice: a solid point where they placed themselves, and a hollow point where their arguments actually commit them. The dashed vector between the two is the drift, and a dashed hollow point marks a reading scholars still dispute. Each point is colored by the highest good it aims at; religious traditions, plotted by their core doctrine, have violet italic names. Use the tabs to show only philosophers or only religions, and tap a highest good under the model to show only those who aim at it. Select any point or block to read about it, or take the test to drop your own pins.</p>
     </div>
     <div class="tools" role="group" aria-label="Test">
       <button id="myRes" hidden>MY RESULTS</button>
@@ -547,13 +572,14 @@ svg.by-good .ph .vec{stroke:var(--gc)}
         <div class="views" role="group" aria-label="Views">
           <button data-view="iso" aria-pressed="true" title="Three-quarter view of all three axes">3D</button><button data-view="front" title="X–Y: the classic two-axis map">FRONT</button><button data-view="side" title="Z–Y: truth found or made, against where the ultimate is">SIDE</button><button data-view="top" title="X–Z: mind or matter, against truth found or made">TOP</button><i class="sep"></i><button data-rot="l" aria-label="Turn left">⟲</button><button data-rot="r" aria-label="Turn right">⟳</button><button data-rot="u" aria-label="Tilt up">▲</button><button data-rot="d" aria-label="Tilt down">▼</button>
         </div>
+        <div class="kinds" role="group" aria-label="Show"><button data-kind="all" aria-pressed="true">ALL</button><button data-kind="phil" aria-pressed="false">PHILOSOPHERS</button><button data-kind="rel" aria-pressed="false">RELIGIONS</button></div>
         <div class="zoom">
           <button id="zIn" aria-label="Zoom in">+</button>
           <button id="zOut" aria-label="Zoom out">−</button>
           <button id="zFit" aria-label="Zoom to fit">FIT</button>
         </div>
       </div>
-      <div class="colorby" role="group" aria-label="Color points by"><span class="lbl">Color points by</span><button data-cb="trad" aria-pressed="true">Tradition</button><button data-cb="good" aria-pressed="false">Highest good</button><span class="gkey" id="gkey" hidden><span style="--gc:var(--gG)"><i></i>Union with the divine</span><span style="--gc:var(--gV)"><i></i>Character and flourishing</span><span style="--gc:var(--gL)"><i></i>Liberation and peace</span><span style="--gc:var(--gH)"><i></i>Happiness and wellbeing</span><span style="--gc:var(--gF)"><i></i>Freedom and self-creation</span><span style="--gc:var(--gJ)"><i></i>Justice and the common good</span><span style="--gc:var(--gW)"><i></i>Harmony with the way of things</span><span style="--gc:var(--gK)"><i></i>Understanding</span><span style="--gc:var(--gN)"><i></i>None proposed</span></span></div>
+      <div class="colorby gfilter" role="group" aria-label="Filter by highest good"><span class="lbl">Highest good · tap to filter</span><button data-gf="" class="gall" aria-pressed="true">All</button><button data-gf="G" style="--gc:var(--gG)" aria-pressed="false" title="Becoming like God, seeing God, or being joined to the One: the soul's ascent, the beatific vision, exaltation, union with Brahman."><i></i>Union with the divine</button><button data-gf="V" style="--gc:var(--gV)" aria-pressed="false" title="Excellence of character and a full, well-lived human life (eudaimonia): wisdom, courage, justice, humaneness, practiced in a community."><i></i>Character and flourishing</button><button data-gf="L" style="--gc:var(--gL)" aria-pressed="false" title="Freedom from craving, passion and disturbance: the untroubled mind, release from the cycle, the sage who cannot be shaken."><i></i>Liberation and peace</button><button data-gf="H" style="--gc:var(--gH)" aria-pressed="false" title="Pleasure, satisfied desire and the relief of suffering, for yourself and for everyone your life touches."><i></i>Happiness and wellbeing</button><button data-gf="F" style="--gc:var(--gF)" aria-pressed="false" title="Autonomy and authenticity: making your own values, overcoming what you were handed, being fully your own."><i></i>Freedom and self-creation</button><button data-gf="J" style="--gc:var(--gJ)" aria-pressed="false" title="A just, free society in which people flourish together; repairing the world."><i></i>Justice and the common good</button><button data-gf="W" style="--gc:var(--gW)" aria-pressed="false" title="Living in accord with nature, the Dao, the kami, the land and the ancestors: balance, purity, reciprocity."><i></i>Harmony with the way of things</button><button data-gf="K" style="--gc:var(--gK)" aria-pressed="false" title="Knowledge and contemplation of what is: the life of reason, the vision of truth, understanding as the highest activity."><i></i>Understanding</button><button data-gf="N" style="--gc:var(--gN)" aria-pressed="false" title="Thinkers who proposed no highest good"><i></i>None proposed</button></div>
       <div class="zkey" id="zkey"></div>
       <div class="howto"><span><i class="k-dot"></i>Solid point: what they claimed</span><span><i class="k-ring"></i>Hollow point: where their arguments land</span><span><i class="k-ring dash"></i>Dashed hollow point: contested reading</span><span><i class="k-drift"></i>Orange arrow: drift between the two</span><span><i class="k-dim"></i>Red ring: the thinker you selected</span><span><i class="k-pin"></i>Red pins: your beliefs (solid) and decisions (hollow)</span><span><i class="k-spread"></i>Dashed red rings: how far your answers ranged</span><span><i class="k-px"></i>Blue plane: same view on what's fundamental</span><span><i class="k-py"></i>Gold plane: same view on where the ultimate is</span><span><i class="k-pz"></i>Green plane: same view on whether truth is found or made</span><span><i class="k-ring"></i>Faded points sit farther back</span></div>
       <div class="cmd" aria-live="polite">
@@ -582,7 +608,7 @@ svg.by-good .ph .vec{stroke:var(--gc)}
           <svg width="18" height="18" viewBox="-9 -9 18 18"><path d="M0 -7 L7 0 L0 7 L-7 0Z" class="m-claim"/></svg><span>Process / anti-substance</span>
           <svg width="18" height="18" viewBox="-9 -9 18 18"><circle r="5.5" class="m-supp"/></svg><span>Where the work actually lands</span>
           <svg width="18" height="18" viewBox="-9 -9 18 18"><circle r="5.5" class="m-supp" style="stroke-dasharray:3 2"/></svg><span>Contested reading of where it lands</span>
-          <svg width="18" height="18" viewBox="-9 -9 18 18"><circle r="6" style="fill:var(--rel);stroke:var(--sheet);stroke-width:1.5"/></svg><span>Religious tradition (doctrine as taught)</span>
+          <svg width="18" height="18" viewBox="-9 -9 18 18"><circle r="6" style="fill:var(--gG);stroke:var(--sheet);stroke-width:1.5"/></svg><span>Color: the highest good it aims at</span><svg width="18" height="18" viewBox="-9 -9 18 18"><text x="0" y="4" text-anchor="middle" style="fill:var(--rel);font-style:italic;font-size:11px">Ab</text></svg><span>Violet italic name: a religious tradition (doctrine as taught)</span>
         </div>
       </div>
     </aside>
@@ -600,15 +626,6 @@ svg.by-good .ph .vec{stroke:var(--gc)}
           <tbody id="tb"></tbody>
         </table>
       </div>
-    </div>
-    <div class="tblock">
-      <div class="wide"><span>TITLE</span><strong>Metaphysical Field Survey</strong></div>
-      <div><span>X-AXIS</span><strong>What is fundamental</strong><p>−100 only mind exists · −50 mind is primary and matter derives from it · 0 both are basic, or a neutral stuff underlies both · +50 matter is primary and mind derives from it · +100 only matter exists.</p></div>
-      <div><span>Y-AXIS</span><strong>Where the ultimate is</strong><p><b>The ultimate</b> is the deepest reality: what everything else depends on, which depends on nothing further. Theism says it is God, pantheism says it is the universe itself, and physicalism says there is no such thing.</p><p>+100 wholly beyond the world · +50 beyond it and also present in it · 0 the ultimate is the world itself · −50 only this world, nothing ultimate · −100 even "the world" is constructed, or the question is rejected.</p></div>
-      <div><span>Z-AXIS</span><strong>Is truth found or made</strong><p>Are the deepest truths (logic, math, right and wrong, the order of nature) there to be discovered, or brought into being by some will or mind?</p><p>+100 eternal and uncreated, binding even God · +50 necessary, grounded in a nature no one chose · 0 given, objective but contingent · −50 willed by God or structured by the mind · −100 made by us: culture, language, choice.</p></div>
-      <div class="wide"><span>DRAFTING NOTES</span><p>Coordinates are interpretive judgments, not measurements. "Supported" positions follow the strongest scholarly reading of what each system requires, which sometimes differs from what the author said about it. Where the two agree, only one point shows. Region borders sit exactly halfway between anchor values (X −75, −25, +25; Y +25, −25, −75; Z 0), so each region's size follows the axes rather than a school. Every column except Anti-Realism splits at Z 0 into a truth-found half (solid) and a truth-made half (dashed). Who makes truth is read off the vertical axis: God's will sits high, human construction sits low. Classical theism sits left of center because its ultimate ground, God, is an immaterial mind.</p></div>
-      <div><span>SCOPE</span><strong>46 thinkers · 15 religious traditions</strong></div><div><span>SCALE</span><strong>1 unit = 1 degree of commitment</strong></div>
-      <div class="wide"><span>REV</span><strong>C · 2026-10-29 · third axis added (truth found or made); regions rebuilt as 3D blocks</strong></div>
     </div>
   </section>
 
@@ -646,9 +663,10 @@ svg.by-good .ph .vec{stroke:var(--gc)}
       <p class="ex-q">If you had to say what a life is <b>for</b>, what would you say?</p>
       <p>This is where a philosophy or religion says what it is arguing <i>for</i>. It isn't a scale with two ends, so it's shown as a category and a color. Two systems can disagree about everything on the three axes and still aim at the same thing: the Stoics and the Buddhists are far apart on where the ultimate is, but both hold that the good life is freedom from craving and disturbance, and both train for it. Plato, Augustine and Latter-day Saint teaching all say the end of life is becoming like God. Nietzsche, who sits at the opposite corner of the model from Plato, also aims at the opposite good: making your own values rather than ascending to a Good already there.</p>
       <ol class="ex-gscale"><li style="--gc:var(--gG)"><i></i><b>Union with the divine</b><span class="ex-d">Becoming like God, seeing God, or being joined to the One: the soul's ascent, the beatific vision, exaltation, union with Brahman.</span><span class="ex-e">Plato, Augustine, Latter-day Saints, Śaṅkara</span></li><li style="--gc:var(--gV)"><i></i><b>Character and flourishing</b><span class="ex-d">Excellence of character and a full, well-lived human life (eudaimonia): wisdom, courage, justice, humaneness, practiced in a community.</span><span class="ex-e">Aristotle, Kant, Confucianism</span></li><li style="--gc:var(--gL)"><i></i><b>Liberation and peace</b><span class="ex-d">Freedom from craving, passion and disturbance: the untroubled mind, release from the cycle, the sage who cannot be shaken.</span><span class="ex-e">The Stoics, Epicurus, Buddhism, Jainism</span></li><li style="--gc:var(--gH)"><i></i><b>Happiness and wellbeing</b><span class="ex-d">Pleasure, satisfied desire and the relief of suffering, for yourself and for everyone your life touches.</span><span class="ex-e">Hume, Locke, Russell</span></li><li style="--gc:var(--gF)"><i></i><b>Freedom and self-creation</b><span class="ex-d">Autonomy and authenticity: making your own values, overcoming what you were handed, being fully your own.</span><span class="ex-e">Nietzsche, Sartre, Hegel</span></li><li style="--gc:var(--gJ)"><i></i><b>Justice and the common good</b><span class="ex-d">A just, free society in which people flourish together; repairing the world.</span><span class="ex-e">Marx, Derrida</span></li><li style="--gc:var(--gW)"><i></i><b>Harmony with the way of things</b><span class="ex-d">Living in accord with nature, the Dao, the kami, the land and the ancestors: balance, purity, reciprocity.</span><span class="ex-e">Laozi, Shinto, Animism</span></li><li style="--gc:var(--gK)"><i></i><b>Understanding</b><span class="ex-d">Knowledge and contemplation of what is: the life of reason, the vision of truth, understanding as the highest activity.</span><span class="ex-e">Parmenides, Spinoza, Husserl</span></li></ol>
-      <p class="ex-tip"><b>See it on the map:</b> choose "Highest good" under "Color points by". Your test matches count this question alongside the three axes, and your results show who aims at the same good you do.</p>
+      <p class="ex-tip"><b>See it on the map:</b> points are colored by their highest good; tap a good under the model to show only the entries that aim at it. Your test matches count this question alongside the three axes, and your results show who aims at the same good you do.</p>
     </div>
     <p class="ex-why"><b>Why separate questions?</b> They're independent. Catholics and Latter-day Saints both put the ultimate at the top, but split left and right over whether God is pure spirit or has a glorified body. The Stoics and Dennett both sit on the matter side, but split top and bottom over whether the universe is sacred or simply there. Latter-day Saints and Plato split on matter, yet sit together at the front of the model, where intelligence and law are uncreated and even God works within them; most Christian theology sits further back, with truth grounded in God's own nature. Plato and the Stoics agree that truth is found, yet aim at different goods: likeness to God for one, the untroubled sage for the other.</p>
+    <p class="ex-why"><b>Drafting notes.</b> Coordinates are interpretive judgments, not measurements. "Supported" positions follow the strongest scholarly reading of what each system requires, which sometimes differs from what the author said about it. Where the two agree, only one point shows. Region borders sit exactly halfway between anchor values (X −75, −25, +25; Y +25, −25, −75; Z 0), so each region's size follows the axes rather than a school. Every column except Anti-Realism splits at Z 0 into a truth-found half (solid) and a truth-made half (dashed). Who makes truth is read off the vertical axis: God's will sits high, human construction sits low. Classical theism sits left of center because its ultimate ground, God, is an immaterial mind.</p>
   </section>
 </div>
 
@@ -804,7 +822,7 @@ function zoneAt(x,y,z){z=z??0;for(const q of ZONES){if(x>=q.x[0]&&x<=q.x[1]&&y>=
 const NS="http://www.w3.org/2000/svg";
 const el=(t,a={},p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
 const svg=document.getElementById("plot");
-const S={sel:null,pin:null,view:"none",zone:null,eras:new Set(Object.keys(ERAS)),sort:{k:"drift",dir:-1}};
+const S={sel:null,pin:null,view:"none",zone:null,kind:"all",gf:null,eras:new Set(Object.keys(ERAS)),sort:{k:"drift",dir:-1}};
 
 /* ---------- 3D scene: orthographic CAD projection drawn in SVG ---------- */
 const W=1320,H=1000,BASE=3.05,TAU=Math.PI*2;
@@ -874,6 +892,11 @@ function drawAxes(){tickBoxes=[];
   for(let v=-100;v<=100;v+=step){const q=e.p0.slice();q[ax]=v;const s=P3(q);
    el("line",{x1:s[0],y1:s[1],x2:s[0]+nx*7,y2:s[1]+ny*7,class:"axis ns"},gA);
    tickTxt(s[0]+nx*20,s[1]+ny*20+4,(v>0?"+":"")+v,"tick",ax===1?"end":"middle");}
+  const fi=focusInfo();if(fi){const q=e.p0.slice();q[ax]=Math.max(-100,Math.min(100,fi.pt[ax]));const s=P3(q),col=["px","py","pz"][ax];
+   el("line",{x1:e.s0[0],y1:e.s0[1],x2:e.s1[0],y2:e.s1[1],class:"axhl "+col+" ns"},gA);
+   el("circle",{cx:s[0],cy:s[1],r:5,class:"axdot "+col},gA);
+   const lab=(fi.pt[ax]>0?"+":"")+Math.round(fi.pt[ax]),w=lab.length*7+14,ox=s[0]+nx*(ax===1?44:30),oy=s[1]+ny*30;
+   const g=el("g",{class:"ptag "+col},gA);el("rect",{x:ox-w/2,y:oy-9,width:w,height:18,class:"ns"},g);txt(ox,oy+4,lab,"","middle",g);tickBoxes.push([ox-w/2,oy-9,ox+w/2,oy+9]);}
   if(L>560)A.a.forEach(([v,lab])=>{const q=e.p0.slice();q[ax]=v;const s=P3(q);tickTxt(s[0]+nx*38,s[1]+ny*38+4,lab,"anchor",ax===1?"end":v===-100&&ax!==1?"start":v===100&&ax!==1?"end":"middle");});
   let deg=Math.atan2(dy,dx)*180/Math.PI,flip=false;if(deg>90){deg-=180;flip=true;}if(deg<-90){deg+=180;flip=true;}
   const lab=flip?`${A.hi} ◄─── ${A.n} ───► ${A.lo}`:`${A.lo} ◄─── ${A.n} ───► ${A.hi}`;
@@ -897,12 +920,12 @@ function drawBlocks(){const act=S.view==="region"?S.zone:null,faces=[],tags=[];
  faces.forEach(f=>el("polygon",{points:pts(f.q),class:"zface"+(f.on?" on":dim?" dim":"")+(f.z.t==="B"?" tb":""),style:`--zc:var(${f.z.c})`,"data-zone":f.z.id},gZ));
  ZONES.forEach(z=>{const c=z.scr,on=z.id===act;let d="";E12.forEach(([i,j])=>{d+=`M${c[i][0].toFixed(1)} ${c[i][1].toFixed(1)}L${c[j][0].toFixed(1)} ${c[j][1].toFixed(1)}`;});
   el("path",{d,class:"zedge ns"+(on?" on":dim?" dim":"")+(z.t==="B"?" tb":""),style:`--zc:var(${z.c})`},gZ);});
- tags.forEach(({z,top,on})=>{if(dim&&!on)return;const g=el("g",{class:"ztag","data-zone":z.id,style:`--zc:var(${z.c})`},gZ),w=z.id.length*6.6+10;
+ tags.forEach(({z,top,on})=>{if(dim&&!on)return;const g=el("g",{class:"ztag"+(on?" on":""),"data-zone":z.id,style:`--zc:var(${z.c})`},gZ),w=z.id.length*6.6+10;
   el("rect",{x:top[0]+4,y:top[1]+4,width:w,height:15,class:"zone-idbg"},g);txt(top[0]+4+w/2,top[1]+15,z.id,"zone-id","middle",g);z.tag=[top[0]+2,top[1]+2,top[0]+w+6,top[1]+21];});}
 
 /* ---------- points ---------- */
 function placePoints(){const vis=[];
- P.forEach(p=>{const c=P3(p.c),s=P3(p.s);p.scr=c;p.sscr=s;if(!S.eras.has(p.era))return;vis.push(p);
+ P.forEach(p=>{const c=P3(p.c),s=P3(p.s);p.scr=c;p.sscr=s;if(!shown(p))return;vis.push(p);
   const f=Math.max(0,Math.min(1,(c[2]+175)/350)),sc=.82+.36*f;p.depth=c[2];
   p.gc.setAttribute("transform",`translate(${c[0].toFixed(1)},${c[1].toFixed(1)}) scale(${sc.toFixed(3)})`);p.g.style.setProperty("--fade",(.42+.58*f).toFixed(2));
   if(p.gs){p.gs.setAttribute("transform",`translate(${s[0].toFixed(1)},${s[1].toFixed(1)}) scale(${sc.toFixed(3)})`);
@@ -918,7 +941,7 @@ const CAND=[[11,4.5,"start"],[-11,4.5,"end"],[9,-9,"start"],[9,18,"start"],[-9,-
  [11,-7,"start"],[11,16,"start"],[-11,-7,"end"],[-11,16,"end"],[14,-21,"start"],[14,30,"start"],[-14,-21,"end"],[-14,30,"end"],
  [0,-26,"middle"],[0,35,"middle"],[20,-34,"start"],[-20,-34,"end"]];
 function placeLabels(quick){
- const vis=P.filter(p=>S.eras.has(p.era)&&p.scr),marks=[];
+ const vis=P.filter(p=>shown(p)&&p.scr&&!p.dim),marks=[];
  if(quick){vis.forEach(p=>{p.label.setAttribute("x",(p.scr[0]+11).toFixed(1));p.label.setAttribute("y",(p.scr[1]+4.5).toFixed(1));p.label.setAttribute("text-anchor","start");p.leader.setAttribute("visibility","hidden");});return;}
  vis.forEach(p=>{marks.push(p.scr);if(p.drift>2)marks.push(p.sscr);});
  const boxes=ZONES.filter(z=>z.tag&&!(S.view==="region"&&S.zone!==z.id)).map(z=>z.tag);
@@ -942,7 +965,7 @@ let rq=0,quickLabels=false;
 function render(){rq=0;gGrid.innerHTML="";gZ.innerHTML="";gA.innerHTML="";
  const far=(ax)=>{const a=[0,0,0],b=[0,0,0];a[ax]=-100;b[ax]=100;return P3(a)[2]<P3(b)[2]?-100:100;};
  [0,1,2].forEach(ax=>wallGrid(ax,far(ax)));
- drawBlocks();drawAxes();placePoints();drawProj();drawPin();placeLabels(quickLabels);
+ markFocus();drawBlocks();drawAxes();placePoints();drawProj();drawPin();placeLabels(quickLabels);
  document.getElementById("cv").textContent=CAM.view==="custom"?`${Math.round(CAM.yaw*180/Math.PI)}° / ${Math.round(CAM.pitch*180/Math.PI)}°`:VIEWS[CAM.view].n;
  document.querySelectorAll("[data-view]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.view===CAM.view)));}
 function requestRender(){if(!rq)rq=requestAnimationFrame(render);}
@@ -960,7 +983,7 @@ function flyTo(to,ms){const from={yaw:CAM.yaw,pitch:CAM.pitch,zoom:CAM.zoom,t:CA
   if(u<1){quickLabels=true;render();fly.id=requestAnimationFrame(step);}else{fly=null;quickLabels=false;render();}};
  fly={id:requestAnimationFrame(step)};}
 const clampT=v=>v.map(a=>Math.max(-100,Math.min(100,a)));
-function focusPoint(v,zoom){flyTo({t:clampT(v.map(a=>a*.75)),zoom:zoom||Math.max(CAM.zoom,1.45)},700);}
+function focusPoint(v,zoom){flyTo({t:clampT(v.map(a=>a*.4)),zoom:zoom||1.15},700);}
 
 /* ---------- layers & filters ---------- */
 const LAY=[["no-grid","Grid"],["no-zones","Zones"],["no-claimed","Claimed"],["no-supp","Supported"],["no-vec","Drift vectors"],["no-labels","Labels"],["no-proj","Axis planes"]];
@@ -970,7 +993,8 @@ LAY.forEach(([cls,n],k)=>{const l=document.createElement("label");l.innerHTML=`<
 const ew=document.getElementById("eras");
 Object.entries(ERAS).forEach(([k,n])=>{const b=document.createElement("button");b.className="chip";b.textContent=n;b.setAttribute("aria-pressed","true");
  b.onclick=()=>{S.eras.has(k)?S.eras.delete(k):S.eras.add(k);b.setAttribute("aria-pressed",S.eras.has(k));applyFilter();};ew.appendChild(b);});
-function applyFilter(){P.forEach(p=>G[p.i].classList.toggle("is-off",!S.eras.has(p.era)));renderTable();requestRender();renderPanel();}
+function shown(p){return S.eras.has(p.era)&&(S.kind==="all"||(S.kind==="rel")===(p.era==="rel"))&&(!S.gf||(S.gf==="N"?!p.hg:p.hg===S.gf));}
+function applyFilter(){P.forEach(p=>G[p.i].classList.toggle("is-off",!shown(p)));syncFilters();renderTable();requestRender();renderPanel();}
 
 /* ---------- inspector ---------- */
 const fmt=v=>(v>0?"+":"")+v.toFixed(0);
@@ -1040,12 +1064,12 @@ function dimLine(x1,y1,x2,y2,label,parent){
 
 const BAND=10;
 const AXN=["X","Y","Z"],AXC=["px","py","pz"];
-function axisMates(pt,ex){const vis=P.filter(q=>q.i!==ex&&S.eras.has(q.era));
+function axisMates(pt,ex){const vis=P.filter(q=>q.i!==ex&&shown(q));
  const pick=ax=>vis.map(q=>{const ds=Math.abs(q.s[ax]-pt[ax]),dc=Math.abs(q.c[ax]-pt[ax]);
    if(ds<=BAND)return {q,pt:q.s,d:ds,via:"s"};if(dc<=BAND)return {q,pt:q.c,d:dc,via:"c"};return null;}).filter(Boolean).sort((a,b)=>a.d-b.d);
  return {xs:pick(0),ys:pick(1),zs:pick(2)};}
 function mateList(arr){return arr.length?arr.map(m=>`<button class="pbtn${m.q.era==="rel"?" rel":""}" data-pid="${m.q.i}" title="${m.via==="c"&&m.q.drift>2?"Matches their stated view":"Matches where their work lands"}">${m.q.n}${m.via==="c"&&m.q.drift>2?'<small class="via"> · stated</small>':""}</button>`).join(""):'<span class="empty">No one else within ±'+BAND+'</span>';}
-function goodMates(g,ex){return g?P.filter(q=>q.i!==ex&&S.eras.has(q.era)&&(q.hg===g||q.g2===g)).sort((a,b)=>(b.hg===g)-(a.hg===g)).map(q=>({q,via:q.hg===g?"p":"s"})):[];}
+function goodMates(g,ex){return g?P.filter(q=>q.i!==ex&&shown(q)&&(q.hg===g||q.g2===g)).sort((a,b)=>(b.hg===g)-(a.hg===g)).map(q=>({q,via:q.hg===g?"p":"s"})):[];}
 function goodList(arr){return arr.length?arr.map(m=>`<button class="pbtn${m.q.era==="rel"?" rel":""}" data-pid="${m.q.i}" title="${m.via==="p"?"Their highest good":"Their second good"}">${m.q.n}${m.via==="s"?'<small class="via"> · second</small>':""}</button>`).join(""):'<span class="empty">No one else</span>';}
 function goodMateHTML(g,ex){return g?`<div class="mate mg" style="--gc:var(--g${g})"><div class="lbl"><i class="mk"></i>Same highest good · ${gName(g)}</div><div class="list">${goodList(goodMates(g,ex))}</div></div>`:"";}
 function matesHTML(pt,ex,g){const m=axisMates(pt,ex);
@@ -1056,7 +1080,7 @@ function projTag(x,y,txt,cls){const g=el("g",{class:"ptag "+cls},gProj),w=txt.le
 function planeQuad(ax,v){const o=[0,1,2].filter(i=>i!==ax),mkp=(a,b)=>{const q=[0,0,0];q[ax]=v;q[o[0]]=a;q[o[1]]=b;return q;};return [mkp(-100,-100),mkp(100,-100),mkp(100,100),mkp(-100,100)];}
 function drawProj(){gProj.innerHTML="";const src=[];
  if(S.view==="results"){if(T.res){src.push({pt:T.res,ax:[0,1,2],ex:-1});if(T.dres)src.push({pt:T.dres,ax:[1,2],ex:-1,dash:1});}}
- else if(S.view==="thinker"&&S.sel!=null&&P[S.sel]&&S.eras.has(P[S.sel].era))src.push({pt:P[S.sel].s,ax:[0,1,2],ex:S.sel});
+ else if(S.view==="thinker"&&S.sel!=null&&P[S.sel]&&shown(P[S.sel]))src.push({pt:P[S.sel].s,ax:[0,1,2],ex:S.sel});
  src.forEach(o=>{const m=axisMates(o.pt,o.ex),lists=[m.xs,m.ys,m.zs];
   o.ax.forEach(ax=>{const v=o.pt[ax],cls=AXC[ax]+(o.dash?" dash":""),q=planeQuad(ax,v).map(P3);
    const lo=planeQuad(ax,Math.max(-100,v-BAND)).map(P3),hi=planeQuad(ax,Math.min(100,v+BAND)).map(P3);
@@ -1070,6 +1094,14 @@ function drawProj(){gProj.innerHTML="";const src=[];
   // witness lines from the point to the three back walls
   const s0=P3(o.pt);o.ax.forEach(ax=>{const a=[0,0,0],b=[0,0,0];a[ax]=-100;b[ax]=100;const w=P3(a)[2]<P3(b)[2]?-100:100,q=o.pt.slice();q[ax]=w;const s1=P3(q);
    el("line",{x1:s0[0],y1:s0[1],x2:s1[0],y2:s1[1],class:"wit "+AXC[ax]+" ns"},gProj);el("circle",{cx:s1[0],cy:s1[1],r:2.5,class:"witdot "+AXC[ax]},gProj);});});}
+function focusInfo(){if(S.view==="thinker"&&S.sel!=null&&P[S.sel]&&shown(P[S.sel]))return {pt:P[S.sel].s,ex:S.sel,g:P[S.sel].hg};
+ if(S.view==="results"&&T.res)return {pt:T.res,ex:-1,g:typeof topGoods==="function"?topGoods(T.gt)[0]:null};return null;}
+function markFocus(){const fi=focusInfo();let keep=null;
+ if(S.view==="region"&&S.zone){keep=new Set(P.filter(q=>q.sz.id===S.zone||q.cz.id===S.zone).map(q=>q.i));}
+ if(fi){keep=new Set();const m=axisMates(fi.pt,fi.ex);[m.xs,m.ys,m.zs].forEach(a=>a.forEach(h=>keep.add(h.q.i)));if(typeof goodMates==="function")goodMates(fi.g,fi.ex).forEach(h=>keep.add(h.q.i));if(fi.ex>=0)keep.add(fi.ex);
+  if(S.view==="results")[...nearList(T.res,false,T.gt).slice(0,1),...nearList(T.res,true,T.gt).slice(0,1)].forEach(r=>keep.add(r.p.i));}
+ svg.classList.toggle("focus",!!keep);
+ P.forEach(p=>{p.dim=!!keep&&!keep.has(p.i);G[p.i].classList.toggle("is-dim",p.dim);});}
 function markSel(){const th=S.view==="thinker";P.forEach(p=>{const g=G[p.i];g.classList.toggle("is-sel",p.i===S.sel&&th);g.classList.toggle("is-pin",p.i===S.pin&&th);
  g.querySelectorAll(".ring").forEach(r=>r.remove());
  if(th&&(p.i===S.sel||p.i===S.pin)){const r=el("circle",{cx:0,cy:0,r:12,class:"ring ns"},p.gc);if(p.i===S.pin&&p.i!==S.sel)r.setAttribute("stroke-dasharray","3 3");}});}
@@ -1078,17 +1110,17 @@ function markSel(){const th=S.view==="thinker";P.forEach(p=>{const g=G[p.i];g.cl
 const tb=document.getElementById("tb");
 function renderTable(){const {k,dir}=S.sort;
  const rows=[...P].sort((a,b)=>{let va=k==="tz"?a.s[2]:k==="g"?(a.hg||"ZZ"):a[k],vb=k==="tz"?b.s[2]:k==="g"?(b.hg||"ZZ"):b[k];if(k==="cz"||k==="sz"){va=va.id;vb=vb.id;}return (va>vb?1:va<vb?-1:0)*dir;});
- tb.innerHTML=rows.map(p=>`<tr data-id="${p.i}" class="${p.i===S.sel?"sel":""} ${S.eras.has(p.era)?"":"off"}">
+ tb.innerHTML=rows.map(p=>`<tr data-id="${p.i}" class="${p.i===S.sel?"sel":""} ${shown(p)?"":"off"}">
  <td class="num">${p.tag}</td><td><b>${p.n}</b></td><td class="num">${p.d}</td><td>${TYPES[p.t]}</td><td>${p.conf==="c"?"Contested":"Standard"}</td><td class="num">${tChip(p.s[2])}${pFmt(p.s[2])}</td><td>${gChip(p.hg)}${p.hg?gName(p.hg):"—"}</td>
  <td class="num">${zlink(p.cz,true)} <span style="color:var(--ink2)">${fmt(p.c[0])}, ${fmt(p.c[1])}, ${fmt(p.c[2])}</span></td><td class="num">${zlink(p.sz,true)} <span style="color:var(--ink2)">${fmt(p.s[0])}, ${fmt(p.s[1])}, ${fmt(p.s[2])}</span></td>
  <td class="num"><span class="drift-bar" style="width:${Math.max(1,p.drift*.9).toFixed(0)}px"></span>${p.drift.toFixed(1)}</td></tr>`).join("");
- document.getElementById("count").textContent=`${P.filter(p=>S.eras.has(p.era)).length} / ${P.length} SHOWN`;}
+ document.getElementById("count").textContent=`${P.filter(p=>shown(p)).length} / ${P.length} SHOWN`;}
 document.querySelectorAll("th").forEach(th=>{const go=()=>{const k=th.dataset.k;S.sort=S.sort.k===k?{k,dir:-S.sort.dir}:{k,dir:k==="drift"?-1:1};
  document.querySelectorAll("th").forEach(h=>h.removeAttribute("aria-sort"));th.setAttribute("aria-sort",S.sort.dir>0?"ascending":"descending");renderTable();};
  th.onclick=go;th.onkeydown=e=>{if(e.key==="Enter")go();};});
 tb.addEventListener("click",e=>{if(e.target.closest("[data-zlink]"))return;const tr=e.target.closest("tr");if(!tr)return;select(+tr.dataset.id,false);revealPanel();});
 
-function select(i,center){S.sel=i;S.view="thinker";const pal=document.querySelector(".palette");if(pal)pal.scrollTop=0;if(!S.eras.has(P[i].era)){S.eras.add(P[i].era);[...ew.children][Object.keys(ERAS).indexOf(P[i].era)].setAttribute("aria-pressed","true");applyFilter();}
+function select(i,center){S.sel=i;S.view="thinker";const pal=document.querySelector(".palette");if(pal)pal.scrollTop=0;if(!shown(P[i])){if(S.kind!=="all"&&(S.kind==="rel")!==(P[i].era==="rel"))S.kind="all";if(S.gf&&(S.gf==="N"?!!P[i].hg:P[i].hg!==S.gf))S.gf=null;S.eras.add(P[i].era);[...ew.children][Object.keys(ERAS).indexOf(P[i].era)].setAttribute("aria-pressed","true");applyFilter();}
  const p=P[i];focusPoint(p.c.map((v,k)=>(v+p.s[k])/2));if(isPhone())setTimeout(()=>scrollMapTo(W/2,H/2),720);
  if(center)document.getElementById("vp").scrollIntoView({behavior:reduced()?"auto":"smooth",block:"nearest"});
  refresh();readout(p);msg(`Selected <b>${p.n}</b> · (${fmt(p.s[0])}, ${fmt(p.s[1])}, ${fmt(p.s[2])}) · drift ${p.drift.toFixed(1)} u`);}
@@ -1130,7 +1162,12 @@ svg.addEventListener("pointerleave",()=>{if(!drag)readout(S.view==="thinker"&&S.
 svg.addEventListener("pointerup",e=>{if(!drag)return;const d=drag;drag=null;if(d.moved){quickLabels=false;requestRender();return;}
  const yp=d.target.closest&&d.target.closest("[data-you]");if(yp&&T.res){S.view="results";refresh();revealPanel();return;}
  const g=d.target.closest&&d.target.closest(".ph");if(g){select(+g.dataset.id,false);revealPanel();return;}
- const f=d.target.closest&&d.target.closest("[data-zone]");if(f)showZone(f.dataset.zone);});
+ const f=d.target.closest&&d.target.closest("[data-zone]");
+ if(S.view==="none"){if(f)showZone(f.dataset.zone);return;}
+ if(S.view==="region"&&f&&f.dataset.zone===S.zone)return;
+ clearSelection();});
+function clearSelection(){S.view="none";S.sel=null;S.zone=null;refresh();readout(null);flyTo({zoom:CAM.view==="iso"?1:1.45,t:[0,0,0]},550);
+ msg("<b>SELECT</b> a point or a block to inspect. Drag to turn, shift-drag to pan, scroll to zoom.");}
 svg.addEventListener("keydown",e=>{const g=e.target.closest&&e.target.closest(".ph");if(g&&(e.key==="Enter"||e.key===" ")){e.preventDefault();select(+g.dataset.id,false);revealPanel();}});
 const msg=h=>document.getElementById("cmdMsg").innerHTML="Command: "+h;
 function scrollMapTo(ux,uy){const sc=document.getElementById("vscroll");if(!sc||sc.scrollWidth<=sc.clientWidth+2)return;
@@ -1447,10 +1484,12 @@ function revealPanel(){goTo(panel);}
 function focusProfile(i){select(i,false);revealPanel();}
 
 buildZones();
-function setColorBy(m){S.colorBy=m;svg.classList.toggle("by-good",m==="good");document.querySelectorAll("[data-cb]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.cb===m)));
- document.getElementById("gkey").hidden=m!=="good";try{localStorage.setItem("mfs-colorby",m);}catch(e){}}
-document.querySelectorAll("[data-cb]").forEach(b=>b.onclick=()=>setColorBy(b.dataset.cb));
-try{if(localStorage.getItem("mfs-colorby")==="good")setColorBy("good");}catch(e){}
+svg.classList.add("by-good");
+function syncFilters(){document.querySelectorAll("[data-kind]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.kind===S.kind)));
+ document.querySelectorAll("[data-gf]").forEach(b=>b.setAttribute("aria-pressed",String((b.dataset.gf||null)===S.gf)));}
+function filterMsg(){const n=P.filter(shown).length,k=S.kind==="phil"?"philosophers":S.kind==="rel"?"religions":"entries";msg(`Showing <b>${n}</b> ${k}${S.gf?` whose highest good is <b>${S.gf==="N"?"none proposed":gName(S.gf).toLowerCase()}</b>`:""}`);}
+document.querySelectorAll("[data-kind]").forEach(b=>b.onclick=()=>{S.kind=b.dataset.kind;applyFilter();filterMsg();});
+document.querySelectorAll("[data-gf]").forEach(b=>b.onclick=()=>{const g=b.dataset.gf||null;S.gf=S.gf===g?null:g;applyFilter();filterMsg();});
 loadSaved();
 refresh();
 updateHeader();
