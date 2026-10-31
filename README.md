@@ -48,7 +48,7 @@ The Desktop copy and the claude.ai preview never send anything; the share step o
 
 The share step also asks, all optionally, for an age range, gender, where someone grew up and their religious tradition (the option lists live in `demographics.json`). These are stored with the response so groups can be compared on the private `/results` page, which has filters for each one, a "Compare groups" table, and the new columns in the CSV.
 
-The **Responses** tab on the map (only on the live site) shows everyone's pins together, each person once, colored by highest good, with a switch between belief and decision pins and filters for each demographic. Pins carry no details, and any filter that matches fewer than five people shows nothing, so no one can be singled out. Only responses shared after this was added appear there, since earlier ones were shared under a promise of aggregate-only use.
+The **Responses** button in the header (only on the live site) shows everyone's pins together, each person once, colored by highest good, with a switch between belief and decision pins and filters for each demographic. Pins carry no details, and any filter that matches fewer than five people shows nothing, so no one can be singled out. Only responses shared after this was added appear there, since earlier ones were shared under a promise of aggregate-only use.
 
 ### Sharing a result
 
