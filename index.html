@@ -764,9 +764,10 @@ svg.simple.focus .zedge:not(.on){stroke-opacity:.12}
 .shr-demo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px;border:1px solid var(--line);padding:12px}
 .shr-demo>.lbl{grid-column:1/-1}
 .shr-demo select{max-width:none;width:100%}
-.insp.crowd .cfs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 10px;margin:10px 0}
-.insp.crowd .cf{display:flex;flex-direction:column;gap:4px}
-.insp.crowd select{font:inherit;font-size:14px;padding:7px 8px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);width:100%}
+.insp.crowd .cfs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 10px;margin:12px 0;align-items:end}
+.insp.crowd .cf{display:flex;flex-direction:column;gap:4px;min-width:0}
+.insp.crowd .cf .lbl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.insp.crowd select{font:inherit;font-size:14px;padding:7px 8px;height:38px;box-sizing:border-box;border:1px solid var(--line);background:var(--sheet);color:var(--ink);width:100%}
 .insp.crowd .cmode{display:flex;margin-top:10px}
 .insp.crowd .cmode button{flex:1;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.08em;padding:8px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
 .insp.crowd .cmode button[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
@@ -1316,7 +1317,7 @@ function crowdPanel(){panel.className="pblock insp crowd";const f=CROWD.f;
  panel.innerHTML=`<div class="lbl">Responses</div><h2>Everyone who's taken the test</h2>
   <p class="ip-def">Each dot is one person's ${CROWD.mode==="belief"?"belief pin":"decision pin"}, colored by the highest good they aim at. Only people who chose to share are shown, each once, with no details attached.</p>
   <div class="cmode" role="group" aria-label="Which pins"><button data-cm="belief" aria-pressed="${CROWD.mode==="belief"}">BELIEFS</button><button data-cm="decision" aria-pressed="${CROWD.mode==="decision"}">DECISIONS</button></div>
-  <div class="cfs">${sel("religion","Religious tradition",RELIGIONS)}${sel("age","Age",DEMO.ages)}${sel("gender","Gender",DEMO.genders)}${sel("grew_up","Where they grew up",DEMO.places)}</div>
+  <div class="cfs">${sel("religion","Religion",RELIGIONS)}${sel("age","Age",DEMO.ages)}${sel("gender","Gender",DEMO.genders)}${sel("grew_up","Grew up",DEMO.places)}</div>
   ${CROWD.n==null?'<p class="cnote">Loading…</p>':CROWD.err?'<p class="cnote">Couldn\'t load responses right now.</p>':CROWD.tooFew?'<p class="cnote"><b>Fewer than five people match.</b> Small groups are hidden so no one can be singled out. Try a broader filter.</p>':
    `<p class="ccount"><b>${CROWD.n}</b> ${CROWD.n===1?"person":"people"}</p>${ord.length?`<div class="gbar">${ord.map(k=>`<div class="gb" style="--gc:var(--g${k})"><span>${gChip(k==="N"?null:k)}${k==="N"?"No clear good":gName(k)}</span><span class="gt"><i style="width:${Math.round(cnt[k]/tot*100)}%"></i></span><span class="mono">${Math.round(cnt[k]/tot*100)}%</span></div>`).join("")}</div>`:""}`}
   ${T.res&&!T.viewing?'<p class="cnote">Your own pins stay on the map in red, so you can see where you sit among everyone else.</p>':""}`;
